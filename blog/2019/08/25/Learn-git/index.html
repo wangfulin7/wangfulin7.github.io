@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="git,">
 
 
 
@@ -79,16 +79,18 @@
 
 
 
+<meta name="description" content="先记录一些简单的,要不然每次都是去查,好尴尬😅  1 查看当前的远程库git remote  wangfulindeMBP2:post wangfulin$ git remote origin wangfulindeMBP2:post wangfulin$ git remote -v origin    git@github.com:wangfulin7/wangfulin7-notes.git">
+<meta name="keywords" content="git">
 <meta property="og:type" content="article">
-<meta property="og:title" content="2019-08-10Saturday">
-<meta property="og:url" content="http://yoursite.com/blog/2019/08/10/2019-08-10Saturday/index.html">
+<meta property="og:title" content="Learn git">
+<meta property="og:url" content="http://yoursite.com/blog/2019/08/25/Learn-git/index.html">
 <meta property="og:site_name" content="Wangfulin7&#39;s Home">
+<meta property="og:description" content="先记录一些简单的,要不然每次都是去查,好尴尬😅  1 查看当前的远程库git remote  wangfulindeMBP2:post wangfulin$ git remote origin wangfulindeMBP2:post wangfulin$ git remote -v origin    git@github.com:wangfulin7/wangfulin7-notes.git">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://yoursite.com/blog/2019/08/10/2019-08-10Saturday/test.jpeg">
-<meta property="og:updated_time" content="2019-08-10T06:50:18.462Z">
+<meta property="og:updated_time" content="2019-08-25T15:30:05.708Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="2019-08-10Saturday">
-<meta name="twitter:image" content="http://yoursite.com/blog/2019/08/10/2019-08-10Saturday/test.jpeg">
+<meta name="twitter:title" content="Learn git">
+<meta name="twitter:description" content="先记录一些简单的,要不然每次都是去查,好尴尬😅  1 查看当前的远程库git remote  wangfulindeMBP2:post wangfulin$ git remote origin wangfulindeMBP2:post wangfulin$ git remote -v origin    git@github.com:wangfulin7/wangfulin7-notes.git">
 
 
 
@@ -121,13 +123,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/blog/2019/08/10/2019-08-10Saturday/">
+  <link rel="canonical" href="http://yoursite.com/blog/2019/08/25/Learn-git/">
 
 
 
 
 
-  <title>2019-08-10Saturday | Wangfulin7's Home</title>
+  <title>Learn git | Wangfulin7's Home</title>
   
 
 
@@ -264,7 +266,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2019/08/10/2019-08-10Saturday/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2019/08/25/Learn-git/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Wangfulin">
@@ -281,7 +283,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">2019-08-10Saturday</h1>
+          <h1 class="post-title" itemprop="name headline">Learn git</h1>
         
 
         <div class="post-meta">
@@ -293,8 +295,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-10T11:40:44+08:00">
-                2019-08-10
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-25T22:52:10+08:00">
+                2019-08-25
               </time>
             
 
@@ -325,7 +327,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  0
+                  601
                 </span>
               
 
@@ -350,7 +352,38 @@
       
 
       
-        <p><img src="/blog/2019/08/10/2019-08-10Saturday/test.jpeg" alt></p>
+        <p>先记录一些简单的,要不然每次都是去查,好尴尬😅</p>
+<ul>
+<li>1 查看当前的远程库<br><code>git remote</code></li>
+</ul>
+<p><code>wangfulindeMBP2:post wangfulin$ git remote
+origin
+wangfulindeMBP2:post wangfulin$ git remote -v
+origin    git@github.com:wangfulin7/wangfulin7-notes.git (fetch)
+origin    git@github.com:wangfulin7/wangfulin7-notes.git (push)</code></p>
+<p>执行时加上 -v 参数，可以看到每个别名的实际链接地址。</p>
+<ul>
+<li><p>2 提取远程仓库<br>Git 有两个命令用来提取远程仓库的更新。<br>1、从远程仓库下载新分支与数据：<br><code>git fetch</code><br>该命令执行完后需要执行git merge 远程分支到你所在的分支。<br>2、从远端仓库提取数据并尝试合并到当前分支：<br><code>git merge</code><br>该命令就是在执行 git fetch 之后紧接着执行 git merge 远程分支到你所在的任意分支。<br>例:<br>本地拉取远程仓库的修改<br><code>$ git fetch origin</code><br><code>git fetch
+remote: Enumerating objects: 5, done.
+remote: Counting objects: 100% (5/5), done.
+remote: Compressing objects: 100% (3/3), done.
+remote: Total 3 (delta 2), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (3/3), done.
+From github.com:wangfulin7/wangfulin7-notes
+ 408586f..d5c413a  master     -&gt; origin/master</code><br>查看修改<br>同步到本地:<br><code>$ git merge origin/master</code></p>
+</li>
+<li><p>3 拉取远程的另一种方式<br><code>$ git pull origin master</code><br>git pull的作用是，从远程库中获取某个分支的更新，再与本地指定的分支进行自动merge。完整格式是：<br><code>$ git pull &lt;远程库名&gt; &lt;远程分支名&gt;:&lt;本地分支名&gt;</code><br>比如，取回远程库中的develop分支，与本地的develop分支进行merge，要写成：<br><code>git pull origin develop:develop</code><br>如果是要与本地当前分支merge，则冒号后面的&lt;本地分支名&gt;可以不写。<br><code>git pull origin develop</code></p>
+</li>
+</ul>
+<p>通常，git会将本地库分支与远程分支之间建立一种追踪关系。比如，在git clone的时候，所有本地分支默认与远程库的同名分支建立追踪关系。也就是说，本地的master分支自动追踪origin/master分支。因此，如果当前处于本地develop分支上，并且本地develop分支与远程的develop分支有追踪关系，那么远程的分支名可以省略：</p>
+<p><code>git pull origin</code></p>
+<p>其实，<code>git pull</code> 命令等同于先做了<code>git fetch</code> ，再做了<code>git merge</code>。即：</p>
+<p><code>git fetch origin develop
+git checkout develop
+git merge origin/develop</code> </p>
+<ul>
+<li>4 推送<br>git添加文件<code>$ git add runoob-test.txt</code><br>添加备注 <code>$ git commit -m &quot;添加到远程&quot;</code><br>推送到 Github <code>$ git push origin master</code>   </li>
+</ul>
 
       
     </div>
@@ -371,7 +404,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>Post link:</strong>
-    <a href="http://yoursite.com/blog/2019/08/10/2019-08-10Saturday/" title="2019-08-10Saturday">http://yoursite.com/blog/2019/08/10/2019-08-10Saturday/</a>
+    <a href="http://yoursite.com/blog/2019/08/25/Learn-git/" title="Learn git">http://yoursite.com/blog/2019/08/25/Learn-git/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice: </strong>
@@ -384,6 +417,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/git/" rel="tag"># git</a>
+          
+        </div>
+      
 
       
       
@@ -393,8 +432,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/2019/06/27/new-day/" rel="next" title="new day">
-                <i class="fa fa-chevron-left"></i> new day
+              <a href="/blog/2019/08/18/JAVA基础/" rel="next" title="JAVA基础">
+                <i class="fa fa-chevron-left"></i> JAVA基础
               </a>
             
           </div>
@@ -402,10 +441,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/blog/2019/08/13/MYSQL/" rel="prev" title="MYSQL">
-                MYSQL <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
