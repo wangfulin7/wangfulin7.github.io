@@ -89,7 +89,7 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://images0.cnblogs.com/blog/571766/201405/202018466841387.png">
 <meta property="og:image" content="https://img-blog.csdn.net/20141028140852531?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbHVhbmxvdWlz/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:updated_time" content="2019-09-03T12:57:41.716Z">
+<meta property="og:updated_time" content="2019-09-03T13:07:04.721Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MyBatis基础">
 <meta name="twitter:description" content="赞：《深入理解mybatis原理》 MyBatis的架构设计以及实例分析Mybatis的整体架构分为三层，分别是基础支持层、核心处理层和接口层 个人认为的关键几个模块：基础支持层：  类型转换模块：mybatis为简化配置文件提供别名机制，该机制是类型转换的主要功能之一，在为sql语句绑定实参时，会将数据由java类型转换成jdbc类型，在映射结果集的时候，会将数据由jdbc类型转换为java类型">
@@ -380,9 +380,12 @@
         <p><strong>赞：</strong><a href="https://blog.csdn.net/luanlouis/article/details/40422941" target="_blank" rel="noopener">《深入理解mybatis原理》 MyBatis的架构设计以及实例分析</a><br>Mybatis的整体架构分为三层，分别是基础支持层、核心处理层和接口层<br><img src="https://images0.cnblogs.com/blog/571766/201405/202018466841387.png" alt="enter image description here"></p>
 <p>个人认为的关键几个模块：<br><strong>基础支持层：</strong></p>
 <ul>
-<li>类型转换模块：mybatis为简化配置文件提供别名机制，该机制是类型转换的主要功能之一，在为sql语句绑定实参时，会将数据由java类型转换成jdbc类型，在映射结果集的时候，会将数据由jdbc类型转换为java类型。</li>
-<li>解释器模块：主要提供几个功能，一个是对xpath进行封装，为mybatis-config.xml配置文件以及映射配置文件提供支持；另一功能是为处理动态sql语句中的占位符提供支持。</li>
-<li>缓存模块: 一级缓存和二级缓存，一级缓存是基于sqlsession的二级缓存是基于mapper的。mybatis中自带的这两级缓存与mybatis以及整个应用都是运行在同一个jvm当中，共享一块堆内存。如果这两级缓存中的数据量比较大，则可能影响系统中其它功能的使用。所以当需要缓存大量数据时，优先考虑使用redis Memcache。</li>
+<li><p>类型转换模块：mybatis为简化配置文件提供别名机制，该机制是类型转换的主要功能之一，在为sql语句绑定实参时，会将数据由java类型转换成jdbc类型，在映射结果集的时候，会将数据由jdbc类型转换为java类型。</p>
+</li>
+<li><p>解释器模块：主要提供几个功能，一个是对xpath进行封装，为mybatis-config.xml配置文件以及映射配置文件提供支持；另一功能是为处理动态sql语句中的占位符提供支持。</p>
+</li>
+<li><p>缓存模块: 一级缓存和二级缓存，一级缓存是基于sqlsession的二级缓存是基于mapper的。mybatis中自带的这两级缓存与mybatis以及整个应用都是运行在同一个jvm当中，共享一块堆内存。如果这两级缓存中的数据量比较大，则可能影响系统中其它功能的使用。所以当需要缓存大量数据时，优先考虑使用redis Memcache。</p>
+</li>
 </ul>
 <p><strong>核心处理层：</strong></p>
 <ul>
@@ -396,7 +399,10 @@
 <ul>
 <li>1.MyBatis一级缓存的生命周期和SqlSession一致。</li>
 <li>2.MyBatis一级缓存内部设计简单，只是一个没有容量限定的HashMap，在缓存的功能性上有所欠缺。</li>
-<li>3.MyBatis的一级缓存最大范围是SqlSession内部，有多个SqlSession或者分布式的环境下，数据库写操作会引起脏数据，建议设定缓存级别为Statement。<br>二级缓存总结：</li>
+<li>3.MyBatis的一级缓存最大范围是SqlSession内部，有多个SqlSession或者分布式的环境下，数据库写操作会引起脏数据，建议设定缓存级别为Statement。</li>
+</ul>
+<p>二级缓存总结：</p>
+<ul>
 <li>1.MyBatis的二级缓存相对于一级缓存来说，实现了SqlSession之间缓存数据的共享，同时粒度更加的细，能够到namespace级别，通过Cache接口实现类不同的组合，对Cache的可控性也更强。</li>
 <li>2.MyBatis在多表查询时，极大可能会出现脏数据，有设计上的缺陷，安全使用二级缓存的条件比较苛刻。</li>
 <li>3.在分布式环境下，由于默认的MyBatis Cache实现都是基于本地的，分布式环境下必然会出现读取到脏数据，需要使用集中式缓存将MyBatis的Cache接口实现，有一定的开发成本，直接使用Redis、Memcached等分布式缓存可能成本更低，安全性也更高。</li>
