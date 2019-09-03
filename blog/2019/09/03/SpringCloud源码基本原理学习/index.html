@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="SpringCloud,源码,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="springcloud 原理 ：https://juejin.im/post/5be13b83f265da6116393fc7spring cloud gatewayspring cloud gateway 是zuul的替代 含有zuul的所有功能，可以无缝替换，最主要是的是有两个 断言和过滤，每一种predicate都会对当前的客户端请求进行判断，是否满足当前的要求，如果满足则交给当前请求处理。">
+<meta name="keywords" content="SpringCloud,源码">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SpringCloud源码基本原理学习">
+<meta property="og:url" content="http://yoursite.com/blog/2019/09/03/SpringCloud源码基本原理学习/index.html">
+<meta property="og:site_name" content="Wangfulin7&#39;s Home">
+<meta property="og:description" content="springcloud 原理 ：https://juejin.im/post/5be13b83f265da6116393fc7spring cloud gatewayspring cloud gateway 是zuul的替代 含有zuul的所有功能，可以无缝替换，最主要是的是有两个 断言和过滤，每一种predicate都会对当前的客户端请求进行判断，是否满足当前的要求，如果满足则交给当前请求处理。">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190601011708827.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9mb3JlenAuYmxvZy5jc2RuLm5ldA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdn.net/20170611110916402?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZm9yZXpw/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="https://raw.githubusercontent.com/wiki/Netflix/Hystrix/images/hystrix-command-flow-chart.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/wiki/Netflix/Hystrix/images/circuit-breaker-1280.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190601012124618.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9mb3JlenAuYmxvZy5jc2RuLm5ldA==,size_16,color_FFFFFF,t_70">
+<meta property="og:updated_time" content="2019-09-03T15:33:20.734Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SpringCloud源码基本原理学习">
+<meta name="twitter:description" content="springcloud 原理 ：https://juejin.im/post/5be13b83f265da6116393fc7spring cloud gatewayspring cloud gateway 是zuul的替代 含有zuul的所有功能，可以无缝替换，最主要是的是有两个 断言和过滤，每一种predicate都会对当前的客户端请求进行判断，是否满足当前的要求，如果满足则交给当前请求处理。">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190601011708827.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9mb3JlenAuYmxvZy5jc2RuLm5ldA==,size_16,color_FFFFFF,t_70">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+<!-- 网页加载条 -->
+<script src="https://neveryu.github.io/js/src/pace.min.js"></script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/blog/2019/09/03/SpringCloud源码基本原理学习/">
+
+
+
+
+
+  <title>SpringCloud源码基本原理学习 | Wangfulin7's Home</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Wangfulin7's Home</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-首页">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-关于我">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于我
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-标签">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-分类">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-归档">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2019/09/03/SpringCloud源码基本原理学习/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Wangfulin">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wangfulin7's Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">SpringCloud源码基本原理学习</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-09-03T23:28:02+08:00">
+                2019-09-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/SpringCloud/" itemprop="url" rel="index">
+                    <span itemprop="name">SpringCloud</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  11k
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="springcloud-原理-：https-juejin-im-post-5be13b83f265da6116393fc7"><a href="#springcloud-原理-：https-juejin-im-post-5be13b83f265da6116393fc7" class="headerlink" title="springcloud 原理 ：https://juejin.im/post/5be13b83f265da6116393fc7"></a>springcloud 原理 ：<a href="https://juejin.im/post/5be13b83f265da6116393fc7" target="_blank" rel="noopener">https://juejin.im/post/5be13b83f265da6116393fc7</a></h1><h1 id="spring-cloud-gateway"><a href="#spring-cloud-gateway" class="headerlink" title="spring cloud gateway"></a>spring cloud gateway</h1><p>spring cloud gateway 是zuul的替代 含有zuul的所有功能，可以无缝替换，最主要是的是有两个 断言和过滤，每一种predicate都会对当前的客户端请求进行判断，是否满足当前的要求，如果满足则交给当前请求处理。<br>Predict决定了请求由哪一个路由处理，在路由处理之前，需要经过“pre”类型的过滤器处理，处理返回响应之后，可以由“post”类型的过滤器处理。在“pre”类型的过滤器可以做参数校验、权限校验、流量监控、日志输出、协议转换等，在“post”类型的过滤器中可以做响应内容、响应头的修改，日志的输出，流量监控等。<br>在Spring Cloud Gateway中，filter从作用范围可分为另外两种，一种是针对于单个路由的gateway filter，它在配置文件中的写法同predict类似；另外一种是针对于所有路由的global gateway filer。过滤器允许以某种方式修改传入的HTTP请求或传出的HTTP响应。<br>AddRequestHeaderGatewayFilterFactory实现过滤的原理：根据旧的ServerHttpRequest创建新的 ServerHttpRequest ，在新的ServerHttpRequest加了一个请求头，然后创建新的 ServerWebExchange ，提交过滤器链继续过滤。</p>
+<p>在Nginx服务启中有一个非常强大的功能就是重写路径，Spring Cloud Gateway默认也提供了这样的功能。<br>自定义过滤器需要实现GatewayFilter和Ordered  2个接口</p>
+<p>GatewayFilter : 需要通过spring.cloud.routes.filters 配置在具体路由下，只作用在当前路由上或通过spring.cloud.default-filters配置在全局，作用在所有路由上</p>
+<p>GlobalFilter : 全局过滤器，不需要在配置文件中配置，作用在所有的路由上，最终通过GatewayFilterAdapter包装成GatewayFilterChain可识别的过滤器，它为请求业务以及路由的URI转换为真实业务服务的请求地址的核心过滤器，不需要配置，系统初始化时加载，并作用在每个路由上。</p>
+<h1 id="常见的限流算法"><a href="#常见的限流算法" class="headerlink" title="常见的限流算法"></a>常见的限流算法</h1><h2 id="计数器算法"><a href="#计数器算法" class="headerlink" title="计数器算法"></a>计数器算法</h2><p>计数器算法采用计数器实现限流有点简单粗暴，一般我们会限制一秒钟的能够通过的请求数，比如限流qps为100，算法的实现思路就是从第一个请求进来开始计时，在接下去的1s内，每来一个请求，就把计数加1，如果累加的数字达到了100，那么后续的请求就会被全部拒绝。等到1s结束后，把计数恢复成0，重新开始计数。具体的实现可以是这样的：对于每次服务调用，可以通过AtomicLong#incrementAndGet()方法来给计数器加1并返回最新值，通过这个最新值和阈值进行比较。这种实现方式，相信大家都知道有一个弊端：如果我在单位时间1s内的前10ms，已经通过了100个请求，那后面的990ms，只能眼巴巴的把请求拒绝，我们把这种现象称为“突刺现象”</p>
+<h2 id="漏桶算法"><a href="#漏桶算法" class="headerlink" title="漏桶算法"></a>漏桶算法</h2><p>漏桶算法为了消除”突刺现象”，可以采用漏桶算法实现限流，漏桶算法这个名字就很形象，算法内部有一个容器，类似生活用到的漏斗，当请求进来时，相当于水倒入漏斗，然后从下端小口慢慢匀速的流出。不管上面流量多大，下面流出的速度始终保持不变。不管服务调用方多么不稳定，通过漏桶算法进行限流，每10毫秒处理一次请求。因为处理的速度是固定的，请求进来的速度是未知的，可能突然进来很多请求，没来得及处理的请求就先放在桶里，既然是个桶，肯定是有容量上限，如果桶满了，那么新进来的请求就丢弃。</p>
+<p>在算法实现方面，可以准备一个队列，用来保存请求，另外通过一个线程池（ScheduledExecutorService）来定期从队列中获取请求并执行，可以一次性获取多个并发执行。</p>
+<p>这种算法，在使用过后也存在弊端：无法应对短时间的突发流量。</p>
+<h2 id="令牌桶算法"><a href="#令牌桶算法" class="headerlink" title="令牌桶算法"></a>令牌桶算法</h2><p>从某种意义上讲，令牌桶算法是对漏桶算法的一种改进，桶算法能够限制请求调用的速率，而令牌桶算法能够在限制调用的平均速率的同时还允许一定程度的突发调用。在令牌桶算法中，存在一个桶，用来存放固定数量的令牌。算法中存在一种机制，以一定的速率往桶中放令牌。每次请求调用需要先获取令牌，只有拿到令牌，才有机会继续执行，否则选择选择等待可用的令牌、或者直接拒绝。放令牌这个动作是持续不断的进行，如果桶中令牌数达到上限，就丢弃令牌，所以就存在这种情况，桶中一直有大量的可用令牌，这时进来的请求就可以直接拿到令牌执行，比如设置qps为100，那么限流器初始化完成一秒后，桶中就已经有100个令牌了，这时服务还没完全启动好，等启动完成对外提供服务时，该限流器可以抵挡瞬时的100个请求。所以，只有桶中没有令牌时，请求才会进行等待，最后相当于以一定的速率执行。</p>
+<p>实现思路：可以准备一个队列，用来保存令牌，另外通过一个线程池定期生成令牌放到队列中，每来一个请求，就从队列中获取一个令牌，并继续执行。</p>
+<p>Spring Cloud Gateway限流<br>在Spring Cloud Gateway中，有Filter过滤器，因此可以在“pre”类型的Filter中自行实现上述三种过滤器。但是限流作为网关最基本的功能，Spring Cloud Gateway官方就提供了RequestRateLimiterGatewayFilterFactory这个类，适用Redis和lua脚本实现了令牌桶的方式。具体实现逻辑在RequestRateLimiterGatewayFilterFactory类中。</p>
+<h1 id="源码篇："><a href="#源码篇：" class="headerlink" title="源码篇："></a>源码篇：</h1><p><a href="http://blog.csdn.net/forezp/article/details/73017664" target="_blank" rel="noopener">深入理解Eureka之源码解析</a><br><a href="http://blog.csdn.net/forezp/article/details/74820899" target="_blank" rel="noopener">深入理解Ribbon之源码解析</a><br><a href="http://blog.csdn.net/forezp/article/details/73480304" target="_blank" rel="noopener">深入理解Feign之源码解析</a><br><a href="http://blog.csdn.net/forezp/article/details/75333088" target="_blank" rel="noopener">深入理解Hystrix之文档翻译</a><br><a href="http://blog.csdn.net/forezp/article/details/76211680" target="_blank" rel="noopener">深入理解Zuul之源码解析</a></p>
+<ul>
+<li>资料来源于 方志朋博客 ,此处仅作为自己方便学习,侵删</li>
+</ul>
+<h1 id="Eureka"><a href="#Eureka" class="headerlink" title="Eureka"></a>Eureka</h1><p>基本概念：<br>Register：服务注册<br>当Eureka客户端向Eureka Server注册时，它提供自身的元数据，比如IP地址、端口，运行状况指示符URL，主页等。</p>
+<h2 id="Renew：服务续约"><a href="#Renew：服务续约" class="headerlink" title="Renew：服务续约"></a>Renew：服务续约</h2><p>Eureka客户会每隔30秒发送一次心跳来续约。 通过续约来告知Eureka Server该Eureka客户仍然存在，没有出现问题。 正常情况下，如果Eureka Server在90秒没有收到Eureka客户的续约，它会将实例从其注册表中删除。 建议不要更改续约间隔。</p>
+<h2 id="Fetch-Registries：获取注册列表信息"><a href="#Fetch-Registries：获取注册列表信息" class="headerlink" title="Fetch Registries：获取注册列表信息"></a>Fetch Registries：获取注册列表信息</h2><p>Eureka客户端从服务器获取注册表信息，并将其缓存在本地。客户端会使用该信息查找其他服务，从而进行远程调用。该注册列表信息定期（每30秒钟）更新一次。每次返回注册列表信息可能与Eureka客户端的缓存信息不同， Eureka客户端自动处理。如果由于某种原因导致注册列表信息不能及时匹配，Eureka客户端则会重新获取整个注册表信息。 Eureka服务器缓存注册列表信息，整个注册表以及每个应用程序的信息进行了压缩，压缩内容和没有压缩的内容完全相同。Eureka客户端和Eureka 服务器可以使用JSON / XML格式进行通讯。在默认的情况下Eureka客户端使用压缩JSON格式来获取注册列表的信息。</p>
+<h2 id="Cancel：服务下线"><a href="#Cancel：服务下线" class="headerlink" title="Cancel：服务下线"></a>Cancel：服务下线</h2><p>Eureka客户端在程序关闭时向Eureka服务器发送取消请求。 发送请求后，该客户端实例信息将从服务器的实例注册表中删除。该下线请求不会自动完成，它需要调用以下内容：<br>DiscoveryManager.getInstance().shutdownComponent()；</p>
+<p>Eviction 服务剔除<br>在默认的情况下，当Eureka客户端连续90秒没有向Eureka服务器发送服务续约，即心跳，Eureka服务器会将该服务实例从服务注册列表删除，即服务剔除。</p>
+<p><img src="https://img-blog.csdnimg.cn/20190601011708827.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9mb3JlenAuYmxvZy5jc2RuLm5ldA==,size_16,color_FFFFFF,t_70" alt="enter image description here"></p>
+<p>在这个体系中，有2个角色，即Eureka Server和Eureka Client。Eureka Client又分为Applicaton Service和Application Client，即服务提供者和服务消费者。<br>Eureka Client向Eureka Serve注册，并将自己的一些客户端信息发送Eureka Serve。然后，Eureka Client通过向Eureka Serve发送心跳（每30秒）来续约服务的。 如果客户端持续不能续约，那么，它将在大约90秒内从服务器注册表中删除。 注册信息和续订被复制到集群中的Eureka Serve所有节点。 来自任何区域的Eureka Client都可以查找注册表信息（每30秒发生一次）。根据这些注册表信息，Application Client可以远程调用Applicaton Service来消费服务。</p>
+<h2 id="Register服务注册"><a href="#Register服务注册" class="headerlink" title="Register服务注册"></a>Register服务注册</h2><p>服务注册，即Eureka Client向Eureka Server提交自己的服务信息，包括IP地址、端口、service ID等信息。如果Eureka Client没有写service ID，则默认为 ${spring.application.name}。<br><img src="https://img-blog.csdn.net/20170611110916402?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZm9yZXpw/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="enter image description here"></p>
+<p>其中DiscoveryClient实现了EurekaClient接口，并且它是一个单例模式，而EurekaClient继承了LookupService接口。</p>
+<p>在DiscoveryClient类有一个服务注册的方法register()，该方法是通过Http请求向Eureka Client注册。<br>register()方法，它被InstanceInfoReplicator 类的run()方法调用<br>而InstanceInfoReplicator类是在DiscoveryClient初始化过程中使用的，其中有一个initScheduledTasks()方法。该方法主要开启了获取服务注册列表的信息，如果需要向Eureka Server注册，则开启注册，同时开启了定时向Eureka Server服务续约的定时任务</p>
+<p>Eureka server端：其中PeerAwareInstanceRegistryImpl和PeerEurekaNodes两个类看其命名，应该和服务注册以及Eureka Server高可用有关。先追踪PeerAwareInstanceRegistryImpl类，在该类有个register()方法，该方法提供了注册，并且将注册后信息同步到其他的Eureka Server服务。<br>其中注册列表的信息被保存在一个Map中。replicateToPeers()方法，即同步到其他Eureka Server的其他Peers节点，追踪代码，发现它会遍历循环向所有的Peers节点注册，最终执行类PeerEurekaNodes的register()方法，该方法通过执行一个任务向其他节点同步该注册信息<br>Eureka Client是通过 http来向Eureka Server注册的<br>ApplicationResource类的addInstance ()方法，即服务注册的接口</p>
+<h2 id="Renew服务续约"><a href="#Renew服务续约" class="headerlink" title="Renew服务续约"></a>Renew服务续约</h2><p>服务注册在Eureka Client程序启动之后开启，并同时开启服务续约的定时任务。在eureka-client-1.6.2.jar的DiscoveryClient的类下有renew()方法。服务端的续约接口在InstanceResource类下，其中有个registry.renew()方法，即服务续约</p>
+<p>Eureka Client一启动（不是启动完成），不是立即向Eureka Server注册，它有一个延迟向服务端注册的时间，通过跟踪源码，可以发现默认的延迟时间为40秒。</p>
+<ul>
+<li><p>Eureka Server的响应缓存<br>Eureka Server维护每30秒更新的响应缓存,可通过更改配置eureka.server.responseCacheUpdateIntervalMs来修改。 所以即使实例刚刚注册，它也不会出现在调用/ eureka / apps REST端点的结果中。</p>
+</li>
+<li><p>Eureka Server刷新缓存<br>Eureka客户端保留注册表信息的缓存。 该缓存每30秒更新一次（如前所述）。 因 此，客户端决定刷新其本地缓存并发现其他新注册的实例可能需要30秒。</p>
+</li>
+<li><p>LoadBalancer Refresh<br>Ribbon的负载平衡器从本地的Eureka Client获取服务注册列表信息。Ribbon本身还维护本地缓存，以避免为每个请求调用本地客户端。 此缓存每30秒刷新一次（可由ribbon.ServerListRefreshInterval配置）。 所以，可能需要30多秒才能使用新注册的实例。</p>
+</li>
+</ul>
+<h2 id="Eureka-的自我保护模式"><a href="#Eureka-的自我保护模式" class="headerlink" title="Eureka 的自我保护模式"></a>Eureka 的自我保护模式</h2><p>当一个新的Eureka Server出现时，它尝试从相邻节点获取所有实例注册表信息。如果从Peer节点获取信息时出现问题，Eureka Serve会尝试其他的Peer节点。如果服务器能够成功获取所有实例，则根据该信息设置应该接收的更新阈值。如果有任何时间，Eureka Serve接收到的续约低于为该值配置的百分比（默认为15分钟内低于85％），则服务器开启自我保护模式，即不再剔除注册列表的信息。</p>
+<p>当网络分区故障，微服务于Eureka Server之间无法正常通信，微服务本身是正常的，此时不应该注销这个微服务。当Eureka Server节点段时间内丢失过多客户端时，那么这个节点会进入自我保护模式，一旦进入该模式，Eureka Server会保护服务注册表中的信息，不再删除注册表中的数据。当网络恢复之后，该Eureka Server节点自动退出自我保护模式。<br>架构哲学是：能可同时保留所有的微服务，也不盲目注销任何健康的微服务。</p>
+<h1 id="Ribbon：是一个客户端负载均衡器，运行在客户端上"><a href="#Ribbon：是一个客户端负载均衡器，运行在客户端上" class="headerlink" title="Ribbon：是一个客户端负载均衡器，运行在客户端上"></a>Ribbon：是一个客户端负载均衡器，运行在客户端上</h1><p>RestTemplate一般和Ribbon相结合<br>在Riibon中一个非常重要的组件为LoadBalancerClient，它作为负载均衡的一个客户端。<br>LoadBalancerClient接口，有如下三个方法，其中excute()为执行请求，reconstructURI()用来重构url</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public interface LoadBalancerClient extends ServiceInstanceChooser &#123;</span><br><span class="line">  &lt;T&gt; T execute(String serviceId, LoadBalancerRequest&lt;T&gt; request) throws IOException;</span><br><span class="line">  &lt;T&gt; T execute(String serviceId, ServiceInstance serviceInstance, </span><br><span class="line">  LoadBalancerRequest&lt;T&gt; request) throws IOException;</span><br><span class="line">  URI reconstructURI(ServiceInstance instance, URI original);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>LoadBalancerClient的实现类为RibbonLoadBalancerClient，这个类是非常重要的一个类，最终的负载均衡的请求处理，由它来执行。<br>在RibbonLoadBalancerClient的源码中，其中choose()方法是选择具体服务实例的一个方法。该方法通过getServer()方法去获取实例，经过源码跟踪，最终交给了ILoadBalancer类去选择服务实例。<br>ILoadBalancer，它是定义了实现软件负载均衡的一个接口，它需要一组可供选择的服务注册列表信息，以及根据特定方法去选择服务</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public interface ILoadBalancer &#123;</span><br><span class="line"></span><br><span class="line">    public void addServers(List&lt;Server&gt; newServers);</span><br><span class="line">    public Server chooseServer(Object key);</span><br><span class="line">    public void markServerDown(Server server);</span><br><span class="line">    public List&lt;Server&gt; getReachableServers();</span><br><span class="line">    public List&lt;Server&gt; getAllServers();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>负载均衡器是从EurekaClient获取服务信息，并根据IRule去路由，并且根据IPing去判断服务的可用性。在默认情况下pingIntervalSeconds为10，即每10秒钟，想EurekaClient发送一次”ping”。LoadBalancerClient是在初始化的时候，会向Eureka回去服务注册列表，并且向通过10s一次向EurekaClient发送“ping”，来判断服务的可用性，如果服务的可用性发生了改变或者服务数量和之前的不一致，则更新或者重新拉取。LoadBalancerClient有了这些服务注册列表，就可以根据具体的IRule来进行负载均衡。</p>
+<p>综上所述，Ribbon的负载均衡，主要通过LoadBalancerClient来实现的，而LoadBalancerClient具体交给了ILoadBalancer来处理，ILoadBalancer通过配置IRule、IPing等信息，并向EurekaClient获取注册列表的信息，并默认10秒一次向EurekaClient发送“ping”,进而检查是否更新服务列表，最后，得到注册列表后，ILoadBalancer根据IRule的策略进行负载均衡。</p>
+<p>而RestTemplate 被@LoadBalance注解后，能够用负载均衡，主要是维护了一个被@LoadBalance注解的RestTemplate列表，并给列表中的RestTemplate添加拦截器，进而交给负载均衡器去处理</p>
+<h1 id="Feign"><a href="#Feign" class="headerlink" title="Feign"></a>Feign</h1><p>FeignClient注解被@Target(ElementType.TYPE)修饰，表示FeignClient注解的作用目标在接口上；<br>工作原理：feign是一个伪客户端，即它不做任何的请求处理。Feign通过处理注解生成request，从而实现简化HTTP API开发的目的，即开发人员可以使用注解的方式定制request api模板，在发送http request请求之前，feign通过处理注解的方式替换掉request模板中的参数，这种实现方式显得更为直接、可理解。</p>
+<p>通过包扫描注入FeignClient的bean，该源码在FeignClientsRegistrar类：</p>
+<p>首先在启动配置上检查是否有@EnableFeignClients注解，如果有该注解，则开启包扫描，扫描被@FeignClient注解接口。<br>程序启动后通过包扫描，当类有@FeignClient注解，将注解的信息取出，连同类名一起取出，赋给BeanDefinitionBuilder，然后根据BeanDefinitionBuilder得到beanDefinition，最后beanDefinition式注入到ioc容器中。</p>
+<p>注入bean之后，通过jdk的代理，当请求Feign Client的方法时会被拦截，代码在ReflectiveFeign类。</p>
+<p>在SynchronousMethodHandler类进行拦截处理，当被FeignClient的方法被拦截会根据参数生成RequestTemplate对象，该对象就是http请求的模板。</p>
+<p>其中有个executeAndDecode()方法，该方法是通RequestTemplate生成Request请求对象，然后根据用client获取response。</p>
+<p>feign的负载均衡是怎么样实现的呢<br>通过上述的FeignRibbonClientAutoConfiguration类配置Client的类型(httpurlconnection，okhttp和httpclient)时候，可知最终向容器注入的是LoadBalancerFeignClient，即负载均衡客户端。<br>Feign的源码实现的过程如下：</p>
+<p>首先通过@EnableFeignCleints注解开启FeignCleint<br>根据Feign的规则实现接口，并加@FeignCleint注解<br>程序启动后，会进行包扫描，扫描所有的@ FeignCleint的注解的类，并将这些信息注入到ioc容器中。<br>当接口的方法被调用，通过jdk的代理，来生成具体的RequestTemplate<br>RequestTemplate在生成Request<br>（实现负载均衡：）Request交给Client去处理，其中Client可以是HttpUrlConnection、HttpClient也可以是Okhttp<br>最后Client被封装到LoadBalanceClient类，这个类结合类Ribbon做到了负载均衡。</p>
+<h1 id="Hystrix"><a href="#Hystrix" class="headerlink" title="Hystrix"></a>Hystrix</h1><p>在分布式系统中，服务与服务之间依赖错综复杂，一种不可避免的情况就是某些服务将会出现失败。Hystrix是一个库，它提供了服务与服务之间的容错功能，主要体现在延迟容错和容错，从而做到控制分布式系统中的联动故障。Hystrix通过隔离服务的访问点，阻止联动故障，并提供故障的解决方案，从而提高了这个分布式系统的弹性。</p>
+<p>在高并发的情况下，单个服务的延迟，可能导致所有的请求都处于延迟状态，可能在几秒钟就使服务处于负载饱和的状态。<br>服务的单个点的请求故障，会导致整个服务出现故障，更为糟糕的是该故障服务，会导致其他的服务出现负载饱和，资源耗尽，直到不可用，从而导致这个分布式系统都不可用。这就是“雪崩”。</p>
+<p>Hystrix的设计原则<br>原则如下：</p>
+<p>防止单个服务的故障，耗尽整个系统服务的容器（比如tomcat）的线程资源。<br>减少负载并快速失败，而不是排队。<br>在可行的情况下提供回退以保护用户免受故障。<br>使用隔离技术（如隔板，泳道和断路器模式）来限制任何一个依赖的影响。<br>通过近乎实时的指标，监控和警报来优化发现故障的时间。<br>通过配置更改的低延迟传播优化恢复时间，并支持Hystrix大多数方面的动态属性更改，从而允许您使用低延迟反馈循环进行实时操作修改。<br>保护整个依赖客户端执行中的故障，而不仅仅是在网络流量上进行保护降级、限流。</p>
+<p>Hystrix 是怎么实现它的设计目标的？<br>通过HystrixCommand 或者HystrixObservableCommand 将所有的外部系统（或者称为依赖）包装起来，整个包装对象是单独运行在一个线程之中（这是典型的命令模式）。<br>超时请求应该超过你定义的阈值<br>为每个依赖关系维护一个小的线程池（或信号量）; 如果它变满了，那么依赖关系的请求将立即被拒绝，而不是排队等待。<br>统计成功，失败（由客户端抛出的异常），超时和线程拒绝。<br>打开断路器可以在一段时间内停止对特定服务的所有请求，如果服务的错误百分比通过阈值，手动或自动的关闭断路器。<br>当请求被拒绝、连接超时或者断路器打开，直接执行fallback逻辑。<br>近乎实时监控指标和配置变化。</p>
+<p><img src="https://raw.githubusercontent.com/wiki/Netflix/Hystrix/images/hystrix-command-flow-chart.png" alt="enter image description here"><br>1.构建一个HystrixCommand或者HystrixObservableCommand 对象。<br>第一步是构建一个HystrixCommand或HystrixObservableCommand对象来表示你对依赖关系的请求。 其中构造函数需要和请求时的参数一致。</p>
+<p>2.执行Command<br>通过使用Hystrix命令对象的以下四种方法之一，可以执行该命令有四种方法（前两种方法仅适用于简单的HystrixCommand对象，并不适用于HystrixObservableCommand）：</p>
+<p>execute()–阻塞，，然后返回从依赖关系接收到的单个响应（或者在发生错误时抛出异常）<br>queue()–返回一个可以从依赖关系获得单个响应的future 对象<br>observe()–订阅Observable代表依赖关系的响应，并返回一个Observable，该Observable会复制该来源Observable<br>toObservable() –返回一个Observable，当您订阅它时，将执行Hystrix命令并发出其响应</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">K             value   = command.execute();</span><br><span class="line">Future&lt;K&gt;     fValue  = command.queue();</span><br><span class="line">Observable&lt;K&gt; ohValue = command.observe();         </span><br><span class="line">Observable&lt;K&gt; ocValue = command.toObservable();</span><br></pre></td></tr></table></figure>
+
+<p>最终每个HystrixCommand都由一个Observable实现支持，甚至是那些旨在返回单个简单值的命令。</p>
+<p>3.响应是否有缓存？<br>如果为该命令启用请求缓存，并且如果缓存中对该请求的响应可用，则此缓存响应将立即以“可观察”的形式返回。</p>
+<p>4.断路器是否打开？<br>当您执行该命令时，Hystrix将检查断路器以查看电路是否打开。</p>
+<p>如果电路打开（或“跳闸”），则Hystrix将不会执行该命令，但会将流程路由到（8）获取回退。</p>
+<p>如果电路关闭，则流程进行到（5）以检查是否有可用于运行命令的容量。</p>
+<p>5.线程池/队列/信号量是否已经满负载？<br>如果与命令相关联的线程池和队列（或信号量，如果不在线程中运行）已满，则Hystrix将不会执行该命令，但将立即将流程路由到（8）获取回退。</p>
+<p>6.HystrixObservableCommand.construct() 或者 HystrixCommand.run()<br>如果run（）或construct（）方法超出了命令的超时值，则该线程将抛出一个TimeoutException（或者如果命令本身没有在自己的线程中运行，则会产生单独的计时器线程）。 在这种情况下，Hystrix将响应通过8进行路由。获取Fallback，如果该方法不取消/中断，它会丢弃最终返回值run（）或construct（）方法。</p>
+<p>7.计算Circuit 的健康<br>Hystrix向断路器报告成功，失败，拒绝和超时，该断路器维护了一系列的计算统计数据组。</p>
+<p>它使用这些统计信息来确定电路何时“跳闸”，此时短路任何后续请求直到恢复时间过去，在首次检查某些健康检查之后，它再次关闭电路。</p>
+<p>8.获取Fallback<br>当命令执行失败时，Hystrix试图恢复到你的回退：当construct（）或run（）（6.）抛出异常时，当命令由于电路断开而短路时（4.），当 命令的线程池和队列或信号量处于容量（5.），或者当命令超过其超时长度时。</p>
+<p>编写Fallback ,它不一依赖于任何的网络依赖，从内存中获取获取通过其他的静态逻辑。如果你非要通过网络去获取Fallback,你可能需要些在获取服务的接口的逻辑上写一个HystrixCommand。</p>
+<p>9.返回成功的响应<br>如果 Hystrix command成功，如果Hystrix命令成功，它将以Observable的形式返回对呼叫者的响应或响应。 根据您在上述步骤2中调用命令的方式，此Observable可能会在返回给您之前进行转换：<br>断路器（Circuit Breaker）</p>
+<p><img src="https://raw.githubusercontent.com/wiki/Netflix/Hystrix/images/circuit-breaker-1280.png" alt><br>1.假设电路上的音量达到一定阈值（HystrixCommandProperties.circuitBreakerRequestVolumeThreshold（））…</p>
+<p>2.并假设错误百分比超过阈值错误百分比（HystrixCommandProperties.circuitBreakerErrorThresholdPercentage（））…</p>
+<p>3.然后断路器从CLOSED转换到OPEN。</p>
+<p>4.虽然它是开放的，它使所有针对该断路器的请求短路。</p>
+<p>5.经过一段时间（HystrixCommandProperties.circuitBreakerSleepWindowInMilliseconds（）），会自动进入“半开”状态，此时允许一个请求访问依赖的服务。如果该请求能够调用成功，则关闭断路器，否则继续保持打开状态。</p>
+<p>隔离（Isolation）<br>Hystrix采用隔板模式来隔离彼此的依赖关系，并限制对其中任何一个的并发访问。</p>
+<p>Zuul</p>
+<p>在zuul中， 整个请求的过程是这样的，首先将请求给zuul servlet处理，zuul servlet中有一个zuulRunner对象，该对象中初始化了RequestContext：作为存储整个请求的一些数据，并被所有的zuul filter共享。zuulRunner中还有 Filter Processor，Filter Processor作为执行所有的zuul filter的管理器。Filter Processor从filter loader 中获取zuul filter，而zuul filter是被filter File Manager所加载，并支持groovy热加载，采用了轮询的方式热加载。有了这些filter之后，zuul servelet首先执行的Pre类型的过滤器，再执行route类型的过滤器，最后执行的是post 类型的过滤器，如果在执行这些过滤器有错误的时候则会执行error类型的过滤器。执行完这些过滤器，最终将请求的结果返回给客户端。</p>
+<p>过滤器的order值越小，就越先执行，并且在执行过滤器的过程中，它们共享了一个RequestContext对象，该对象的生命周期贯穿于请求，可以看出优先执行了pre类型的过滤器，并将执行后的结果放在RequestContext中，供后续的filter使用，比如在执行PreDecorationFilter的时候，决定使用哪一个route，它的结果的是放在RequestContext对象中，后续会执行所有的route的过滤器，如果不满足条件就不执行该过滤器的run方法。最终达到了就执行一个route过滤器的run()方法。</p>
+<p>而error类型的过滤器，是在程序发生异常的时候执行的。<br>post类型的过滤，在默认的情况下，只注入了SendResponseFilter，该类型的过滤器是将最终的请求结果以流的形式输出给客户单。<br>在这个体系中，有2个角色，即Eureka Server和Eureka Client。Eureka Client又分为Applicaton Service和Application Client，即服务提供者和服务消费者。<br>Eureka Client向Eureka Serve注册，并将自己的一些客户端信息发送Eureka Serve。然后，Eureka Client通过向Eureka Serve发送心跳（每30秒）来续约服务的。 如果客户端持续不能续约，那么，它将在大约90秒内从服务器注册表中删除。 注册信息和续订被复制到集群中的Eureka Serve所有节点。 来自任何区域的Eureka Client都可以查找注册表信息（每30秒发生一次）。根据这些注册表信息，Application Client可以远程调用Applicaton Service来消费服务。</p>
+<p>Register服务注册<br>服务注册，即Eureka Client向Eureka Server提交自己的服务信息，包括IP地址、端口、service ID等信息。如果Eureka Client没有写service ID，则默认为 ${spring.application.name}。</p>
+<p>其中DiscoveryClient实现了EurekaClient接口，并且它是一个单例模式，而EurekaClient继承了LookupService接口。</p>
+<p>在DiscoveryClient类有一个服务注册的方法register()，该方法是通过Http请求向Eureka Client注册。<br>register()方法，它被InstanceInfoReplicator 类的run()方法调用<br>而InstanceInfoReplicator类是在DiscoveryClient初始化过程中使用的，其中有一个initScheduledTasks()方法。该方法主要开启了获取服务注册列表的信息，如果需要向Eureka Server注册，则开启注册，同时开启了定时向Eureka Server服务续约的定时任务</p>
+<p>Eureka server端：其中PeerAwareInstanceRegistryImpl和PeerEurekaNodes两个类看其命名，应该和服务注册以及Eureka Server高可用有关。先追踪PeerAwareInstanceRegistryImpl类，在该类有个register()方法，该方法提供了注册，并且将注册后信息同步到其他的Eureka Server服务。<br>其中注册列表的信息被保存在一个Map中。replicateToPeers()方法，即同步到其他Eureka Server的其他Peers节点，追踪代码，发现它会遍历循环向所有的Peers节点注册，最终执行类PeerEurekaNodes的register()方法，该方法通过执行一个任务向其他节点同步该注册信息<br>Eureka Client是通过 http来向Eureka Server注册的<br>ApplicationResource类的addInstance ()方法，即服务注册的接口</p>
+<p>Renew服务续约<br>服务注册在Eureka Client程序启动之后开启，并同时开启服务续约的定时任务。在eureka-client-1.6.2.jar的DiscoveryClient的类下有renew()方法。服务端的续约接口在InstanceResource类下，其中有个registry.renew()方法，即服务续约</p>
+<p>Eureka Client一启动（不是启动完成），不是立即向Eureka Server注册，它有一个延迟向服务端注册的时间，通过跟踪源码，可以发现默认的延迟时间为40秒。</p>
+<p>Eureka 的自我保护模式<br>当一个新的Eureka Server出现时，它尝试从相邻节点获取所有实例注册表信息。如果从Peer节点获取信息时出现问题，Eureka Serve会尝试其他的Peer节点。如果服务器能够成功获取所有实例，则根据该信息设置应该接收的更新阈值。如果有任何时间，Eureka Serve接收到的续约低于为该值配置的百分比（默认为15分钟内低于85％），则服务器开启自我保护模式，即不再剔除注册列表的信息。</p>
+<p>当网络分区故障，微服务于Eureka Server之间无法正常通信，微服务本身是正常的，此时不应该注销这个微服务。当Eureka Server节点段时间内丢失过多客户端时，那么这个节点会进入自我保护模式，一旦进入该模式，Eureka Server会保护服务注册表中的信息，不再删除注册表中的数据。当网络恢复之后，该Eureka Server节点自动退出自我保护模式。<br>架构哲学是：能可同时保留所有的微服务，也不盲目注销任何健康的微服务。</p>
+<p>Ribbon：是一个客户端负载均衡器，运行在客户端上<br>RestTemplate一般和Ribbon相结合<br>在Riibon中一个非常重要的组件为LoadBalancerClient，它作为负载均衡的一个客户端。<br>LoadBalancerClient接口，有如下三个方法，其中excute()为执行请求，reconstructURI()用来重构url<br>public interface LoadBalancerClient extends ServiceInstanceChooser {<br>  <t> T execute(String serviceId, LoadBalancerRequest<t> request) throws IOException;<br>  <t> T execute(String serviceId, ServiceInstance serviceInstance,<br>  LoadBalancerRequest<t> request) throws IOException;<br>  URI reconstructURI(ServiceInstance instance, URI original);</t></t></t></t></p>
+<p>}</p>
+<p>LoadBalancerClient的实现类为RibbonLoadBalancerClient，这个类是非常重要的一个类，最终的负载均衡的请求处理，由它来执行。<br>在RibbonLoadBalancerClient的源码中，其中choose()方法是选择具体服务实例的一个方法。该方法通过getServer()方法去获取实例，经过源码跟踪，最终交给了ILoadBalancer类去选择服务实例。<br>ILoadBalancer，它是定义了实现软件负载均衡的一个接口，它需要一组可供选择的服务注册列表信息，以及根据特定方法去选择服务<br>public interface ILoadBalancer {</p>
+<pre><code>public void addServers(List&lt;Server&gt; newServers);
+public Server chooseServer(Object key);
+public void markServerDown(Server server);
+public List&lt;Server&gt; getReachableServers();
+public List&lt;Server&gt; getAllServers();</code></pre><p>}</p>
+<p>负载均衡器是从EurekaClient获取服务信息，并根据IRule去路由，并且根据IPing去判断服务的可用性。在默认情况下pingIntervalSeconds为10，即每10秒钟，想EurekaClient发送一次”ping”。LoadBalancerClient是在初始化的时候，会向Eureka回去服务注册列表，并且向通过10s一次向EurekaClient发送“ping”，来判断服务的可用性，如果服务的可用性发生了改变或者服务数量和之前的不一致，则更新或者重新拉取。LoadBalancerClient有了这些服务注册列表，就可以根据具体的IRule来进行负载均衡。</p>
+<p>综上所述，Ribbon的负载均衡，主要通过LoadBalancerClient来实现的，而LoadBalancerClient具体交给了ILoadBalancer来处理，ILoadBalancer通过配置IRule、IPing等信息，并向EurekaClient获取注册列表的信息，并默认10秒一次向EurekaClient发送“ping”,进而检查是否更新服务列表，最后，得到注册列表后，ILoadBalancer根据IRule的策略进行负载均衡。</p>
+<p>而RestTemplate 被@LoadBalance注解后，能够用负载均衡，主要是维护了一个被@LoadBalance注解的RestTemplate列表，并给列表中的RestTemplate添加拦截器，进而交给负载均衡器去处理</p>
+<p>Feign<br>FeignClient注解被@Target(ElementType.TYPE)修饰，表示FeignClient注解的作用目标在接口上；<br>工作原理：feign是一个伪客户端，即它不做任何的请求处理。Feign通过处理注解生成request，从而实现简化HTTP API开发的目的，即开发人员可以使用注解的方式定制request api模板，在发送http request请求之前，feign通过处理注解的方式替换掉request模板中的参数，这种实现方式显得更为直接、可理解。</p>
+<p>通过包扫描注入FeignClient的bean，该源码在FeignClientsRegistrar类：</p>
+<p>首先在启动配置上检查是否有@EnableFeignClients注解，如果有该注解，则开启包扫描，扫描被@FeignClient注解接口。<br>程序启动后通过包扫描，当类有@FeignClient注解，将注解的信息取出，连同类名一起取出，赋给BeanDefinitionBuilder，然后根据BeanDefinitionBuilder得到beanDefinition，最后beanDefinition式注入到ioc容器中。</p>
+<p>注入bean之后，通过jdk的代理，当请求Feign Client的方法时会被拦截，代码在ReflectiveFeign类。</p>
+<p>在SynchronousMethodHandler类进行拦截处理，当被FeignClient的方法被拦截会根据参数生成RequestTemplate对象，该对象就是http请求的模板。</p>
+<p>其中有个executeAndDecode()方法，该方法是通RequestTemplate生成Request请求对象，然后根据用client获取response。</p>
+<p>feign的负载均衡是怎么样实现的呢<br>通过上述的FeignRibbonClientAutoConfiguration类配置Client的类型(httpurlconnection，okhttp和httpclient)时候，可知最终向容器注入的是LoadBalancerFeignClient，即负载均衡客户端。<br>Feign的源码实现的过程如下：</p>
+<p>首先通过@EnableFeignCleints注解开启FeignCleint<br>根据Feign的规则实现接口，并加@FeignCleint注解<br>程序启动后，会进行包扫描，扫描所有的@ FeignCleint的注解的类，并将这些信息注入到ioc容器中。<br>当接口的方法被调用，通过jdk的代理，来生成具体的RequestTemplate<br>RequestTemplate在生成Request<br>（实现负载均衡：）Request交给Client去处理，其中Client可以是HttpUrlConnection、HttpClient也可以是Okhttp<br>最后Client被封装到LoadBalanceClient类，这个类结合类Ribbon做到了负载均衡。</p>
+<p>Hystrix<br>在分布式系统中，服务与服务之间依赖错综复杂，一种不可避免的情况就是某些服务将会出现失败。Hystrix是一个库，它提供了服务与服务之间的容错功能，主要体现在延迟容错和容错，从而做到控制分布式系统中的联动故障。Hystrix通过隔离服务的访问点，阻止联动故障，并提供故障的解决方案，从而提高了这个分布式系统的弹性。</p>
+<p>在高并发的情况下，单个服务的延迟，可能导致所有的请求都处于延迟状态，可能在几秒钟就使服务处于负载饱和的状态。<br>服务的单个点的请求故障，会导致整个服务出现故障，更为糟糕的是该故障服务，会导致其他的服务出现负载饱和，资源耗尽，直到不可用，从而导致这个分布式系统都不可用。这就是“雪崩”。</p>
+<p>Hystrix的设计原则<br>原则如下：</p>
+<p>防止单个服务的故障，耗尽整个系统服务的容器（比如tomcat）的线程资源。<br>减少负载并快速失败，而不是排队。<br>在可行的情况下提供回退以保护用户免受故障。<br>使用隔离技术（如隔板，泳道和断路器模式）来限制任何一个依赖的影响。<br>通过近乎实时的指标，监控和警报来优化发现故障的时间。<br>通过配置更改的低延迟传播优化恢复时间，并支持Hystrix大多数方面的动态属性更改，从而允许您使用低延迟反馈循环进行实时操作修改。<br>保护整个依赖客户端执行中的故障，而不仅仅是在网络流量上进行保护降级、限流。</p>
+<p>Hystrix 是怎么实现它的设计目标的？<br>通过HystrixCommand 或者HystrixObservableCommand 将所有的外部系统（或者称为依赖）包装起来，整个包装对象是单独运行在一个线程之中（这是典型的命令模式）。<br>超时请求应该超过你定义的阈值<br>为每个依赖关系维护一个小的线程池（或信号量）; 如果它变满了，那么依赖关系的请求将立即被拒绝，而不是排队等待。<br>统计成功，失败（由客户端抛出的异常），超时和线程拒绝。<br>打开断路器可以在一段时间内停止对特定服务的所有请求，如果服务的错误百分比通过阈值，手动或自动的关闭断路器。<br>当请求被拒绝、连接超时或者断路器打开，直接执行fallback逻辑。<br>近乎实时监控指标和配置变化。</p>
+<p>1.构建一个HystrixCommand或者HystrixObservableCommand 对象。<br>第一步是构建一个HystrixCommand或HystrixObservableCommand对象来表示你对依赖关系的请求。 其中构造函数需要和请求时的参数一致。</p>
+<p>2.执行Command<br>通过使用Hystrix命令对象的以下四种方法之一，可以执行该命令有四种方法（前两种方法仅适用于简单的HystrixCommand对象，并不适用于HystrixObservableCommand）：</p>
+<p>execute()–阻塞，，然后返回从依赖关系接收到的单个响应（或者在发生错误时抛出异常）<br>queue()–返回一个可以从依赖关系获得单个响应的future 对象<br>observe()–订阅Observable代表依赖关系的响应，并返回一个Observable，该Observable会复制该来源Observable<br>toObservable() –返回一个Observable，当您订阅它时，将执行Hystrix命令并发出其响应</p>
+<p>K             value   = command.execute();<br>Future<k>     fValue  = command.queue();<br>Observable<k> ohValue = command.observe();<br>Observable<k> ocValue = command.toObservable();</k></k></k></p>
+<p>最终每个HystrixCommand都由一个Observable实现支持，甚至是那些旨在返回单个简单值的命令。</p>
+<p>3.响应是否有缓存？<br>如果为该命令启用请求缓存，并且如果缓存中对该请求的响应可用，则此缓存响应将立即以“可观察”的形式返回。</p>
+<p>4.断路器是否打开？<br>当您执行该命令时，Hystrix将检查断路器以查看电路是否打开。</p>
+<p>如果电路打开（或“跳闸”），则Hystrix将不会执行该命令，但会将流程路由到（8）获取回退。</p>
+<p>如果电路关闭，则流程进行到（5）以检查是否有可用于运行命令的容量。</p>
+<p>5.线程池/队列/信号量是否已经满负载？<br>如果与命令相关联的线程池和队列（或信号量，如果不在线程中运行）已满，则Hystrix将不会执行该命令，但将立即将流程路由到（8）获取回退。</p>
+<p>6.HystrixObservableCommand.construct() 或者 HystrixCommand.run()<br>如果run（）或construct（）方法超出了命令的超时值，则该线程将抛出一个TimeoutException（或者如果命令本身没有在自己的线程中运行，则会产生单独的计时器线程）。 在这种情况下，Hystrix将响应通过8进行路由。获取Fallback，如果该方法不取消/中断，它会丢弃最终返回值run（）或construct（）方法。</p>
+<p>7.计算Circuit 的健康<br>Hystrix向断路器报告成功，失败，拒绝和超时，该断路器维护了一系列的计算统计数据组。</p>
+<p>它使用这些统计信息来确定电路何时“跳闸”，此时短路任何后续请求直到恢复时间过去，在首次检查某些健康检查之后，它再次关闭电路。</p>
+<p>8.获取Fallback<br>当命令执行失败时，Hystrix试图恢复到你的回退：当construct（）或run（）（6.）抛出异常时，当命令由于电路断开而短路时（4.），当 命令的线程池和队列或信号量处于容量（5.），或者当命令超过其超时长度时。</p>
+<p>编写Fallback ,它不一依赖于任何的网络依赖，从内存中获取获取通过其他的静态逻辑。如果你非要通过网络去获取Fallback,你可能需要些在获取服务的接口的逻辑上写一个HystrixCommand。</p>
+<p>9.返回成功的响应<br>如果 Hystrix command成功，如果Hystrix命令成功，它将以Observable的形式返回对呼叫者的响应或响应。 根据您在上述步骤2中调用命令的方式，此Observable可能会在返回给您之前进行转换：<br>断路器（Circuit Breaker）<br>1.假设电路上的音量达到一定阈值设电路上的音量达到一定阈值（HystrixCommandProperties.circuitBreakerRequestVolum…</p>
+<p>2.并假设错误百分比超过阈值错误百分比（HystrixCommandProperties.circuitBreakerErrorThresholdPercentage（））…</p>
+<p>3.然后断路器从CLOSED转换到OPEN。</p>
+<p>4.虽然它是开放的，它使所有针对该断路器的请求短路。</p>
+<p>5.经过一段时间（HystrixCommandProperties.circuitBreakerSleepWindowInMilliseconds（）），会自动进入“半开”状态，此时允许一个请求访问依赖的服务。如果该请求能够调用成功，则关闭断路器，否则继续保持打开状态。</p>
+<p>隔离（Isolation）<br>Hystrix采用隔板模式来隔离彼此的依赖关系，并限制对其中任何一个的并发访问。</p>
+<h1 id="Zuul"><a href="#Zuul" class="headerlink" title="Zuul"></a>Zuul</h1><p><img src="https://img-blog.csdnimg.cn/20190601012124618.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9mb3JlenAuYmxvZy5jc2RuLm5ldA==,size_16,color_FFFFFF,t_70" alt="enter image description here"></p>
+<p>在zuul中， 整个请求的过程是这样的，首先将请求给zuul servlet处理，zuul servlet中有一个zuulRunner对象，该对象中初始化了RequestContext：作为存储整个请求的一些数据，并被所有的zuul filter共享。zuulRunner中还有 Filter Processor，Filter Processor作为执行所有的zuul filter的管理器。Filter Processor从filter loader 中获取zuul filter，而zuul filter是被filter File Manager所加载，并支持groovy热加载，采用了轮询的方式热加载。有了这些filter之后，zuul servelet首先执行的Pre类型的过滤器，再执行route类型的过滤器，最后执行的是post 类型的过滤器，如果在执行这些过滤器有错误的时候则会执行error类型的过滤器。执行完这些过滤器，最终将请求的结果返回给客户端。</p>
+<p>过滤器的order值越小，就越先执行，并且在执行过滤器的过程中，它们共享了一个RequestContext对象，该对象的生命周期贯穿于请求，可以看出优先执行了pre类型的过滤器，并将执行后的结果放在RequestContext中，供后续的filter使用，比如在执行PreDecorationFilter的时候，决定使用哪一个route，它的结果的是放在RequestContext对象中，后续会执行所有的route的过滤器，如果不满足条件就不执行该过滤器的run方法。最终达到了就执行一个route过滤器的run()方法。</p>
+<p>而error类型的过滤器，是在程序发生异常的时候执行的。<br>post类型的过滤，在默认的情况下，只注入了SendResponseFilter，该类型的过滤器是将最终的请求结果以流的形式输出给客户单。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:</strong>
+    Wangfulin
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link:</strong>
+    <a href="http://yoursite.com/blog/2019/09/03/SpringCloud源码基本原理学习/" title="SpringCloud源码基本原理学习">http://yoursite.com/blog/2019/09/03/SpringCloud源码基本原理学习/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice: </strong>
+    All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> unless stating additionally.
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/SpringCloud/" rel="tag"># SpringCloud</a>
+          
+            <a href="/tags/源码/" rel="tag"># 源码</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2019/09/03/MongoDB入门/" rel="next" title="MongoDB入门">
+                <i class="fa fa-chevron-left"></i> MongoDB入门
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Wangfulin">
+            
+              <p class="site-author-name" itemprop="name">Wangfulin</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/wangfulin7" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:1037377970@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.weibo.com/u/6368309151" target="_blank" title="微博">
+                      
+                        <i class="fa fa-fw fa-weibo"></i>微博</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.instagram.com/wangfulin07" target="_blank" title="Instagram">
+                      
+                        <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#springcloud-原理-：https-juejin-im-post-5be13b83f265da6116393fc7"><span class="nav-number">1.</span> <span class="nav-text">springcloud 原理 ：https://juejin.im/post/5be13b83f265da6116393fc7</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#spring-cloud-gateway"><span class="nav-number">2.</span> <span class="nav-text">spring cloud gateway</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常见的限流算法"><span class="nav-number">3.</span> <span class="nav-text">常见的限流算法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#计数器算法"><span class="nav-number">3.1.</span> <span class="nav-text">计数器算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#漏桶算法"><span class="nav-number">3.2.</span> <span class="nav-text">漏桶算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#令牌桶算法"><span class="nav-number">3.3.</span> <span class="nav-text">令牌桶算法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#源码篇："><span class="nav-number">4.</span> <span class="nav-text">源码篇：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Eureka"><span class="nav-number">5.</span> <span class="nav-text">Eureka</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Renew：服务续约"><span class="nav-number">5.1.</span> <span class="nav-text">Renew：服务续约</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fetch-Registries：获取注册列表信息"><span class="nav-number">5.2.</span> <span class="nav-text">Fetch Registries：获取注册列表信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cancel：服务下线"><span class="nav-number">5.3.</span> <span class="nav-text">Cancel：服务下线</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Register服务注册"><span class="nav-number">5.4.</span> <span class="nav-text">Register服务注册</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Renew服务续约"><span class="nav-number">5.5.</span> <span class="nav-text">Renew服务续约</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Eureka-的自我保护模式"><span class="nav-number">5.6.</span> <span class="nav-text">Eureka 的自我保护模式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Ribbon：是一个客户端负载均衡器，运行在客户端上"><span class="nav-number">6.</span> <span class="nav-text">Ribbon：是一个客户端负载均衡器，运行在客户端上</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Feign"><span class="nav-number">7.</span> <span class="nav-text">Feign</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Hystrix"><span class="nav-number">8.</span> <span class="nav-text">Hystrix</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Zuul"><span class="nav-number">9.</span> <span class="nav-text">Zuul</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Wangfulin</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">121.8k</span>
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+  <!-- 页面点击小心心 -->
+  <script type="text/javascript" src="/js/src/love.js"></script>
+  <!-- 背景动画 -->
+  <script type="text/javascript" src="/js/src/particle.js"></script>
+  <script type="text/javascript">var OriginTitile=document.title,st;document.addEventListener("visibilitychange",function(){document.hidden?(document.title="风里雨里,这里等你",clearTimeout(st)):(document.title="Got ya~~"+OriginTitile,st=setTimeout(function(){document.title=OriginTitile},3e3))})
+  </script>
+</body>
+</html>
