@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Wangfulin7&#39;s Home">
 <meta property="og:description" content="语法类似于javascript面向对象的查询语言，它是一个面向集合的，模式自由的文档型数据库。MongoDB 于 mysql缺点：不支持连表查询，不支持sql语句，不支持事务存储过程，所以不适合存储数据间比较复杂的数据，一般主要当做数据仓库来使用。适用 日志系统 股票等不适用于  电子商务系统等需要多表查询的功能基本概念  1 文档文档是mongodb中数据的基本单元，多个键值对有序的放置在一起就">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-09-03T14:15:10.653Z">
+<meta property="og:updated_time" content="2019-09-03T14:43:42.988Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MongoDB入门">
 <meta name="twitter:description" content="语法类似于javascript面向对象的查询语言，它是一个面向集合的，模式自由的文档型数据库。MongoDB 于 mysql缺点：不支持连表查询，不支持sql语句，不支持事务存储过程，所以不适合存储数据间比较复杂的数据，一般主要当做数据仓库来使用。适用 日志系统 股票等不适用于  电子商务系统等需要多表查询的功能基本概念  1 文档文档是mongodb中数据的基本单元，多个键值对有序的放置在一起就">
@@ -375,27 +375,36 @@
 
       
         <p>语法类似于javascript面向对象的查询语言，它是一个面向集合的，模式自由的文档型数据库。<br>MongoDB 于 mysql<br>缺点：不支持连表查询，不支持sql语句，不支持事务存储过程，所以不适合存储数据间比较复杂的数据，一般主要当做数据仓库来使用。<br>适用 日志系统 股票等<br>不适用于  电子商务系统等需要多表查询的功能<br>基本概念 </p>
-<p>1 文档<br>文档是mongodb中数据的基本单元，多个键值对有序的放置在一起就是文档<br>mongodb区分大小写数据类型  每一个文档尺寸不能超过16M<br>2 集合<br>集合就是一组文档，多个文档组成一个集合，集合类似于mysql中的表<br>无模式是指 在一个集合中可以包含不同格式的文档<br>mysql需要先建表再插数据 nosql不需要<br>模式自由 ：意思就是集合里面没有行和列的概念<br>mongodb中的集合不用创建，没有结构，所以可以放不同格式的文档<br>3 数据库<br>多个集合可以组成数据库。一个mongodb实例可以承载多个数据库。</p>
+<p><strong>1 文档</strong><br>文档是mongodb中数据的基本单元，多个键值对有序的放置在一起就是文档<br>mongodb区分大小写数据类型  每一个文档尺寸不能超过16M</p>
+<p><strong>2 集合</strong><br>集合就是一组文档，多个文档组成一个集合，集合类似于mysql中的表<br>无模式是指 在一个集合中可以包含不同格式的文档<br>mysql需要先建表再插数据 nosql不需要<br>模式自由 ：意思就是集合里面没有行和列的概念<br>mongodb中的集合不用创建，没有结构，所以可以放不同格式的文档</p>
+<p><strong>3 数据库</strong><br>多个集合可以组成数据库。一个mongodb实例可以承载多个数据库。</p>
 <p>一个数据库中可以有多个集合<br>一个集合中可以有多个文档</p>
-<p>use dbname 有则使用 没有则创建 如果是空的没有 使用 会自动删除<br>show dbs<br>show tables<br>db.php.insert({})    php为集合名称  隐式创建<br>db.php.find()   查询所有<br>db.php.findOne() .  查询第一个文档<br>db.php.drop() 删除集合<br>db.dropDatabase() 删除数据库</p>
-<p>help 全局 帮助<br>db.help 数据库帮助<br>db.php.help 集合帮助</p>
-<p>4 增删改查<br>1）添加文档<br>文档就是键值对，数据类型是BSON格式 支持的值更加丰富<br>db.php.insert({‘name’:’xiaowang’,’age’:’10’})</p>
+<p>use dbname 有则使用 没有则创建 如果是空的没有 使用 会自动删除</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">show dbs</span><br><span class="line">show tables</span><br><span class="line">db.php.insert(&#123;&#125;)    php为集合名称  隐式创建</span><br><span class="line">db.php.find()   查询所有</span><br><span class="line">db.php.findOne() .  查询第一个文档</span><br><span class="line">db.php.drop() 删除集合</span><br><span class="line">db.dropDatabase() 删除数据库</span><br><span class="line"></span><br><span class="line">help 全局 帮助</span><br><span class="line">db.help 数据库帮助</span><br><span class="line">db.php.help 集合帮助</span><br></pre></td></tr></table></figure>
+
+<p><strong>4 增删改查</strong><br>1）添加文档<br>文档就是键值对，数据类型是BSON格式 支持的值更加丰富</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.php.insert(&#123;&apos;name&apos;:&apos;xiaowang&apos;,&apos;age&apos;:&apos;10&apos;&#125;)</span><br></pre></td></tr></table></figure>
+
 <p>在每个添加的文档有一个唯一的_id字段<br>每个文档都有一个_id字段，并且同一集合中的_id值唯一，默认是ObjectId对象<br>可以自己定义_id,但是必须唯一 不然会报错</p>
 <p>支持js代码 批量插入</p>
-<p>2）删除文档<br>dp.php.remove({条件})<br>删除php集合中年龄大于7的文档<br>常用操作符：<br>$lt  &lt;
-$lte  &lt;=<br>$gt  &gt;<br>$gte &gt;=<br>$ne  &lt;&gt;<br>$in<br>$nin<br>$or<br>$not<br>$mod 取模<br>$exists<br>$where<br>dp.php.remove({age:{‘$gt’:7}})</p>
-<p>3)更新文档<br>方法1：直接修改<br>语法：dp.php.update({条件},{新文档})<br>语法：dp.集合.update(条件，新文档，是否新增，是否修改多条)<br>是否新增：如果是 1 则没有满足条件的则新增<br>是否修改多条：如果是1 满足条件的都要修改<br>例：在集合php中修改 age=4的文档名称为小王<br>db.php.update({age:4},{name:”xiaowang}})</p>
-<p>方法二：使用修改器<br>$inc: 加一个数字<br>$set:修改某一个字段，如果该字段不存在则添加这个字段<br>语法：dp.集合名.update({条件},{修改器名称:{修改的键:修改的新值}})<br>db.php.update({age:3},{‘$set’ :{name:’xiaozi’}})<br>db.php.update({age:3},{‘$inc’ :{age:10}})</p>
-<p>4)查询文档<br>db.php.find({条件})<br>db.php.findOne({条件})</p>
-<p>db.php.find({age:{‘$gt’:2}})</p>
-<p>db.php.find({},{age:1}) //条件可以为空 ，1表示只显示age键<br>db.php.find({},{age:0}) //条件可以为空 ，0表示除age外都显示</p>
-<p>根据年龄升降序排列<br>db.find().sort({age:1})  //升序<br>db.find().sort({age:0}) //降序</p>
-<p>db.find().limit(3) //只显示前三个</p>
-<p>db.find().skip(2).limit(3)//跨过两个文档 取三个 则意味 3-5</p>
-<p>db.php.count() //统计集合中的文档</p>
-<p>5 用户管理<br>权限概念：用户是属于数据库的，每个数据库都有自己的管理员，管理员登录后，只能操作所属的数据库。</p>
+<p>2）删除文档</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">dp.php.remove(&#123;条件&#125;)</span><br><span class="line">删除php集合中年龄大于7的文档</span><br><span class="line">常用操作符：</span><br><span class="line">$lt  &lt;</span><br><span class="line">$lte  &lt;=</span><br><span class="line">$gt  &gt;</span><br><span class="line">$gte &gt;=</span><br><span class="line">$ne  &lt;&gt;</span><br><span class="line">$in  </span><br><span class="line">$nin </span><br><span class="line">$or</span><br><span class="line">$not</span><br><span class="line">$mod 取模</span><br><span class="line">$exists</span><br><span class="line">$where</span><br><span class="line">dp.php.remove(&#123;age:&#123;&apos;$gt&apos;:7&#125;&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>3)更新文档<br>方法1：直接修改</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">语法：dp.php.update(&#123;条件&#125;,&#123;新文档&#125;)</span><br><span class="line">语法：dp.集合.update(条件，新文档，是否新增，是否修改多条)</span><br><span class="line">是否新增：如果是 1 则没有满足条件的则新增</span><br><span class="line">是否修改多条：如果是1 满足条件的都要修改</span><br><span class="line">例：在集合php中修改 age=4的文档名称为小王</span><br><span class="line">db.php.update(&#123;age:4&#125;,&#123;name:&quot;xiaowang&#125;&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>方法二：使用修改器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$inc: 加一个数字</span><br><span class="line">$set:修改某一个字段，如果该字段不存在则添加这个字段</span><br><span class="line">语法：dp.集合名.update(&#123;条件&#125;,&#123;修改器名称:&#123;修改的键:修改的新值&#125;&#125;)</span><br><span class="line">db.php.update(&#123;age:3&#125;,&#123;&apos;$set&apos; :&#123;name:&apos;xiaozi&apos;&#125;&#125;)</span><br><span class="line">db.php.update(&#123;age:3&#125;,&#123;&apos;$inc&apos; :&#123;age:10&#125;&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>4)查询文档</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">db.php.find(&#123;条件&#125;)</span><br><span class="line">db.php.findOne(&#123;条件&#125;)</span><br><span class="line"></span><br><span class="line">db.php.find(&#123;age:&#123;&apos;$gt&apos;:2&#125;&#125;)</span><br><span class="line"></span><br><span class="line">db.php.find(&#123;&#125;,&#123;age:1&#125;) //条件可以为空 ，1表示只显示age键</span><br><span class="line">db.php.find(&#123;&#125;,&#123;age:0&#125;) //条件可以为空 ，0表示除age外都显示</span><br></pre></td></tr></table></figure>
+
+<p>根据年龄升降序排列</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">db.find().sort(&#123;age:1&#125;)  //升序</span><br><span class="line">db.find().sort(&#123;age:0&#125;) //降序</span><br><span class="line"></span><br><span class="line">db.find().limit(3) //只显示前三个</span><br><span class="line"></span><br><span class="line">db.find().skip(2).limit(3)//跨过两个文档 取三个 则意味 3-5</span><br><span class="line"></span><br><span class="line">db.php.count() //统计集合中的文档</span><br></pre></td></tr></table></figure>
+
+<p><strong>5 用户管理</strong><br>权限概念：用户是属于数据库的，每个数据库都有自己的管理员，管理员登录后，只能操作所属的数据库。</p>
 <p>创建用户<br>1 选择数据库<br>use 数据库名称<br>2 添加用户<br>db.addUser(用户名，密码，是否只读)</p>
-<p>6 mongodb中的索引<br>6.1 普通单列索引<br>没有索引：</p>
+<p><strong>6 mongodb中的索引</strong><br>6.1 普通单列索引<br>没有索引：</p>
 <p>为name添加索引<br>db.java.ensureIndex({name:1}) //1为正序索引 -1是降序<br>db.集合名.ensureIndex({键名:1})</p>
 <p>6.2 复合索引<br>db.集合名.ensureIndex({键名1:1/-1,键名2:1/-1})</p>
 <p>6.3 子文档索引</p>
@@ -1188,7 +1197,7 @@ $lte  &lt;=<br>$gt  &gt;<br>$gte &gt;=<br>$ne  &lt;&gt;<br>$in<br>$nin<br>$or<br
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">110.7k</span>
+    <span title="Site words total count">110.8k</span>
   
 </div>
 
