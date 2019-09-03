@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="MyBatis,">
 
 
 
@@ -79,13 +79,21 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Wangfulin7&#39;s Home">
-<meta property="og:url" content="http://yoursite.com/archives/2019/index.html">
+<meta name="description" content="赞：《深入理解mybatis原理》 MyBatis的架构设计以及实例分析Mybatis的整体架构分为三层，分别是基础支持层、核心处理层和接口层 个人认为的关键几个模块：基础支持层：  类型转换模块：mybatis为简化配置文件提供别名机制，该机制是类型转换的主要功能之一，在为sql语句绑定实参时，会将数据由java类型转换成jdbc类型，在映射结果集的时候，会将数据由jdbc类型转换为java类型">
+<meta name="keywords" content="MyBatis">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MyBatis基础">
+<meta property="og:url" content="http://yoursite.com/blog/2019/09/03/MyBatis基础/index.html">
 <meta property="og:site_name" content="Wangfulin7&#39;s Home">
+<meta property="og:description" content="赞：《深入理解mybatis原理》 MyBatis的架构设计以及实例分析Mybatis的整体架构分为三层，分别是基础支持层、核心处理层和接口层 个人认为的关键几个模块：基础支持层：  类型转换模块：mybatis为简化配置文件提供别名机制，该机制是类型转换的主要功能之一，在为sql语句绑定实参时，会将数据由java类型转换成jdbc类型，在映射结果集的时候，会将数据由jdbc类型转换为java类型">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="https://images0.cnblogs.com/blog/571766/201405/202018466841387.png">
+<meta property="og:image" content="https://img-blog.csdn.net/20141028140852531?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbHVhbmxvdWlz/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:updated_time" content="2019-09-03T12:57:41.716Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Wangfulin7&#39;s Home">
+<meta name="twitter:title" content="MyBatis基础">
+<meta name="twitter:description" content="赞：《深入理解mybatis原理》 MyBatis的架构设计以及实例分析Mybatis的整体架构分为三层，分别是基础支持层、核心处理层和接口层 个人认为的关键几个模块：基础支持层：  类型转换模块：mybatis为简化配置文件提供别名机制，该机制是类型转换的主要功能之一，在为sql语句绑定实参时，会将数据由java类型转换成jdbc类型，在映射结果集的时候，会将数据由jdbc类型转换为java类型">
+<meta name="twitter:image" content="https://images0.cnblogs.com/blog/571766/201405/202018466841387.png">
 
 
 
@@ -118,13 +126,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/archives/2019/">
+  <link rel="canonical" href="http://yoursite.com/blog/2019/09/03/MyBatis基础/">
 
 
 
 
 
-  <title>Archive | Wangfulin7's Home</title>
+  <title>MyBatis基础 | Wangfulin7's Home</title>
   
 
 
@@ -143,7 +151,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -247,282 +255,229 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2019/09/03/MyBatis基础/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Wangfulin">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wangfulin7's Home">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h1 class="post-title" itemprop="name headline">MyBatis基础</h1>
         
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-09-03T20:56:03+08:00">
+                2019-09-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-        
-        Um..! 7 posts in total. Keep on posting.
-      </span>
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MyBatis/" itemprop="url" rel="index">
+                    <span itemprop="name">MyBatis</span>
+                  </a>
+                </span>
 
-      
-
-        
-        
-        
-
-        
+                
+                
+              
+            </span>
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2019">2019</h1>
-          </div>
-        
-        
 
-        
+          
+            
+          
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          
+          
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/blog/2019/09/03/MyBatis基础/" itemprop="url">
+          
+
+          
+            <div class="post-wordcount">
               
-                <span itemprop="name">MyBatis基础</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  892
+                </span>
               
-            </a>
-        
-      </h2>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-09-03T20:56:03+08:00" content="2019-09-03">
-          09-03
-        </time>
-      </div>
+              
 
-    </header>
-  </article>
+              
+            </div>
+          
 
+          
 
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/blog/2019/09/02/排序算法/" itemprop="url">
-              
-                <span itemprop="name">排序算法</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-09-02T17:40:21+08:00" content="2019-09-02">
-          09-02
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/blog/2019/08/25/Learn-git/" itemprop="url">
-              
-                <span itemprop="name">Learn git</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-08-25T22:52:10+08:00" content="2019-08-25">
-          08-25
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+      
+        <p><strong>赞：</strong><a href="https://blog.csdn.net/luanlouis/article/details/40422941" target="_blank" rel="noopener">《深入理解mybatis原理》 MyBatis的架构设计以及实例分析</a><br>Mybatis的整体架构分为三层，分别是基础支持层、核心处理层和接口层<br><img src="https://images0.cnblogs.com/blog/571766/201405/202018466841387.png" alt="enter image description here"></p>
+<p>个人认为的关键几个模块：<br><strong>基础支持层：</strong></p>
+<ul>
+<li>类型转换模块：mybatis为简化配置文件提供别名机制，该机制是类型转换的主要功能之一，在为sql语句绑定实参时，会将数据由java类型转换成jdbc类型，在映射结果集的时候，会将数据由jdbc类型转换为java类型。</li>
+<li>解释器模块：主要提供几个功能，一个是对xpath进行封装，为mybatis-config.xml配置文件以及映射配置文件提供支持；另一功能是为处理动态sql语句中的占位符提供支持。</li>
+<li>缓存模块: 一级缓存和二级缓存，一级缓存是基于sqlsession的二级缓存是基于mapper的。mybatis中自带的这两级缓存与mybatis以及整个应用都是运行在同一个jvm当中，共享一块堆内存。如果这两级缓存中的数据量比较大，则可能影响系统中其它功能的使用。所以当需要缓存大量数据时，优先考虑使用redis Memcache。</li>
+</ul>
+<p><strong>核心处理层：</strong></p>
+<ul>
+<li><p>配置解析：在mybatis初始化过程中，会加载mybatis-config.xml配置文件，映射配置文件以及mapper接口中的注解信息，解析后的配置信息会形成对应的对象并保存到Configuration对象中，利用该Configuration对象创建SqlsessionFactory对象。待Mybatis初始化后，可以通过初始化得到SqlSessionFactory创建Sqlsession对象并完成数据库操作。<br>解析mybatis-config.xml -&gt; 形成对象 -&gt; 保存到configuration对象中 -&gt; 用configuration对象创建SqlSessionFactory -&gt; 创建sqlsession</p>
+</li>
+<li><p>sql执行：sql执行涉及多个组件，比较重要的是Executor、StatementHandler 、ParameterHandler、ResultSetHandler。Executor主要负责维护一级缓存和二级缓存，并提供事务管理的相关操作，它会将数据库相关操作委托给StatementHandler完成。StatementHandler首先通过ParameterHandler完成sql语言的实参绑定，然后通过java.sql.Statement对象执行sql语句得到结果集，最后通过ResultSetHandler完成结果集的映射，得到结果对象并返回。<br><img src="https://img-blog.csdn.net/20141028140852531?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbHVhbmxvdWlz/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="enter image description here"></p>
+</li>
+</ul>
+<p><strong>很好的文章</strong>：<a href="https://tech.meituan.com/2018/01/19/mybatis-cache.html" target="_blank" rel="noopener">聊聊MyBatis缓存机制</a></p>
+<p>一级缓存总结：</p>
+<ul>
+<li>1.MyBatis一级缓存的生命周期和SqlSession一致。</li>
+<li>2.MyBatis一级缓存内部设计简单，只是一个没有容量限定的HashMap，在缓存的功能性上有所欠缺。</li>
+<li>3.MyBatis的一级缓存最大范围是SqlSession内部，有多个SqlSession或者分布式的环境下，数据库写操作会引起脏数据，建议设定缓存级别为Statement。<br>二级缓存总结：</li>
+<li>1.MyBatis的二级缓存相对于一级缓存来说，实现了SqlSession之间缓存数据的共享，同时粒度更加的细，能够到namespace级别，通过Cache接口实现类不同的组合，对Cache的可控性也更强。</li>
+<li>2.MyBatis在多表查询时，极大可能会出现脏数据，有设计上的缺陷，安全使用二级缓存的条件比较苛刻。</li>
+<li>3.在分布式环境下，由于默认的MyBatis Cache实现都是基于本地的，分布式环境下必然会出现读取到脏数据，需要使用集中式缓存将MyBatis的Cache接口实现，有一定的开发成本，直接使用Redis、Memcached等分布式缓存可能成本更低，安全性也更高。</li>
+</ul>
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/blog/2019/08/18/JAVA基础/" itemprop="url">
-              
-                <span itemprop="name">JAVA基础</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-08-18T22:49:07+08:00" content="2019-08-18">
-          08-18
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/blog/2019/08/13/MYSQL/" itemprop="url">
-              
-                <span itemprop="name">MYSQL</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-08-13T23:34:35+08:00" content="2019-08-13">
-          08-13
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/blog/2019/08/10/2019-08-10Saturday/" itemprop="url">
-              
-                <span itemprop="name">2019-08-10Saturday</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-08-10T11:40:44+08:00" content="2019-08-10">
-          08-10
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/blog/2019/06/27/new-day/" itemprop="url">
-              
-                <span itemprop="name">new day</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-06-27T21:53:28+08:00" content="2019-06-27">
-          06-27
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:</strong>
+    Wangfulin
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link:</strong>
+    <a href="http://yoursite.com/blog/2019/09/03/MyBatis基础/" title="MyBatis基础">http://yoursite.com/blog/2019/09/03/MyBatis基础/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice: </strong>
+    All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> unless stating additionally.
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/MyBatis/" rel="tag"># MyBatis</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2019/09/02/排序算法/" rel="next" title="排序算法">
+                <i class="fa fa-chevron-left"></i> 排序算法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -530,6 +485,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -790,6 +749,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
