@@ -79,23 +79,23 @@
 
 
 
-<meta name="description" content="springcloud 原理 ：https://juejin.im/post/5be13b83f265da6116393fc7spring cloud gatewayspring cloud gateway 是zuul的替代 含有zuul的所有功能，可以无缝替换，最主要是的是有两个 断言和过滤，每一种predicate都会对当前的客户端请求进行判断，是否满足当前的要求，如果满足则交给当前请求处理。">
+<meta name="description" content="springcloud原理:https://juejin.im/post/5be13b83f265da6116393fc7 spring cloud gatewayspring cloud gateway 是zuul的替代 含有zuul的所有功能，可以无缝替换，最主要是的是有两个 断言和过滤，每一种predicate都会对当前的客户端请求进行判断，是否满足当前的要求，如果满足则交给当前请求处理。P">
 <meta name="keywords" content="SpringCloud,源码">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SpringCloud源码基本原理学习">
 <meta property="og:url" content="http://yoursite.com/blog/2019/09/03/SpringCloud源码基本原理学习/index.html">
 <meta property="og:site_name" content="Wangfulin7&#39;s Home">
-<meta property="og:description" content="springcloud 原理 ：https://juejin.im/post/5be13b83f265da6116393fc7spring cloud gatewayspring cloud gateway 是zuul的替代 含有zuul的所有功能，可以无缝替换，最主要是的是有两个 断言和过滤，每一种predicate都会对当前的客户端请求进行判断，是否满足当前的要求，如果满足则交给当前请求处理。">
+<meta property="og:description" content="springcloud原理:https://juejin.im/post/5be13b83f265da6116393fc7 spring cloud gatewayspring cloud gateway 是zuul的替代 含有zuul的所有功能，可以无缝替换，最主要是的是有两个 断言和过滤，每一种predicate都会对当前的客户端请求进行判断，是否满足当前的要求，如果满足则交给当前请求处理。P">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190601011708827.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9mb3JlenAuYmxvZy5jc2RuLm5ldA==,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdn.net/20170611110916402?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZm9yZXpw/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
 <meta property="og:image" content="https://raw.githubusercontent.com/wiki/Netflix/Hystrix/images/hystrix-command-flow-chart.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/wiki/Netflix/Hystrix/images/circuit-breaker-1280.png">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190601012124618.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9mb3JlenAuYmxvZy5jc2RuLm5ldA==,size_16,color_FFFFFF,t_70">
-<meta property="og:updated_time" content="2019-09-03T15:34:57.175Z">
+<meta property="og:updated_time" content="2019-09-04T07:01:58.708Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SpringCloud源码基本原理学习">
-<meta name="twitter:description" content="springcloud 原理 ：https://juejin.im/post/5be13b83f265da6116393fc7spring cloud gatewayspring cloud gateway 是zuul的替代 含有zuul的所有功能，可以无缝替换，最主要是的是有两个 断言和过滤，每一种predicate都会对当前的客户端请求进行判断，是否满足当前的要求，如果满足则交给当前请求处理。">
+<meta name="twitter:description" content="springcloud原理:https://juejin.im/post/5be13b83f265da6116393fc7 spring cloud gatewayspring cloud gateway 是zuul的替代 含有zuul的所有功能，可以无缝替换，最主要是的是有两个 断言和过滤，每一种predicate都会对当前的客户端请求进行判断，是否满足当前的要求，如果满足则交给当前请求处理。P">
 <meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190601011708827.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9mb3JlenAuYmxvZy5jc2RuLm5ldA==,size_16,color_FFFFFF,t_70">
 
 
@@ -380,7 +380,8 @@
       
 
       
-        <h1 id="springcloud-原理-：https-juejin-im-post-5be13b83f265da6116393fc7"><a href="#springcloud-原理-：https-juejin-im-post-5be13b83f265da6116393fc7" class="headerlink" title="springcloud 原理 ：https://juejin.im/post/5be13b83f265da6116393fc7"></a>springcloud 原理 ：<a href="https://juejin.im/post/5be13b83f265da6116393fc7" target="_blank" rel="noopener">https://juejin.im/post/5be13b83f265da6116393fc7</a></h1><h1 id="spring-cloud-gateway"><a href="#spring-cloud-gateway" class="headerlink" title="spring cloud gateway"></a>spring cloud gateway</h1><p>spring cloud gateway 是zuul的替代 含有zuul的所有功能，可以无缝替换，最主要是的是有两个 断言和过滤，每一种predicate都会对当前的客户端请求进行判断，是否满足当前的要求，如果满足则交给当前请求处理。<br>Predict决定了请求由哪一个路由处理，在路由处理之前，需要经过“pre”类型的过滤器处理，处理返回响应之后，可以由“post”类型的过滤器处理。在“pre”类型的过滤器可以做参数校验、权限校验、流量监控、日志输出、协议转换等，在“post”类型的过滤器中可以做响应内容、响应头的修改，日志的输出，流量监控等。<br>在Spring Cloud Gateway中，filter从作用范围可分为另外两种，一种是针对于单个路由的gateway filter，它在配置文件中的写法同predict类似；另外一种是针对于所有路由的global gateway filer。过滤器允许以某种方式修改传入的HTTP请求或传出的HTTP响应。<br>AddRequestHeaderGatewayFilterFactory实现过滤的原理：根据旧的ServerHttpRequest创建新的 ServerHttpRequest ，在新的ServerHttpRequest加了一个请求头，然后创建新的 ServerWebExchange ，提交过滤器链继续过滤。</p>
+        <p>springcloud原理:<a href="https://juejin.im/post/5be13b83f265da6116393fc7" target="_blank" rel="noopener">https://juejin.im/post/5be13b83f265da6116393fc7</a></p>
+<h1 id="spring-cloud-gateway"><a href="#spring-cloud-gateway" class="headerlink" title="spring cloud gateway"></a>spring cloud gateway</h1><p>spring cloud gateway 是zuul的替代 含有zuul的所有功能，可以无缝替换，最主要是的是有两个 断言和过滤，每一种predicate都会对当前的客户端请求进行判断，是否满足当前的要求，如果满足则交给当前请求处理。<br>Predict决定了请求由哪一个路由处理，在路由处理之前，需要经过“pre”类型的过滤器处理，处理返回响应之后，可以由“post”类型的过滤器处理。在“pre”类型的过滤器可以做参数校验、权限校验、流量监控、日志输出、协议转换等，在“post”类型的过滤器中可以做响应内容、响应头的修改，日志的输出，流量监控等。<br>在Spring Cloud Gateway中，filter从作用范围可分为另外两种，一种是针对于单个路由的gateway filter，它在配置文件中的写法同predict类似；另外一种是针对于所有路由的global gateway filer。过滤器允许以某种方式修改传入的HTTP请求或传出的HTTP响应。<br>AddRequestHeaderGatewayFilterFactory实现过滤的原理：根据旧的ServerHttpRequest创建新的 ServerHttpRequest ，在新的ServerHttpRequest加了一个请求头，然后创建新的 ServerWebExchange ，提交过滤器链继续过滤。</p>
 <p>在Nginx服务启中有一个非常强大的功能就是重写路径，Spring Cloud Gateway默认也提供了这样的功能。<br>自定义过滤器需要实现GatewayFilter和Ordered  2个接口</p>
 <p>GatewayFilter : 需要通过spring.cloud.routes.filters 配置在具体路由下，只作用在当前路由上或通过spring.cloud.default-filters配置在全局，作用在所有路由上</p>
 <p>GlobalFilter : 全局过滤器，不需要在配置文件中配置，作用在所有的路由上，最终通过GatewayFilterAdapter包装成GatewayFilterChain可识别的过滤器，它为请求业务以及路由的URI转换为真实业务服务的请求地址的核心过滤器，不需要配置，系统初始化时加载，并作用在每个路由上。</p>
@@ -584,6 +585,10 @@ public List&lt;Server&gt; getAllServers();</code></pre><p>}</p>
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/blog/2019/09/04/剑指Offer一/" rel="prev" title="剑指Offer一">
+                剑指Offer一 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -661,7 +666,7 @@ public List&lt;Server&gt; getAllServers();</code></pre><p>}</p>
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -672,7 +677,7 @@ public List&lt;Server&gt; getAllServers();</code></pre><p>}</p>
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -683,7 +688,7 @@ public List&lt;Server&gt; getAllServers();</code></pre><p>}</p>
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -744,7 +749,7 @@ public List&lt;Server&gt; getAllServers();</code></pre><p>}</p>
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#springcloud-原理-：https-juejin-im-post-5be13b83f265da6116393fc7"><span class="nav-number">1.</span> <span class="nav-text">springcloud 原理 ：https://juejin.im/post/5be13b83f265da6116393fc7</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#spring-cloud-gateway"><span class="nav-number">2.</span> <span class="nav-text">spring cloud gateway</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常见的限流算法"><span class="nav-number">3.</span> <span class="nav-text">常见的限流算法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#计数器算法"><span class="nav-number">3.1.</span> <span class="nav-text">计数器算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#漏桶算法"><span class="nav-number">3.2.</span> <span class="nav-text">漏桶算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#令牌桶算法"><span class="nav-number">3.3.</span> <span class="nav-text">令牌桶算法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#源码篇："><span class="nav-number">4.</span> <span class="nav-text">源码篇：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Eureka"><span class="nav-number">5.</span> <span class="nav-text">Eureka</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Renew：服务续约"><span class="nav-number">5.1.</span> <span class="nav-text">Renew：服务续约</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fetch-Registries：获取注册列表信息"><span class="nav-number">5.2.</span> <span class="nav-text">Fetch Registries：获取注册列表信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cancel：服务下线"><span class="nav-number">5.3.</span> <span class="nav-text">Cancel：服务下线</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Register服务注册"><span class="nav-number">5.4.</span> <span class="nav-text">Register服务注册</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Renew服务续约"><span class="nav-number">5.5.</span> <span class="nav-text">Renew服务续约</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Eureka-的自我保护模式"><span class="nav-number">5.6.</span> <span class="nav-text">Eureka 的自我保护模式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Ribbon：是一个客户端负载均衡器，运行在客户端上"><span class="nav-number">6.</span> <span class="nav-text">Ribbon：是一个客户端负载均衡器，运行在客户端上</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Feign"><span class="nav-number">7.</span> <span class="nav-text">Feign</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Hystrix"><span class="nav-number">8.</span> <span class="nav-text">Hystrix</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Zuul"><span class="nav-number">9.</span> <span class="nav-text">Zuul</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#spring-cloud-gateway"><span class="nav-number">1.</span> <span class="nav-text">spring cloud gateway</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常见的限流算法"><span class="nav-number">2.</span> <span class="nav-text">常见的限流算法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#计数器算法"><span class="nav-number">2.1.</span> <span class="nav-text">计数器算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#漏桶算法"><span class="nav-number">2.2.</span> <span class="nav-text">漏桶算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#令牌桶算法"><span class="nav-number">2.3.</span> <span class="nav-text">令牌桶算法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#源码篇："><span class="nav-number">3.</span> <span class="nav-text">源码篇：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Eureka"><span class="nav-number">4.</span> <span class="nav-text">Eureka</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Renew：服务续约"><span class="nav-number">4.1.</span> <span class="nav-text">Renew：服务续约</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fetch-Registries：获取注册列表信息"><span class="nav-number">4.2.</span> <span class="nav-text">Fetch Registries：获取注册列表信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cancel：服务下线"><span class="nav-number">4.3.</span> <span class="nav-text">Cancel：服务下线</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Register服务注册"><span class="nav-number">4.4.</span> <span class="nav-text">Register服务注册</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Renew服务续约"><span class="nav-number">4.5.</span> <span class="nav-text">Renew服务续约</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Eureka-的自我保护模式"><span class="nav-number">4.6.</span> <span class="nav-text">Eureka 的自我保护模式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Ribbon：是一个客户端负载均衡器，运行在客户端上"><span class="nav-number">5.</span> <span class="nav-text">Ribbon：是一个客户端负载均衡器，运行在客户端上</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Feign"><span class="nav-number">6.</span> <span class="nav-text">Feign</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Hystrix"><span class="nav-number">7.</span> <span class="nav-text">Hystrix</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Zuul"><span class="nav-number">8.</span> <span class="nav-text">Zuul</span></a></li></ol></div>
             
 
           </div>
@@ -778,7 +783,7 @@ public List&lt;Server&gt; getAllServers();</code></pre><p>}</p>
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">121.8k</span>
+    <span title="Site words total count">128.4k</span>
   
 </div>
 
