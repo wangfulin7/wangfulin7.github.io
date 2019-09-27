@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="JAVA,并发编程,锁,">
 
 
 
@@ -79,22 +79,18 @@
 
 
 
-<meta name="description" content="感冒😷了药店真的是挣钱。。">
+<meta name="description" content="避免死锁的几个常用方法 避免一个线程同时获得多个锁 避免一个线程在锁内同时占用多个资源，尽量保证每个锁只能占用一个资源 尝试使用定时锁，使用lock.trylosck来替代使用内部锁机制。 对于数据库锁，加锁和解锁必须在一个数据库连接里，否则会出现锁失败的情况。  Java并发机制的底层实现原理volatile：保证可见性，不保证原子性使用的是Lock前缀指令。Lock前缀指令在多核处理器会引发两">
+<meta name="keywords" content="JAVA,并发编程,锁">
 <meta property="og:type" content="article">
-<meta property="og:title" content="new day">
-<meta property="og:url" content="http://yoursite.com/blog/2019/06/27/new-day/index.html">
+<meta property="og:title" content="JAVA锁原理基础">
+<meta property="og:url" content="http://yoursite.com/blog/2019/09/27/JAVA锁原理基础/index.html">
 <meta property="og:site_name" content="Wangfulin7&#39;s Home">
-<meta property="og:description" content="感冒😷了药店真的是挣钱。。">
+<meta property="og:description" content="避免死锁的几个常用方法 避免一个线程同时获得多个锁 避免一个线程在锁内同时占用多个资源，尽量保证每个锁只能占用一个资源 尝试使用定时锁，使用lock.trylosck来替代使用内部锁机制。 对于数据库锁，加锁和解锁必须在一个数据库连接里，否则会出现锁失败的情况。  Java并发机制的底层实现原理volatile：保证可见性，不保证原子性使用的是Lock前缀指令。Lock前缀指令在多核处理器会引发两">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://yoursite.com/blog/2019/06/27/new-day/1.jpeg">
-<meta property="og:image" content="http://yoursite.com/blog/2019/06/27/new-day/2.jpeg">
-<meta property="og:image" content="http://yoursite.com/blog/2019/06/27/new-day/3.jpeg">
-<meta property="og:image" content="http://yoursite.com/blog/2019/06/27/new-day/4.jpeg">
-<meta property="og:updated_time" content="2019-08-30T15:30:37.080Z">
+<meta property="og:updated_time" content="2019-09-27T06:10:12.270Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="new day">
-<meta name="twitter:description" content="感冒😷了药店真的是挣钱。。">
-<meta name="twitter:image" content="http://yoursite.com/blog/2019/06/27/new-day/1.jpeg">
+<meta name="twitter:title" content="JAVA锁原理基础">
+<meta name="twitter:description" content="避免死锁的几个常用方法 避免一个线程同时获得多个锁 避免一个线程在锁内同时占用多个资源，尽量保证每个锁只能占用一个资源 尝试使用定时锁，使用lock.trylosck来替代使用内部锁机制。 对于数据库锁，加锁和解锁必须在一个数据库连接里，否则会出现锁失败的情况。  Java并发机制的底层实现原理volatile：保证可见性，不保证原子性使用的是Lock前缀指令。Lock前缀指令在多核处理器会引发两">
 
 
 
@@ -127,13 +123,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/blog/2019/06/27/new-day/">
+  <link rel="canonical" href="http://yoursite.com/blog/2019/09/27/JAVA锁原理基础/">
 
 
 
 
 
-  <title>new day | Wangfulin7's Home</title>
+  <title>JAVA锁原理基础 | Wangfulin7's Home</title>
   
 
 
@@ -270,7 +266,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2019/06/27/new-day/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2019/09/27/JAVA锁原理基础/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Wangfulin">
@@ -287,7 +283,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">new day</h1>
+          <h1 class="post-title" itemprop="name headline">JAVA锁原理基础</h1>
         
 
         <div class="post-meta">
@@ -299,8 +295,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-06-27T21:53:28+08:00">
-                2019-06-27
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-09-27T14:07:10+08:00">
+                2019-09-27
               </time>
             
 
@@ -322,8 +318,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/生活/" itemprop="url" rel="index">
-                    <span itemprop="name">生活</span>
+                  <a href="/categories/JAVA基础/" itemprop="url" rel="index">
+                    <span itemprop="name">JAVA基础</span>
                   </a>
                 </span>
 
@@ -353,7 +349,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  10
+                  1.4k
                 </span>
               
 
@@ -378,7 +374,32 @@
       
 
       
-        <h2 id="感冒😷了"><a href="#感冒😷了" class="headerlink" title="感冒😷了"></a>感冒😷了</h2><p>药店真的是挣钱。。<br><img src="/blog/2019/06/27/new-day/1.jpeg" alt="aratar"><br><img src="/blog/2019/06/27/new-day/2.jpeg" alt="aratar"><br><img src="/blog/2019/06/27/new-day/3.jpeg" alt="aratar"><br><img src="/blog/2019/06/27/new-day/4.jpeg" alt="aratar"></p>
+        <h2 id="避免死锁的几个常用方法"><a href="#避免死锁的几个常用方法" class="headerlink" title="避免死锁的几个常用方法"></a>避免死锁的几个常用方法</h2><ol>
+<li>避免一个线程同时获得多个锁</li>
+<li>避免一个线程在锁内同时占用多个资源，尽量保证每个锁只能占用一个资源</li>
+<li>尝试使用定时锁，使用lock.trylosck来替代使用内部锁机制。</li>
+<li>对于数据库锁，加锁和解锁必须在一个数据库连接里，否则会出现锁失败的情况。</li>
+</ol>
+<h2 id="Java并发机制的底层实现原理"><a href="#Java并发机制的底层实现原理" class="headerlink" title="Java并发机制的底层实现原理"></a>Java并发机制的底层实现原理</h2><p>volatile：保证可见性，不保证原子性<br>使用的是Lock前缀指令。<br>Lock前缀指令在多核处理器会引发两件事。</p>
+<ol>
+<li>将当前处理器缓存行的数据写回到系统内存</li>
+<li>这个写回内存的操作回使在其他cpu里缓存了该内存地址的数据无效。</li>
+</ol>
+<p>如果对声明了volatile的变量进行写操作，jvm就会向处理器发送一条Lock前缀指令，将这个变量所在缓存行的数据写到系统内存。在多处理器下为保证每个处理器的缓存是一致的，就会实现缓存一致性协议，每个处理器通过嗅探在总线上传播的数据来检查自己缓存的值是不是过期了，当发现自己缓存行所对应的地址空间被修改，就会将当前处理器的缓存行设置为无效状态，当处理器对这个数据进行修改操作时，会重新从系统内存中把数据读到处理器缓存里。</p>
+<h2 id="synchronized的实现原理与应用"><a href="#synchronized的实现原理与应用" class="headerlink" title="synchronized的实现原理与应用"></a>synchronized的实现原理与应用</h2><p>Java中的每一个对象都可以作为锁。具体为以下三种形式</p>
+<ul>
+<li>对于普通同步方法，锁是当前实例对象。</li>
+<li>对于静态同步方法，锁是当前类的Class对象</li>
+<li>对于同步方法，锁是Synchonized括号里配置的对象</li>
+</ul>
+<p>JVM基于进入和退出Monitor对象来实现方法同步和代码快同步。代码块同步是使用monitorenter和monitorexit指令实现的。<br>    monitorenter指令是在编译后插入同步代码块的开始位置，而monitorexit是插入到方法结束和异常处。JVM要保证每个monitorenter必须有对应的monitorexit与之配对。任何对象都有一个monitor与之关联。当一个monitor被持有之后，它将处于锁定状态。线程执行到monitorenter指令时，将会尝试获取对象所对应的monitor的所有权，即尝试获得对象的锁。</p>
+<h2 id="原子操作的实现原理"><a href="#原子操作的实现原理" class="headerlink" title="原子操作的实现原理"></a>原子操作的实现原理</h2><p>CAS ： CAS操作需要输入两个数值，一个旧值和一个新值，在操作期间比较旧值有没有发生变化，如果没有发生变化，才交换成新值，发生了变化则不交换。</p>
+<p>处理器使用基于缓存加锁或者总线加锁的方式来实现多处理器之间的原子操作。首先处理器回自动保证基本的内存操作是原子性的。处理器保证从系统内存中读取或者写入一个字节是原子的，意思就是当一个处理器读取一个字节时，其他处理器不能访问这个字节的内存地址。</p>
+<ol>
+<li>使用总线锁保证原子性<br> 第一个机制是通过总线锁保证原子性。如果多个处理器同时对共享变量进行读写改操作，那么共享变量就会被多个处理器同时进行操作，这样读写改就不是原子操作。操作完成后共享变量就和期望值不一样。处理器使用总线锁来解决这个问题。所谓的总线锁就是使用处理器提供的一个LOCK#信号，当一个处理器在总线上输出此信号时，其他处理器的请求被阻塞住，那么该处理器可以独占共享内存。</li>
+<li>使用缓存锁来保证原子性<br> 第二个机制是通过缓存锁定来保证原子性。在同一时刻，我们只需要保证对某个内存地址的操作是原子性即可，但总线锁定把CPU和内存之间的通信锁住了；这使得锁定期间，其他处理器不能操作其他内存地址的数据，所以总线锁定的开销比较大。<br> 所谓的“缓存锁定”是指，内存区域如果被缓存在处理器的缓存行中，并且在LOCK操作期间被锁定，那么当它执行锁操作回写到内存时，处理器不在总线上声明LOCK#信号，而是修改内部的内存地址，并允许它的缓存一致性机制来保证操作的原子性，因为缓存一致性机制会阻止同时修改由两个以上处理器缓存的内存区域数据，当其他处理器回写已被锁定的缓存行的数据时，会使缓存行无效。</li>
+</ol>
+<p>有两种情况不会使用缓存锁定<br>    第一种：当操作的数据不能被缓存在处理器内部或操作的数据跨多个缓存行时，则处理器会调用总线锁定。<br>    第二种：有些处理器不支持缓存锁定。<br>    针对以上，Intel处理器提供了很多lock前缀指令来实现。</p>
 
       
     </div>
@@ -399,7 +420,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>Post link:</strong>
-    <a href="http://yoursite.com/blog/2019/06/27/new-day/" title="new day">http://yoursite.com/blog/2019/06/27/new-day/</a>
+    <a href="http://yoursite.com/blog/2019/09/27/JAVA锁原理基础/" title="JAVA锁原理基础">http://yoursite.com/blog/2019/09/27/JAVA锁原理基础/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice: </strong>
@@ -412,6 +433,16 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/JAVA/" rel="tag"># JAVA</a>
+          
+            <a href="/tags/并发编程/" rel="tag"># 并发编程</a>
+          
+            <a href="/tags/锁/" rel="tag"># 锁</a>
+          
+        </div>
+      
 
       
       
@@ -421,15 +452,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/blog/2019/09/04/剑指Offer一/" rel="next" title="剑指Offer一">
+                <i class="fa fa-chevron-left"></i> 剑指Offer一
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/blog/2019/08/10/2019-08-10Saturday/" rel="prev" title="2019-08-10Saturday">
-                2019-08-10Saturday <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -591,7 +622,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#感冒😷了"><span class="nav-number">1.</span> <span class="nav-text">感冒😷了</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#避免死锁的几个常用方法"><span class="nav-number">1.</span> <span class="nav-text">避免死锁的几个常用方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java并发机制的底层实现原理"><span class="nav-number">2.</span> <span class="nav-text">Java并发机制的底层实现原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#synchronized的实现原理与应用"><span class="nav-number">3.</span> <span class="nav-text">synchronized的实现原理与应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原子操作的实现原理"><span class="nav-number">4.</span> <span class="nav-text">原子操作的实现原理</span></a></li></ol></div>
             
 
           </div>
