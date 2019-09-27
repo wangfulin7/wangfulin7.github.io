@@ -1,0 +1,1339 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Coding,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Wangfulin7's Home" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="[toc]  32 最小的K个数–==常考==输入n个整数，找出其中最小的K个数。例如输入4,5,1,6,2,7,3,8这8个数字，则最小的4个数字是1,2,3,4,。 思路: 最小K个数,建立大顶堆.大顶堆原理       大顶堆原理：根结点（亦称为堆顶）的关键字是堆里所有结点关键字中最大者，称为大顶堆。大根堆要求根节点的关键字既大于或等于左子树的关键字值，又大于或等于右子树的关键字值。小顶堆">
+<meta name="keywords" content="Coding">
+<meta property="og:type" content="article">
+<meta property="og:title" content="剑指Offer二">
+<meta property="og:url" content="http://yoursite.com/blog/2019/09/27/剑指Offer二/index.html">
+<meta property="og:site_name" content="Wangfulin7&#39;s Home">
+<meta property="og:description" content="[toc]  32 最小的K个数–==常考==输入n个整数，找出其中最小的K个数。例如输入4,5,1,6,2,7,3,8这8个数字，则最小的4个数字是1,2,3,4,。 思路: 最小K个数,建立大顶堆.大顶堆原理       大顶堆原理：根结点（亦称为堆顶）的关键字是堆里所有结点关键字中最大者，称为大顶堆。大根堆要求根节点的关键字既大于或等于左子树的关键字值，又大于或等于右子树的关键字值。小顶堆">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-09-27T13:36:47.912Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="剑指Offer二">
+<meta name="twitter:description" content="[toc]  32 最小的K个数–==常考==输入n个整数，找出其中最小的K个数。例如输入4,5,1,6,2,7,3,8这8个数字，则最小的4个数字是1,2,3,4,。 思路: 最小K个数,建立大顶堆.大顶堆原理       大顶堆原理：根结点（亦称为堆顶）的关键字是堆里所有结点关键字中最大者，称为大顶堆。大根堆要求根节点的关键字既大于或等于左子树的关键字值，又大于或等于右子树的关键字值。小顶堆">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+<!-- 网页加载条 -->
+<script src="https://neveryu.github.io/js/src/pace.min.js"></script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/blog/2019/09/27/剑指Offer二/">
+
+
+
+
+
+  <title>剑指Offer二 | Wangfulin7's Home</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Wangfulin7's Home</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-首页">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-关于我">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于我
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-标签">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-分类">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-归档">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2019/09/27/剑指Offer二/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Wangfulin">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wangfulin7's Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">剑指Offer二</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-09-27T21:34:27+08:00">
+                2019-09-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/剑指Offer/" itemprop="url" rel="index">
+                    <span itemprop="name">剑指Offer</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  8.5k
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<p>[toc]</p>
+<hr>
+<h2 id="32-最小的K个数–-常考"><a href="#32-最小的K个数–-常考" class="headerlink" title="32 最小的K个数–==常考=="></a><a href="https://www.nowcoder.com/practice/6a296eb82cf844ca8539b57c23e6e9bf?tpId=13&tqId=11182&tPage=2&rp=2&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking" target="_blank" rel="noopener">32 最小的K个数–==常考==</a></h2><p>输入n个整数，找出其中最小的K个数。例如输入4,5,1,6,2,7,3,8这8个数字，则最小的4个数字是1,2,3,4,。</p>
+<p>思路: 最小K个数,建立大顶堆.<br>大顶堆原理<br>       大顶堆原理：根结点（亦称为堆顶）的关键字是堆里所有结点关键字中最大者，称为大顶堆。大根堆要求根节点的关键字既大于或等于左子树的关键字值，又大于或等于右子树的关键字值。<br>小顶堆原理<br>       小顶堆原理：根结点（亦称为堆顶）的关键字是堆里所有结点关键字中最小者，称为小顶堆。小根堆要求根节点的关键字既小于或等于左子树的关键字值，又小于或等于右子树的关键字值。<br>PriorityQueue默认的堆,是小顶堆.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">import java.util.ArrayList;</span><br><span class="line">import java.util.PriorityQueue;</span><br><span class="line">import java.util.Comparator;</span><br><span class="line">public class Solution &#123;</span><br><span class="line">    public ArrayList&lt;Integer&gt; GetLeastNumbers_Solution(int [] input, int k) &#123;</span><br><span class="line">        ArrayList&lt;Integer&gt; res = new ArrayList&lt;&gt;();</span><br><span class="line">        if (input.length &lt; k || k == 0) &#123;</span><br><span class="line">            return res;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        PriorityQueue&lt;Integer&gt; maxHeap = new PriorityQueue&lt;Integer&gt;(</span><br><span class="line">            k,new Comparator&lt;Integer&gt;()&#123;</span><br><span class="line">            @Override</span><br><span class="line">            public int compare(Integer o1, Integer o2)&#123;</span><br><span class="line">                return o2.compareTo(o1);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        for (int i=0; i &lt; input.length; i++) &#123;</span><br><span class="line">            if (maxHeap.size() != k) &#123;</span><br><span class="line">                maxHeap.offer(input[i]);</span><br><span class="line">            &#125; else if (maxHeap.peek() &gt; input[i]) &#123;</span><br><span class="line">                Integer temp = maxHeap.poll();</span><br><span class="line">                temp = null;</span><br><span class="line">                maxHeap.offer(input[i]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        for (Integer num : maxHeap) &#123;</span><br><span class="line">            res.add(num);</span><br><span class="line">        &#125;</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="33-连续子数组的最大和–-常考"><a href="#33-连续子数组的最大和–-常考" class="headerlink" title="33 连续子数组的最大和–==常考=="></a><a href="https://www.nowcoder.com/practice/459bd355da1549fa8a49e350bf3df484?tpId=13&tqId=11183&rp=2&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking" target="_blank" rel="noopener">33 连续子数组的最大和–==常考==</a></h2><p>HZ偶尔会拿些专业问题来忽悠那些非计算机专业的同学。今天测试组开完会后,他又发话了:在古老的一维模式识别中,常常需要计算连续子向量的最大和,当向量全为正数的时候,问题很好解决。但是,如果向量中包含负数,是否应该包含某个负数,并期望旁边的正数会弥补它呢？例如:{6,-3,-2,7,-15,1,2,2},连续子向量的最大和为8(从第0个开始,到第3个为止)。给一个数组，返回它的最大连续子序列的和，你会不会被他忽悠住？(子向量的长度至少是1)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">public class Solution &#123;</span><br><span class="line">    public int FindGreatestSumOfSubArray(int[] array) &#123;</span><br><span class="line">        if (array == null || array.length == 0) &#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line">        int curSum = 0;</span><br><span class="line">        int max = array[0];</span><br><span class="line">        for (int i = 0; i &lt; array.length; i++) &#123;</span><br><span class="line">            curSum += array[i];</span><br><span class="line">            if (curSum &gt; max) &#123;</span><br><span class="line">                max = curSum;</span><br><span class="line">            &#125; else if (curSum &lt; 0) &#123;</span><br><span class="line">                curSum = 0;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return max;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="34-整数中1出现的次数（从1到n整数中1出现的次数）"><a href="#34-整数中1出现的次数（从1到n整数中1出现的次数）" class="headerlink" title="34 整数中1出现的次数（从1到n整数中1出现的次数）"></a><a href="https://www.nowcoder.com/practice/bd7f978302044eee894445e244c7eee6?tpId=13&tqId=11184&rp=2&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking" target="_blank" rel="noopener">34 整数中1出现的次数（从1到n整数中1出现的次数）</a></h2><p>求出1<del>13的整数中1出现的次数,并算出100</del>1300的整数中1出现的次数？为此他特别数了一下1~13中包含1的数字有1、10、11、12、13因此共出现6次,但是对于后面问题他就没辙了。ACMer希望你们帮帮他,并把问题更加普遍化,可以很快的求出任意非负整数区间中1出现的次数（从1 到 n 中1出现的次数）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public class Solution &#123;</span><br><span class="line">    public int NumberOf1Between1AndN_Solution(int n) &#123;</span><br><span class="line">        int count = 0;</span><br><span class="line">        for(int i=1;i&lt;=n;i++)&#123;</span><br><span class="line">            String s = String.valueOf(i);</span><br><span class="line">            for(int j=0;j&lt;s.length();j++)&#123;</span><br><span class="line">                if(s.charAt(j) == &apos;1&apos;)&#123;</span><br><span class="line">                    count++;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return count;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="35-把数组排成最小的数"><a href="#35-把数组排成最小的数" class="headerlink" title="35 把数组排成最小的数"></a><a href="https://www.nowcoder.com/practice/8fecd3f8ba334add803bf2a06af1b993?tpId=13&tqId=11185&rp=2&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking" target="_blank" rel="noopener">35 把数组排成最小的数</a></h2><p>输入一个正整数数组，把数组里所有数字拼接起来排成一个数，打印能拼接出的所有数字中最小的一个。例如输入数组{3，32，321}，则打印出这三个数字能排成的最小数字为321323。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">import java.util.ArrayList;</span><br><span class="line">import java.util.*;</span><br><span class="line">public class Solution &#123;</span><br><span class="line">    public String PrintMinNumber(int [] numbers) &#123;</span><br><span class="line">        if (numbers == null || numbers.length == 0) &#123;</span><br><span class="line">            return &quot;&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">        String[] str = new String[numbers.length];</span><br><span class="line">        for (int i = 0; i &lt; numbers.length; i++) &#123;</span><br><span class="line">            str[i] = String.valueOf(numbers[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        Arrays.sort(str,new Comparator&lt;String&gt;()&#123;</span><br><span class="line">            @Override</span><br><span class="line">            public int compare(String o1, String o2) &#123;</span><br><span class="line">                String s1 = o1 + o2;</span><br><span class="line">                String s2 = o2 + o1;</span><br><span class="line">                return s1.compareTo(s2);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        String res = &quot;&quot;;</span><br><span class="line">        for (String s : str) &#123;</span><br><span class="line">            res += s;</span><br><span class="line">        &#125;</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="36-丑数"><a href="#36-丑数" class="headerlink" title="36 丑数"></a><a href="https://www.nowcoder.com/practice/6aa9e04fc3794f68acf8778237ba065b?tpId=13&tqId=11186&rp=2&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking" target="_blank" rel="noopener">36 丑数</a></h2><p>把只包含质因子2、3和5的数称作丑数（Ugly Number）。例如6、8都是丑数，但14不是，因为它包含质因子7。 习惯上我们把1当做是第一个丑数。求按从小到大的顺序的第N个丑数。<br>参考:<br><a href="https://www.nowcoder.com/profile/6495135/codeBookDetail?submissionId=20172459" target="_blank" rel="noopener">https://www.nowcoder.com/profile/6495135/codeBookDetail?submissionId=20172459</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">public class Solution &#123;</span><br><span class="line">    public int GetUglyNumber_Solution(int index) &#123;</span><br><span class="line">        if (index &lt; 7) &#123;</span><br><span class="line">            return index;</span><br><span class="line">        &#125;</span><br><span class="line">        int[] arr = new int[index];</span><br><span class="line">        arr[0] = 1;</span><br><span class="line">        int p2 = 0, p3 = 0, p5 = 0;</span><br><span class="line">        for (int i = 1; i &lt; index; i++) &#123;</span><br><span class="line">            arr[i] = min(arr[p2]*2,min(arr[p3]*3,arr[p5]*5));</span><br><span class="line">            if (arr[i] == arr[p2] * 2) p2++;</span><br><span class="line">            if (arr[i] == arr[p3] * 3) p3++;</span><br><span class="line">            if (arr[i] == arr[p5] * 5) p5++;</span><br><span class="line">        &#125;</span><br><span class="line">        return arr[index - 1];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    private int min(int a, int b) &#123;</span><br><span class="line">        if (a &gt; b) &#123;</span><br><span class="line">            return b;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            return a;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="37-第一个只出现一次的字符–-常考"><a href="#37-第一个只出现一次的字符–-常考" class="headerlink" title="37 第一个只出现一次的字符–==常考=="></a><a href="https://www.nowcoder.com/practice/1c82e8cf713b4bbeb2a5b31cf5b0417c?tpId=13&tqId=11187&rp=2&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking" target="_blank" rel="noopener">37 第一个只出现一次的字符–==常考==</a></h2><p>在一个字符串(0&lt;=字符串长度&lt;=10000，全部由字母组成)中找到第一个只出现一次的字符,并返回它的位置, 如果没有则返回 -1（需要区分大小写）.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">import java.util.HashMap;</span><br><span class="line">public class Solution &#123;</span><br><span class="line">    public int FirstNotRepeatingChar(String str) &#123;</span><br><span class="line">        if(str == null || str.length()==0)&#123;</span><br><span class="line">            return -1;</span><br><span class="line">        &#125;</span><br><span class="line">        HashMap&lt;Character,Integer&gt; map = new HashMap&lt;&gt;();</span><br><span class="line">        for(int i=0;i&lt;str.length();i++)&#123;</span><br><span class="line">            map.put(str.charAt(i),map.getOrDefault(str.charAt(i),0)+1);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        for(int index = 0;index&lt;str.length();index++)&#123;</span><br><span class="line">            if(map.get(str.charAt(index)) == 1)&#123;</span><br><span class="line">                return index;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="38-数组中的逆序对"><a href="#38-数组中的逆序对" class="headerlink" title="38 数组中的逆序对"></a><a href="https://www.nowcoder.com/practice/96bd6684e04a44eb80e6a68efc0ec6c5?tpId=13&tqId=11188&rp=2&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking" target="_blank" rel="noopener">38 数组中的逆序对</a></h2><p>在数组中的两个数字，如果前面一个数字大于后面的数字，则这两个数字组成一个逆序对。输入一个数组,求出这个数组中的逆序对的总数P。并将P对1000000007取模的结果输出。 即输出P%1000000007<br>(略,以后补)</p>
+<h2 id="39-两个链表的第一个公共结点"><a href="#39-两个链表的第一个公共结点" class="headerlink" title="39 两个链表的第一个公共结点"></a><a href="https://www.nowcoder.com/practice/6ab1d9a29e88450685099d45c9e31e46?tpId=13&tqId=11189&rp=2&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking" target="_blank" rel="noopener">39 两个链表的第一个公共结点</a></h2><p>求出两个链表的长度，之后求差值，长的先走gap步</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">public class ListNode &#123;</span><br><span class="line">    int val;</span><br><span class="line">    ListNode next = null;</span><br><span class="line"></span><br><span class="line">    ListNode(int val) &#123;</span><br><span class="line">        this.val = val;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;*/</span><br><span class="line">public class Solution &#123;</span><br><span class="line">    public ListNode FindFirstCommonNode(ListNode pHead1, ListNode pHead2) &#123;</span><br><span class="line">         if(pHead1 == null || pHead2 == null)&#123;</span><br><span class="line">             return null;</span><br><span class="line">         &#125;</span><br><span class="line">        ListNode p1 = pHead1;</span><br><span class="line">        ListNode p2 = pHead2;</span><br><span class="line">        int len1 = 0;</span><br><span class="line">        int len2 = 0;</span><br><span class="line">        while(p1!=null)&#123;</span><br><span class="line">            p1 = p1.next;</span><br><span class="line">            len1++;</span><br><span class="line">        &#125;</span><br><span class="line">        while(p2!=null)&#123;</span><br><span class="line">            p2 = p2.next;</span><br><span class="line">            len2++;</span><br><span class="line">        &#125;</span><br><span class="line">        int dis = 0;</span><br><span class="line">        p1 = pHead1;</span><br><span class="line">        p2 = pHead2;</span><br><span class="line">        if(len1&gt;len2)&#123;</span><br><span class="line">            dis = len1-len2;</span><br><span class="line">            for(int i=0;i&lt;dis;i++)&#123;</span><br><span class="line">                p1 = p1.next;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            dis = len2-len1;</span><br><span class="line">            for(int i=0;i&lt;dis;i++)&#123;</span><br><span class="line">                p2 = p2.next;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        while(p1!=p2)&#123;</span><br><span class="line">            p1 = p1.next;</span><br><span class="line">            p2 = p2.next;</span><br><span class="line">            if(p1 == p2)&#123;</span><br><span class="line">                break;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return p1!=null? p1 : null;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="40-数字在排序数组中出现的次数"><a href="#40-数字在排序数组中出现的次数" class="headerlink" title="40 数字在排序数组中出现的次数"></a><a href="https://www.nowcoder.com/practice/70610bf967994b22bb1c26f9ae901fa2?tpId=13&tqId=11190&rp=2&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking" target="_blank" rel="noopener">40 数字在排序数组中出现的次数</a></h2><p>统计一个数字在排序数组中出现的次数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public class Solution &#123;</span><br><span class="line">    public int GetNumberOfK(int [] array , int k) &#123;</span><br><span class="line">       if(array == null || array.length == 0)&#123;</span><br><span class="line">           return 0;</span><br><span class="line">       &#125;</span><br><span class="line">        int count = 0;</span><br><span class="line">        for(int i=0;i&lt;array.length;i++)&#123;</span><br><span class="line">            if(array[i] == k)&#123;</span><br><span class="line">                count ++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return count;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>方法二：<br>有序，则第一思考二分查找，因为k为整形，因此上下减去0.5，所以在二分查找的时候，必定不存在等于的情况。所以能够很快返回最后查找范围的左边界。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">public class Solution &#123;</span><br><span class="line">    public int GetNumberOfK(int [] array , int k) &#123;</span><br><span class="line">       return GetNumberOfKHelper(array,k+0.5) - GetNumberOfKHelper(array,k-0.5);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public int GetNumberOfKHelper(int[] arr, double k) &#123;</span><br><span class="line">        int st = 0;</span><br><span class="line">        int end = arr.length - 1;</span><br><span class="line">        </span><br><span class="line">        while (st &lt;= end) &#123;</span><br><span class="line">            int mid = st + (end - st) / 2;</span><br><span class="line">            int value = arr[mid];</span><br><span class="line">            </span><br><span class="line">            if (value &gt; k) &#123;</span><br><span class="line">                end = mid - 1;</span><br><span class="line">            &#125; else if (value &lt; k) &#123;</span><br><span class="line">                st = mid + 1;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return st;</span><br><span class="line">    &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="41-1-二叉树的深度–-常考"><a href="#41-1-二叉树的深度–-常考" class="headerlink" title="41-1 二叉树的深度–==常考=="></a><a href="https://www.nowcoder.com/practice/435fb86331474282a3499955f0a41e8b?tpId=13&tqId=11191&rp=2&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking" target="_blank" rel="noopener">41-1 二叉树的深度–==常考==</a></h2><p>输入一棵二叉树，求该树的深度。从根结点到叶结点依次经过的结点（含根、叶结点）形成树的一条路径，最长路径的长度为树的深度。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public class Solution &#123;</span><br><span class="line">    public int TreeDepth(TreeNode root) &#123;</span><br><span class="line">        if(root == null)&#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line">        int i = TreeDepth(root.left);</span><br><span class="line">        int j = TreeDepth(root.right);</span><br><span class="line">        </span><br><span class="line">        return i&gt;j? i+1:j+1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="41-2-二叉树的宽度–-常考"><a href="#41-2-二叉树的宽度–-常考" class="headerlink" title="41-2 二叉树的宽度–==常考=="></a>41-2 二叉树的宽度–==常考==</h2><p>采用队列去做</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">public int getWidthOfBinaryTree(TreeNode node) &#123;</span><br><span class="line">	if (node == null) &#123;</span><br><span class="line">		return 0;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	Queue&lt;TreeNode&gt; queue = new LinkedList&lt;&gt;();</span><br><span class="line">	queue.push(node);</span><br><span class="line"></span><br><span class="line">	int maxWidth = 1;</span><br><span class="line">	while (!queue.isEmpty()) &#123;</span><br><span class="line">		int size = queue.size();</span><br><span class="line"></span><br><span class="line">		while (size-- &gt; 0) &#123;</span><br><span class="line">			TreeNode pop = queue.poll();</span><br><span class="line">			if (pop.left != null) &#123;</span><br><span class="line">				queue.offer(pop.left);</span><br><span class="line">			&#125;</span><br><span class="line">			if (pop.right != null) &#123;</span><br><span class="line">				queue.offer(pop.right);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		maxWidth = Math.max(maxWidth,queue.size());</span><br><span class="line">	&#125;</span><br><span class="line">	return maxWidth;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="42-平衡二叉树"><a href="#42-平衡二叉树" class="headerlink" title="42 平衡二叉树"></a><a href="https://www.nowcoder.com/practice/8b3b95850edb4115918ecebdf1b4d222?tpId=13&tqId=11192&rp=2&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking" target="_blank" rel="noopener">42 平衡二叉树</a></h2><p>输入一棵二叉树，判断该二叉树是否是平衡二叉树。<br>递归求当前结点出发的树的高度，差值不大于1</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">public class Solution &#123;</span><br><span class="line">    public boolean IsBalanced_Solution(TreeNode root) &#123;</span><br><span class="line">        if(root == null )&#123;</span><br><span class="line">            return true;</span><br><span class="line">        &#125;</span><br><span class="line">        if(Math.abs(depth(root.left)-depth(root.right))&gt;1)&#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            return IsBalanced_Solution(root.left)&amp;&amp;IsBalanced_Solution(root.right);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    private int depth(TreeNode root)&#123;</span><br><span class="line">        if(root == null)&#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line">        int i = depth(root.left);</span><br><span class="line">        int j = depth(root.right);</span><br><span class="line">        return i&gt;j? i+1:j+1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="43-数组中只出现一次的数字–-常考"><a href="#43-数组中只出现一次的数字–-常考" class="headerlink" title="43 数组中只出现一次的数字–==常考=="></a><a href="https://www.nowcoder.com/practice/e02fdb54d7524710a7d664d082bb7811?tpId=13&tqId=11193&rp=2&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking" target="_blank" rel="noopener">43 数组中只出现一次的数字–==常考==</a></h2><p>*
+一个整型数组里除了两个数字之外，其他的数字都出现了两次。请写程序找出这两个只出现一次的数字。<br>参考:<a href="https://www.nowcoder.com/profile/3355555/codeBookDetail?submissionId=20148608" target="_blank" rel="noopener">https://www.nowcoder.com/profile/3355555/codeBookDetail?submissionId=20148608</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">public class Solution &#123;</span><br><span class="line">    public void FindNumsAppearOnce(int [] array,int num1[] , int num2[]) &#123;</span><br><span class="line">        int index = 0;</span><br><span class="line">        int result = 0;</span><br><span class="line">        for(int num:array)&#123;</span><br><span class="line">            result ^= num;</span><br><span class="line">        &#125;</span><br><span class="line">        // 分组</span><br><span class="line">        for(int i=0;i&lt;32;i++)&#123;</span><br><span class="line">            if(((result&gt;&gt;i)&amp;1) == 1)&#123;</span><br><span class="line">                index = i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        for(int i=0;i&lt;array.length;i++)&#123;</span><br><span class="line">            if(((array[i]&gt;&gt;index)&amp;1) == 1)&#123;</span><br><span class="line">                num1[0] ^= array[i];</span><br><span class="line">            &#125;else&#123;</span><br><span class="line">                num2[0] ^= array[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="44-和为S的连续正数序列"><a href="#44-和为S的连续正数序列" class="headerlink" title="44 和为S的连续正数序列"></a><a href="https://www.nowcoder.com/practice/c451a3fd84b64cb19485dad758a55ebe?tpId=13&tqId=11194&rp=2&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking" target="_blank" rel="noopener">44 和为S的连续正数序列</a></h2><p>小明很喜欢数学,有一天他在做数学作业时,要求计算出9~16的和,他马上就写出了正确答案是100。但是他并不满足于此,他在想究竟有多少种连续的正数序列的和为100(至少包括两个数)。没多久,他就得到另一组连续正数和为100的序列:18,19,20,21,22。现在把问题交给你,你能不能也很快的找出所有和为S的连续正数序列? Good Luck!</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">import java.util.ArrayList;</span><br><span class="line">public class Solution &#123;</span><br><span class="line">    public ArrayList&lt;ArrayList&lt;Integer&gt; &gt; FindContinuousSequence(int sum) &#123;</span><br><span class="line">       ArrayList&lt;ArrayList&lt;Integer&gt; &gt; res = new ArrayList&lt;&gt;();</span><br><span class="line">        int l = 1;</span><br><span class="line">        int r = 2;</span><br><span class="line">        </span><br><span class="line">        while(l&lt;(sum+1)/2)&#123;</span><br><span class="line">            int curSum = listSum(l,r);</span><br><span class="line">            if(curSum == sum)&#123;</span><br><span class="line">                ArrayList&lt;Integer&gt; list = new ArrayList&lt;&gt;();</span><br><span class="line">                for(int i=l;i&lt;=r;i++)&#123;</span><br><span class="line">                    list.add(i);</span><br><span class="line">                &#125;</span><br><span class="line">                res.add(list);</span><br><span class="line">                l++;</span><br><span class="line">            &#125;</span><br><span class="line">            if(curSum &lt; sum)&#123;</span><br><span class="line">                r++;</span><br><span class="line">            &#125;else&#123;</span><br><span class="line">                l++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    private int listSum(int l,int r)&#123;</span><br><span class="line">        int sum = 0;</span><br><span class="line">        for(int i=l;i&lt;=r;i++)&#123;</span><br><span class="line">            sum +=i;</span><br><span class="line">        &#125;</span><br><span class="line">        return sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="45-和为S的两个数字"><a href="#45-和为S的两个数字" class="headerlink" title="45 和为S的两个数字"></a><a href="https://www.nowcoder.com/practice/390da4f7a00f44bea7c2f3d19491311b?tpId=13&tqId=11195&rp=2&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking" target="_blank" rel="noopener">45 和为S的两个数字</a></h2><p>输入一个递增排序的数组和一个数字S，在数组中查找两个数，使得他们的和正好是S，如果有多对数字的和等于S，输出两个数的乘积最小的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">import java.util.ArrayList;</span><br><span class="line">public class Solution &#123;</span><br><span class="line">    public ArrayList&lt;Integer&gt; FindNumbersWithSum(int [] array,int sum) &#123;</span><br><span class="line">        ArrayList&lt;Integer&gt; res = new ArrayList&lt;&gt;();</span><br><span class="line">        int left = 0;</span><br><span class="line">        int right = array.length-1;</span><br><span class="line">        int len = array.length;</span><br><span class="line">        while(left &lt; (len+1)/2)&#123;</span><br><span class="line">            int curSum = array[left] + array[right];</span><br><span class="line">            if(curSum == sum)&#123;</span><br><span class="line">                res.add(array[left]);</span><br><span class="line">                res.add(array[right]);</span><br><span class="line">                break;</span><br><span class="line">            &#125;else if(curSum &lt; sum)&#123;</span><br><span class="line">                left ++;</span><br><span class="line">            &#125;else&#123;</span><br><span class="line">                right --;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="46-左旋转字符串"><a href="#46-左旋转字符串" class="headerlink" title="46 左旋转字符串"></a><a href="https://www.nowcoder.com/practice/12d959b108cb42b1ab72cef4d36af5ec?tpId=13&tqId=11196&rp=2&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking" target="_blank" rel="noopener">46 左旋转字符串</a></h2><p>汇编语言中有一种移位指令叫做循环左移（ROL），现在有个简单的任务，就是用字符串模拟这个指令的运算结果。对于一个给定的字符序列S，请你把其循环左移K位后的序列输出。例如，字符序列S=”abcXYZdef”,要求输出循环左移3位后的结果，即“XYZdefabc”。是不是很简单？OK，搞定它！</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public class Solution &#123;</span><br><span class="line">    public String LeftRotateString(String str,int n) &#123;</span><br><span class="line">        if(str.length() == 0)&#123;</span><br><span class="line">            return &quot;&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">        int len = str.length();</span><br><span class="line">        int k = n%len;</span><br><span class="line">        String str1 = str.substring(0,k);</span><br><span class="line">        String str2 = str.substring(k,len);</span><br><span class="line">        </span><br><span class="line">        return str2+str1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="47-翻转单词顺序列"><a href="#47-翻转单词顺序列" class="headerlink" title="47 翻转单词顺序列"></a><a href="https://www.nowcoder.com/practice/3194a4f4cf814f63919d0790578d51f3?tpId=13&tqId=11197&rp=2&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking" target="_blank" rel="noopener">47 翻转单词顺序列</a></h2><p>牛客最近来了一个新员工Fish，每天早晨总是会拿着一本英文杂志，写些句子在本子上。同事Cat对Fish写的内容颇感兴趣，有一天他向Fish借来翻看，但却读不懂它的意思。例如，“student. a am I”。后来才意识到，这家伙原来把句子单词的顺序翻转了，正确的句子应该是“I am a student.”。Cat对一一的翻转这些单词顺序可不在行，你能帮助他么？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public class Solution &#123;</span><br><span class="line">    public String ReverseSentence(String str) &#123;</span><br><span class="line">        if(str == &quot;&quot; || str.length() == 1 || str == null||str.length() == 0)&#123;</span><br><span class="line">            return str;</span><br><span class="line">        &#125;</span><br><span class="line">        if(str.trim().equals(&quot;&quot;))&#123;</span><br><span class="line">            return str;</span><br><span class="line">        &#125;</span><br><span class="line">        String[] strs = str.split(&quot; &quot;);</span><br><span class="line">        String s = &quot;&quot;;</span><br><span class="line">        for(int i=strs.length-1;i&gt;=0;i--)&#123;</span><br><span class="line">            if(i == strs.length-1)</span><br><span class="line">                s = s+strs[i];</span><br><span class="line">            else</span><br><span class="line">                s = s+&quot; &quot;+strs[i];</span><br><span class="line">        &#125;</span><br><span class="line">        return s;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="48-扑克牌顺子"><a href="#48-扑克牌顺子" class="headerlink" title="48 扑克牌顺子"></a><a href="https://www.nowcoder.com/practice/762836f4d43d43ca9deb273b3de8e1f4?tpId=13&tqId=11198&rp=2&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking" target="_blank" rel="noopener">48 扑克牌顺子</a></h2><p>LL今天心情特别好,因为他去买了一副扑克牌,发现里面居然有2个大王,2个小王(一副牌原本是54张^_^)…他随机从中抽出了5张牌,想测测自己的手气,看看能不能抽到顺子,如果抽到的话,他决定去买体育彩票,嘿嘿！！“红心A,黑桃3,小王,大王,方片5”,“Oh My God!”不是顺子…..LL不高兴了,他想了想,决定大\小 王可以看成任何数字,并且A看作1,J为11,Q为12,K为13。上面的5张牌就可以变成“1,2,3,4,5”(大小王分别看作2和4),“So Lucky!”。LL决定去买体育彩票啦。 现在,要求你使用这幅牌模拟上面的过程,然后告诉我们LL的运气如何， 如果牌能组成顺子就输出true，否则就输出false。为了方便起见,你可以认为大小王是0。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">import java.util.Arrays;</span><br><span class="line">public class Solution &#123;</span><br><span class="line">    public boolean isContinuous(int [] numbers) &#123;</span><br><span class="line">        if(numbers == null || numbers.length == 0)&#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">        Arrays.sort(numbers);</span><br><span class="line">        int zeroNum = 0;</span><br><span class="line">        int gapSize = 0;</span><br><span class="line">        int len = numbers.length;</span><br><span class="line">        for(int i=0;i&lt;len;i++)&#123;</span><br><span class="line">            if(numbers[i] == 0)&#123;</span><br><span class="line">                zeroNum ++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        int small = zeroNum;</span><br><span class="line">        int big = small+1;</span><br><span class="line">        while(big&lt;len)&#123;</span><br><span class="line">            if(numbers[small] == numbers[big])&#123;</span><br><span class="line">                return false;</span><br><span class="line">            &#125;</span><br><span class="line">            gapSize += numbers[big] - numbers[small] -1;</span><br><span class="line">            small = big;</span><br><span class="line">            big++;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        return gapSize&gt;zeroNum? false:true;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="49-孩子们的游戏-圆圈中最后剩下的数"><a href="#49-孩子们的游戏-圆圈中最后剩下的数" class="headerlink" title="49 孩子们的游戏(圆圈中最后剩下的数)"></a><a href="https://www.nowcoder.com/practice/f78a359491e64a50bce2d89cff857eb6?tpId=13&tqId=11199&rp=2&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking" target="_blank" rel="noopener">49 孩子们的游戏(圆圈中最后剩下的数)</a></h2><p>每年六一儿童节,牛客都会准备一些小礼物去看望孤儿院的小朋友,今年亦是如此。HF作为牛客的资深元老,自然也准备了一些小游戏。其中,有个游戏是这样的:首先,让小朋友们围成一个大圈。然后,他随机指定一个数m,让编号为0的小朋友开始报数。每次喊到m-1的那个小朋友要出列唱首歌,然后可以在礼品箱中任意的挑选礼物,并且不再回到圈中,从他的下一个小朋友开始,继续0…m-1报数….这样下去….直到剩下最后一个小朋友,可以不用表演,并且拿到牛客名贵的“名侦探柯南”典藏版(名额有限哦!!^_^)。请你试着想下,哪个小朋友会得到这份礼品呢？(注：小朋友的编号是从0到n-1)</p>
+<p>如果没有小朋友，请返回-1</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">public class Solution &#123;</span><br><span class="line">    public int LastRemaining_Solution(int n, int m) &#123;</span><br><span class="line">        if(n==0 || m&lt;0)&#123;</span><br><span class="line">            return -1;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode root = new ListNode(0);</span><br><span class="line">        ListNode head = root;</span><br><span class="line">        for(int i=1;i&lt;n;i++)&#123;</span><br><span class="line">            root.next = new ListNode(i);</span><br><span class="line">            root = root.next;</span><br><span class="line">        &#125;</span><br><span class="line">        root.next = head;</span><br><span class="line">        while(root != root.next)&#123;</span><br><span class="line">            for(int i=0;i&lt;m-1;i++)&#123;</span><br><span class="line">                root = root.next;</span><br><span class="line">            &#125;</span><br><span class="line">            root.next = root.next.next;</span><br><span class="line">        &#125;</span><br><span class="line">        return root.val;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    class ListNode&#123;</span><br><span class="line">        private ListNode next;</span><br><span class="line">        private int val;</span><br><span class="line">        ListNode(int val)&#123;</span><br><span class="line">            this.val = val;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>参考: 经典解法<br><a href="https://www.nowcoder.com/practice/f78a359491e64a50bce2d89cff857eb6?tpId=13&amp;tqId=11199&amp;rp=2&amp;ru=/ta/coding-interviews&amp;qru=/ta/coding-interviews/question-ranking" target="_blank" rel="noopener">https://www.nowcoder.com/practice/f78a359491e64a50bce2d89cff857eb6?tpId=13&amp;tqId=11199&amp;rp=2&amp;ru=/ta/coding-interviews&amp;qru=/ta/coding-interviews/question-ranking</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public class Solution &#123;</span><br><span class="line">    public int LastRemaining_Solution(int n, int m) &#123;</span><br><span class="line">        if(m == 0|| n == 0)&#123;</span><br><span class="line">            return -1;</span><br><span class="line">        &#125;</span><br><span class="line">        int p=0;</span><br><span class="line">        for(int i=2;i&lt;=n;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            p=(p+m)%i;</span><br><span class="line">        &#125;</span><br><span class="line">        return p;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="50-求1-2-3-…-n–-常考"><a href="#50-求1-2-3-…-n–-常考" class="headerlink" title="50 求1+2+3+…+n–==常考=="></a><a href="https://www.nowcoder.com/practice/7a0da8fc483247ff8800059e12d7caf1?tpId=13&tqId=11200&rp=2&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking" target="_blank" rel="noopener">50 求1+2+3+…+n–==常考==</a></h2><p>求1+2+3+…+n，要求不能使用乘除法、for、while、if、else、switch、case等关键字及条件判断语句（A?B:C）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class Solution &#123;</span><br><span class="line">    public int Sum_Solution(int n) &#123;</span><br><span class="line">        int sum = n;</span><br><span class="line">        boolean ans = (n&gt;0) &amp;&amp; (sum +=Sum_Solution(n-1))&gt;0;</span><br><span class="line">        return sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="51-1-不用加减乘除做加法–-常考"><a href="#51-1-不用加减乘除做加法–-常考" class="headerlink" title="51-1 不用加减乘除做加法–==常考=="></a><a href="nowcoder.com/practice/59ac416b4b944300b617d4f7f111b215?tpId=13&tqId=11201&rp=2&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking">51-1 不用加减乘除做加法–==常考==</a></h2><p>写一个函数，求两个整数之和，要求在函数体内不得使用+、-、*、/四则运算符号。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public class Solution &#123;</span><br><span class="line">    public int Add(int num1,int num2) &#123;</span><br><span class="line">        int sum;</span><br><span class="line">        int carry;</span><br><span class="line">        sum = num1 ^ num2;</span><br><span class="line">        carry = (num1&amp;num2) &lt;&lt; 1;</span><br><span class="line">        if(carry != 0)&#123;</span><br><span class="line">           return Add(sum,carry);</span><br><span class="line">        &#125;</span><br><span class="line">        return sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="51-2-不用运算符号交换两个数"><a href="#51-2-不用运算符号交换两个数" class="headerlink" title="51-2 不用运算符号交换两个数"></a>51-2 不用运算符号交换两个数</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">a = a ^ b;</span><br><span class="line">b = a ^ b;</span><br><span class="line">b = a ^ b;</span><br><span class="line"></span><br><span class="line">举例：a = 3 , b = 2</span><br><span class="line">a --&gt;  0011</span><br><span class="line">b --&gt;  0010</span><br><span class="line">a = a ^ b; 0011 ^ 0010 =  0001;   1</span><br><span class="line">b = a ^ b;  0001 ^ 0010 = 0011;   3</span><br><span class="line">a = a ^ b;  0001 ^ 0011 = 0010;   2</span><br></pre></td></tr></table></figure>
+
+<h2 id="52-把字符串转换成整数"><a href="#52-把字符串转换成整数" class="headerlink" title="52 把字符串转换成整数"></a><a href="https://www.nowcoder.com/practice/1277c681251b4372bdef344468e4f26e?tpId=13&tqId=11202&rp=2&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking" target="_blank" rel="noopener">52 把字符串转换成整数</a></h2><p>将一个字符串转换成一个整数(实现Integer.valueOf(string)的功能，但是string不符合数字要求时返回0)，要求不能使用字符串转换整数的库函数。 数值为0或者字符串不是一个合法的数值则返回0。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">public class Solution &#123;</span><br><span class="line">    public int StrToInt(String str) &#123;</span><br><span class="line">        if(str == null ||str.length()==0)&#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line">        int num = 0;</span><br><span class="line">        boolean flag = false;</span><br><span class="line">        try&#123;</span><br><span class="line">            int index = 0;</span><br><span class="line">            if(str.charAt(0)==&apos;+&apos;)&#123;</span><br><span class="line">                index ++;</span><br><span class="line">            &#125;</span><br><span class="line">            if(str.charAt(0)==&apos;-&apos;)&#123;</span><br><span class="line">                index++;</span><br><span class="line">                flag = true;</span><br><span class="line">            &#125;</span><br><span class="line">            for(int i=index;i&lt;str.length();i++)&#123;</span><br><span class="line">                if(str.charAt(i)&gt;=&apos;0&apos;&amp;&amp;str.charAt(i)&lt;=&apos;9&apos;)&#123;</span><br><span class="line">                    num = num*10 + (str.charAt(i)-&apos;0&apos;);</span><br><span class="line">                &#125;else&#123;</span><br><span class="line">                    return 0;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;catch(Exception e)&#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line">        return flag == false? num : -1*num;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="53-数组中重复的数字"><a href="#53-数组中重复的数字" class="headerlink" title="53 数组中重复的数字"></a><a href="https://www.nowcoder.com/practice/623a5ac0ea5b4e5f95552655361ae0a8?tpId=13&tqId=11203&rp=2&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking" target="_blank" rel="noopener">53 数组中重复的数字</a></h2><p>在一个长度为n的数组里的所有数字都在0到n-1的范围内。 数组中某些数字是重复的，但不知道有几个数字是重复的。也不知道每个数字重复几次。请找出数组中任意一个重复的数字。 例如，如果输入长度为7的数组{2,3,1,0,2,5,3}，那么对应的输出是第一个重复的数字2。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">import java.util.HashSet;</span><br><span class="line">public class Solution &#123;</span><br><span class="line">    // Parameters:</span><br><span class="line">    //    numbers:     an array of integers</span><br><span class="line">    //    length:      the length of array numbers</span><br><span class="line">    //    duplication: (Output) the duplicated number in the array number,length of duplication array is 1,so using duplication[0] = ? in implementation;</span><br><span class="line">    //                  Here duplication like pointor in C/C++, duplication[0] equal *duplication in C/C++</span><br><span class="line">    //    这里要特别注意~返回任意重复的一个，赋值duplication[0]</span><br><span class="line">    // Return value:       true if the input is valid, and there are some duplications in the array number</span><br><span class="line">    //                     otherwise false</span><br><span class="line">    public boolean duplicate(int numbers[],int length,int [] duplication) &#123;</span><br><span class="line">        HashSet&lt;Integer&gt; set = new HashSet&lt;&gt;();</span><br><span class="line">        for(int i=0;i&lt;length;i++)&#123;</span><br><span class="line">            if(!set.add(numbers[i]))&#123;</span><br><span class="line">                duplication[0] = numbers[i];</span><br><span class="line">                return true;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="54-构建乘积数组"><a href="#54-构建乘积数组" class="headerlink" title="54 构建乘积数组"></a><a href="https://www.nowcoder.com/practice/94a4d381a68b47b7a8bed86f2975db46?tpId=13&tqId=11204&tPage=3&rp=3&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking" target="_blank" rel="noopener">54 构建乘积数组</a></h2><p>给定一个数组A[0,1,…,n-1],请构建一个数组B[0,1,…,n-1],其中B中的元素B[i]=A[0]<em>A[1]</em>…<em>A[i-1]</em>A[i+1]<em>…</em>A[n-1]。不能使用除法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">import java.util.ArrayList;</span><br><span class="line">public class Solution &#123;</span><br><span class="line">    public int[] multiply(int[] A) &#123;</span><br><span class="line">        if(A==null || A.length == 0)&#123;</span><br><span class="line">            return A;</span><br><span class="line">        &#125;</span><br><span class="line">        int len = A.length;</span><br><span class="line">        int[] B = new int[A.length];</span><br><span class="line">        B[0] = 1;</span><br><span class="line">        for(int i=1;i&lt;len;i++)&#123;</span><br><span class="line">            B[i] = B[i-1]*A[i-1];</span><br><span class="line">        &#125;</span><br><span class="line">        int temp = 1;</span><br><span class="line">        for(int i=len-2;i&gt;=0;i--)&#123;</span><br><span class="line">            temp *= A[i+1];</span><br><span class="line">            B[i] *=temp;</span><br><span class="line">        &#125;</span><br><span class="line">        return B;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="55-正则表达式匹配"><a href="#55-正则表达式匹配" class="headerlink" title="55 正则表达式匹配"></a><a href="https://www.nowcoder.com/practice/45327ae22b7b413ea21df13ee7d6429c?tpId=13&tqId=11205&tPage=3&rp=3&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking" target="_blank" rel="noopener">55 正则表达式匹配</a></h2><p>请实现一个函数用来匹配包括’.’和’<em>‘的正则表达式。模式中的字符’.’表示任意一个字符，而’</em>‘表示它前面的字符可以出现任意次（包含0次）。 在本题中，匹配是指字符串的所有字符匹配整个模式。例如，字符串”aaa”与模式”a.a”和”ab<em>ac</em>a”匹配，但是与”aa.a”和”ab*a”均不匹配</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">public class Solution &#123;</span><br><span class="line">    public boolean match(char[] str, char[] pattern)</span><br><span class="line">    &#123;</span><br><span class="line">        if(str == null || pattern == null)&#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">        int strIndex = 0;</span><br><span class="line">        int patternIndex = 0;</span><br><span class="line">        return matchChar(str,strIndex,pattern,patternIndex);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public boolean matchChar(char[] str,int strIndex, char[] pattern,int patternIndex)&#123;</span><br><span class="line">        //如果都匹配完</span><br><span class="line">        if(str.length == strIndex &amp;&amp; pattern.length == patternIndex)&#123;</span><br><span class="line">            return true;</span><br><span class="line">        &#125;</span><br><span class="line">        //如果str没有匹配完 pattern 已经结束 </span><br><span class="line">        if(str.length != strIndex &amp;&amp; pattern.length == patternIndex)&#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">        //patternIndex的下一个字符是&apos;*&apos;</span><br><span class="line">        if(patternIndex+1&lt;pattern.length &amp;&amp; pattern[patternIndex+1]==&apos;*&apos;)&#123;</span><br><span class="line">            if((strIndex!=str.length &amp;&amp; str[strIndex]==pattern[patternIndex])||(strIndex!=str.length &amp;&amp; &apos;.&apos;==pattern[patternIndex]))&#123;</span><br><span class="line">                return matchChar(str,strIndex,pattern,patternIndex+2)||//匹配0个字符</span><br><span class="line">                    matchChar(str,strIndex+1,pattern,patternIndex+2)||//匹配到1个字符</span><br><span class="line">                    matchChar(str,strIndex+1,pattern,patternIndex);//匹配多个字符</span><br><span class="line">            &#125;else&#123;</span><br><span class="line">                return matchChar(str,strIndex,pattern,patternIndex+2);//模式后移两位 意为着 *前面的字符被忽略</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        if((strIndex!=str.length &amp;&amp; str[strIndex]==pattern[patternIndex])||(strIndex!=str.length &amp;&amp; &apos;.&apos;==pattern[patternIndex]))&#123;</span><br><span class="line">            return matchChar(str,strIndex+1,pattern,patternIndex+1);</span><br><span class="line">        &#125;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="56-表示数值的字符串"><a href="#56-表示数值的字符串" class="headerlink" title="56 表示数值的字符串"></a><a href="https://www.nowcoder.com/practice/6f8c901d091949a5837e24bb82a731f2?tpId=13&tqId=11206&rp=3&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking" target="_blank" rel="noopener">56 表示数值的字符串</a></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">public class Solution &#123;</span><br><span class="line">    public boolean isNumeric(char[] str) &#123;</span><br><span class="line">        if(str==null)&#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">        boolean hasE = false;</span><br><span class="line">        boolean sign = false;</span><br><span class="line">        boolean decimal = false;</span><br><span class="line">        int i = 0;</span><br><span class="line">        for(;i&lt;str.length;i++)&#123;</span><br><span class="line">            if((str[0]==&apos;+&apos; || str[0] == &apos;-&apos;)&amp;&amp;!sign)&#123;</span><br><span class="line">                sign = true;</span><br><span class="line">            &#125;else if(str[i]&gt;=&apos;0&apos; &amp;&amp; str[i] &lt;= &apos;9&apos;)&#123;</span><br><span class="line">                continue;</span><br><span class="line">            &#125;else if(str[i] == &apos;.&apos;&amp;&amp; !decimal)&#123;</span><br><span class="line">                decimal = true;</span><br><span class="line">                if(hasE == true)&#123;</span><br><span class="line">                    return false;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;else if((str[i]==&apos;e&apos;||str[i]==&apos;E&apos;)&amp;&amp; !hasE)&#123;</span><br><span class="line">                hasE = true;</span><br><span class="line">            &#125;else if((str[i-1] == &apos;e&apos;||str[i-1] == &apos;E&apos;)&amp;&amp;((str[i] &gt;= &apos;0&apos; &amp;&amp; str[i] &lt;= &apos;9&apos;)||(str[i] == &apos;+&apos;||str[i] == &apos;-&apos;)))&#123;</span><br><span class="line">                continue;</span><br><span class="line">            &#125;else&#123;</span><br><span class="line">                return false;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        if((str[str.length-1]==&apos;E&apos; || str[str.length-1]==&apos;e&apos;))&#123;</span><br><span class="line">        return false;</span><br><span class="line">        &#125;</span><br><span class="line">        if(i==str.length)&#123;</span><br><span class="line">            return true;</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="57-字符流中第一个不重复的字符–-常考"><a href="#57-字符流中第一个不重复的字符–-常考" class="headerlink" title="57 字符流中第一个不重复的字符–==常考=="></a><a href="https://www.nowcoder.com/practice/00de97733b8e4f97a3fb5c680ee10720?tpId=13&tqId=11207&rp=3&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking&tPage=3" target="_blank" rel="noopener">57 字符流中第一个不重复的字符–==常考==</a></h2><p>请实现一个函数用来找出字符流中第一个只出现一次的字符。例如，当从字符流中只读出前两个字符”go”时，第一个只出现一次的字符是”g”。当从该字符流中读出前六个字符“google”时，第一个只出现一次的字符是”l”。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">public class Solution &#123;</span><br><span class="line">    //Insert one char from stringstream</span><br><span class="line">    int[] chars = new int[256];</span><br><span class="line">    String sb = &quot;&quot;;</span><br><span class="line">    public void Insert(char ch)</span><br><span class="line">    &#123;</span><br><span class="line">        sb += ch;</span><br><span class="line">        chars[ch]++;</span><br><span class="line">    &#125;</span><br><span class="line">  //return the first appearence once char in current stringstream</span><br><span class="line">    public char FirstAppearingOnce()</span><br><span class="line">    &#123;</span><br><span class="line">    for(int i=0;i&lt;sb.length();i++)&#123;</span><br><span class="line">        if(chars[sb.charAt(i)]==1)&#123;</span><br><span class="line">            return sb.charAt(i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">        return &apos;#&apos;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="58-链表中环的入口结点–-常考"><a href="#58-链表中环的入口结点–-常考" class="headerlink" title="58 链表中环的入口结点–==常考=="></a><a href="https://www.nowcoder.com/practice/253d2c59ec3e4bc68da16833f79a38e4?tpId=13&tqId=11208&rp=3&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking&tPage=3" target="_blank" rel="noopener">58 链表中环的入口结点–==常考==</a></h2><p>给一个链表，若其中包含环，请找出该链表的环的入口结点，否则，输出null。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">public class Solution &#123;</span><br><span class="line"></span><br><span class="line">    public ListNode EntryNodeOfLoop(ListNode pHead)</span><br><span class="line">    &#123;</span><br><span class="line">        if(pHead == null)&#123;</span><br><span class="line">            return null;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        ListNode pFast = pHead;</span><br><span class="line">        ListNode pSlow = pHead;</span><br><span class="line">        </span><br><span class="line">        while(pFast!=null &amp;&amp; pFast.next!=null)&#123;</span><br><span class="line">            pFast = pFast.next.next;</span><br><span class="line">            pSlow = pSlow.next;</span><br><span class="line">            if(pFast == pSlow)&#123;</span><br><span class="line">                pFast = pHead;</span><br><span class="line">                while(pFast!=pSlow)&#123;</span><br><span class="line">                    pFast = pFast.next;</span><br><span class="line">                    pSlow = pSlow.next;</span><br><span class="line">                &#125;</span><br><span class="line">                return pSlow;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return null;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="59-删除链表中重复的结点–-常考"><a href="#59-删除链表中重复的结点–-常考" class="headerlink" title="59 删除链表中重复的结点–==常考=="></a><a href="https://www.nowcoder.com/practice/fc533c45b73a41b0b44ccba763f866ef?tpId=13&tqId=11209&rp=3&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking&tPage=3" target="_blank" rel="noopener">59 删除链表中重复的结点–==常考==</a></h2><p>在一个排序的链表中，存在重复的结点，请删除该链表中重复的结点，重复的结点不保留，返回链表头指针。 例如，链表1-&gt;2-&gt;3-&gt;3-&gt;4-&gt;4-&gt;5 处理后为 1-&gt;2-&gt;5</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">public class Solution &#123;</span><br><span class="line">    public ListNode deleteDuplication(ListNode pHead)</span><br><span class="line">    &#123;</span><br><span class="line">        if(pHead == null)&#123;</span><br><span class="line">            return pHead;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode dummy = new ListNode(-1);</span><br><span class="line">        dummy.next = pHead;</span><br><span class="line">        ListNode cur = dummy;</span><br><span class="line">        while(cur.next != null)&#123;</span><br><span class="line">            ListNode nextNode = cur.next;</span><br><span class="line">            if(nextNode.next!=null &amp;&amp; nextNode.val == nextNode.next.val)&#123;</span><br><span class="line">                while(nextNode.next!=null &amp;&amp; nextNode.val == nextNode.next.val)&#123;</span><br><span class="line">                    nextNode = nextNode.next;</span><br><span class="line">                &#125;</span><br><span class="line">                cur.next = nextNode.next;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                cur = cur.next;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return dummy.next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="60-二叉树的下一个结点–-常考"><a href="#60-二叉树的下一个结点–-常考" class="headerlink" title="60 二叉树的下一个结点–==常考=="></a><a href="https://www.nowcoder.com/practice/9023a0c988684a53960365b889ceaf5e?tpId=13&tqId=11210&rp=3&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking&tPage=3" target="_blank" rel="noopener">60 二叉树的下一个结点–==常考==</a></h2><p>给定一个二叉树和其中的一个结点，请找出中序遍历顺序的下一个结点并且返回。注意，树中的结点不仅包含左右子结点，同时包含指向父结点的指针。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">public class Solution &#123;</span><br><span class="line">    public TreeLinkNode GetNext(TreeLinkNode pNode)</span><br><span class="line">    &#123;</span><br><span class="line">        if(pNode == null)&#123;</span><br><span class="line">            return pNode;</span><br><span class="line">        &#125;</span><br><span class="line">        // 有右子树 则下一个结点就是右子树的最左边结点</span><br><span class="line">        if(pNode.right !=null)&#123;</span><br><span class="line">            pNode = pNode.right;</span><br><span class="line">            while(pNode.left!=null)&#123;</span><br><span class="line">                pNode = pNode.left;</span><br><span class="line">            &#125;</span><br><span class="line">            return pNode;</span><br><span class="line">        &#125;</span><br><span class="line">        // 节点不是根节点。如果该节点是其父节点的左孩子，</span><br><span class="line">        // 则返回父节点；否则继续向上遍历其父节点的父节点，重复之前的判断，返回结果。</span><br><span class="line">        while(pNode.next!=null)&#123;</span><br><span class="line">            if(pNode.next.left == pNode) return pNode.next;</span><br><span class="line">            pNode = pNode.next;</span><br><span class="line">        &#125;</span><br><span class="line">        return null;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="61-对称的二叉树–-常考"><a href="#61-对称的二叉树–-常考" class="headerlink" title="61 对称的二叉树–==常考=="></a><a href="https://www.nowcoder.com/practice/ff05d44dfdb04e1d83bdbdab320efbcb?tpId=13&tqId=11211&rp=3&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking" target="_blank" rel="noopener">61 对称的二叉树–==常考==</a></h2><p>请实现一个函数，用来判断一颗二叉树是不是对称的。注意，如果一个二叉树同此二叉树的镜像是同样的，定义其为对称的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">public class Solution &#123;</span><br><span class="line">    boolean isSymmetrical(TreeNode pRoot)</span><br><span class="line">    &#123;</span><br><span class="line">        return Miorror(pRoot,pRoot);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    private boolean Miorror(TreeNode node1,TreeNode node2)&#123;</span><br><span class="line">        if(node1 == null &amp;&amp; node2 == null)&#123;</span><br><span class="line">            return true;</span><br><span class="line">        &#125;</span><br><span class="line">        if(node1 == null ||node2 == null)&#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">        return (node1.val == node2.val) &amp;&amp; Miorror(node1.left,node2.right)&amp;&amp;</span><br><span class="line">            Miorror(node1.right,node2.left);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><a href="https://www.nowcoder.com/practice/91b69814117f4e8097390d107d2efbe0?tpId=13&tqId=11212&rp=3&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking" target="_blank" rel="noopener">62 按之字形顺序打印二叉树</a><br>请实现一个函数按照之字形打印二叉树，即第一行按照从左到右的顺序打印，第二层按照从右至左的顺序打印，第三行按照从左到右的顺序打印，其他行以此类推。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">import java.util.ArrayList;</span><br><span class="line">import java.util.*;</span><br><span class="line">/*</span><br><span class="line">public class TreeNode &#123;</span><br><span class="line">    int val = 0;</span><br><span class="line">    TreeNode left = null;</span><br><span class="line">    TreeNode right = null;</span><br><span class="line"></span><br><span class="line">    public TreeNode(int val) &#123;</span><br><span class="line">        this.val = val;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">*/</span><br><span class="line">public class Solution &#123;</span><br><span class="line">    public ArrayList&lt;ArrayList&lt;Integer&gt; &gt; Print(TreeNode pRoot) &#123;</span><br><span class="line">        ArrayList&lt;ArrayList&lt;Integer&gt;&gt; res = new ArrayList&lt;&gt;();</span><br><span class="line">        LinkedList&lt;TreeNode&gt; queue = new LinkedList&lt;&gt;();</span><br><span class="line">        if(pRoot == null)&#123;</span><br><span class="line">            return res;</span><br><span class="line">        &#125;</span><br><span class="line">        queue.add(pRoot);</span><br><span class="line">        boolean reverse = false;</span><br><span class="line">        while(!queue.isEmpty())&#123;</span><br><span class="line">            int count = queue.size();</span><br><span class="line">            ArrayList subList = new ArrayList&lt;&gt;();</span><br><span class="line">            while(count&gt;0)&#123;</span><br><span class="line">                TreeNode pop = queue.poll();</span><br><span class="line">                subList.add(pop.val);</span><br><span class="line">                if(pop.left!=null)&#123;</span><br><span class="line">                    queue.add(pop.left);</span><br><span class="line">                &#125;</span><br><span class="line">                if(pop.right!=null)&#123;</span><br><span class="line">                    queue.add(pop.right);</span><br><span class="line">                &#125;</span><br><span class="line">                count --;</span><br><span class="line">            &#125;</span><br><span class="line">            if(reverse)&#123;</span><br><span class="line">                Collections.reverse(subList);</span><br><span class="line">            &#125;</span><br><span class="line">            reverse = !reverse;</span><br><span class="line">            res.add(subList);</span><br><span class="line">        &#125;</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="63-把二叉树打印成多行–-常考"><a href="#63-把二叉树打印成多行–-常考" class="headerlink" title="63 把二叉树打印成多行–==常考=="></a><a href="https://www.nowcoder.com/practice/445c44d982d04483b04a54f298796288?tpId=13&tqId=11213&rp=3&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking" target="_blank" rel="noopener">63 把二叉树打印成多行–==常考==</a></h2><p>从上到下按层打印二叉树，同一层结点从左至右输出。每一层输出一行。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">import java.util.ArrayList;</span><br><span class="line">import java.util.LinkedList;</span><br><span class="line"></span><br><span class="line">/*</span><br><span class="line">public class TreeNode &#123;</span><br><span class="line">    int val = 0;</span><br><span class="line">    TreeNode left = null;</span><br><span class="line">    TreeNode right = null;</span><br><span class="line">    public TreeNode(int val) &#123;</span><br><span class="line">        this.val = val;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">*/</span><br><span class="line">public class Solution &#123;</span><br><span class="line">    ArrayList&lt;ArrayList&lt;Integer&gt; &gt; Print(TreeNode pRoot) &#123;</span><br><span class="line">         ArrayList&lt;ArrayList&lt;Integer&gt;&gt; res = new ArrayList&lt;&gt;();</span><br><span class="line">         if(pRoot == null)&#123;</span><br><span class="line">             return res;</span><br><span class="line">         &#125;</span><br><span class="line">        LinkedList&lt;TreeNode&gt; queue = new LinkedList&lt;&gt;();</span><br><span class="line">        queue.add(pRoot);</span><br><span class="line">        int level = 0;</span><br><span class="line">        while(!queue.isEmpty())&#123;</span><br><span class="line">            int size = queue.size();</span><br><span class="line">            ArrayList&lt;Integer&gt; subList = new ArrayList&lt;&gt;();</span><br><span class="line">            while(size&gt;0)&#123;</span><br><span class="line">                TreeNode pop = queue.poll();</span><br><span class="line">                subList.add(pop.val);</span><br><span class="line">                if(pop.left!=null) queue.add(pop.left);</span><br><span class="line">                if(pop.right!=null) queue.add(pop.right);</span><br><span class="line">                size --;</span><br><span class="line">            &#125;</span><br><span class="line">            res.add(subList);</span><br><span class="line">        &#125;</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="64-序列化二叉树"><a href="#64-序列化二叉树" class="headerlink" title="64 序列化二叉树"></a><a href="https://www.nowcoder.com/practice/cf7e25aa97c04cc1a68c8f040e71fb84?tpId=13&tqId=11214&rp=3&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking&tPage=4" target="_blank" rel="noopener">64 序列化二叉树</a></h2><p>请实现两个函数，分别用来序列化和反序列化二叉树</p>
+<p>二叉树的序列化是指：把一棵二叉树按照某种遍历方式的结果以某种格式保存为字符串，从而使得内存中建立起来的二叉树可以持久保存。序列化可以基于先序、中序、后序、层序的二叉树遍历方式来进行修改，序列化的结果是一个字符串，序列化时通过 某种符号表示空节点（#），以 ！ 表示一个结点值的结束（value!）。</p>
+<p>二叉树的反序列化是指：根据某种遍历顺序得到的序列化字符串结果str，重构二叉树。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">public class Solution &#123;</span><br><span class="line">    String Serialize(TreeNode root) &#123;</span><br><span class="line">        if(root == null)&#123;</span><br><span class="line">            return &quot;&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">        StringBuilder sb = new StringBuilder();</span><br><span class="line">        Serialize1(root,sb);</span><br><span class="line">        return sb.toString();</span><br><span class="line">  &#125;</span><br><span class="line">    public void Serialize1(TreeNode root,StringBuilder sb)&#123;</span><br><span class="line">        if(root == null)&#123;</span><br><span class="line">            sb.append(&quot;#,&quot;);</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        sb.append(root.val);</span><br><span class="line">        sb.append(&quot;,&quot;);</span><br><span class="line">        Serialize1(root.left,sb);</span><br><span class="line">        Serialize1(root.right,sb);</span><br><span class="line">    &#125;</span><br><span class="line">    TreeNode Deserialize(String str) &#123;</span><br><span class="line">       if(str == &quot;&quot;)&#123;</span><br><span class="line">           return null;</span><br><span class="line">       &#125;</span><br><span class="line">        String[] strs = str.split(&quot;,&quot;);</span><br><span class="line">       return Deserialize1(strs);</span><br><span class="line">  &#125;</span><br><span class="line">    int index = -1;</span><br><span class="line">    TreeNode Deserialize1(String[] strs)&#123;</span><br><span class="line">        index++;</span><br><span class="line">        if(!strs[index].equals(&quot;#&quot;) )&#123;</span><br><span class="line">            TreeNode root = new TreeNode(Integer.valueOf(strs[index]));</span><br><span class="line">            root.left = Deserialize1(strs);</span><br><span class="line">            root.right = Deserialize1(strs);</span><br><span class="line">            return root; </span><br><span class="line">        &#125;</span><br><span class="line">        return null;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="65-二叉搜索树的第k个结点–-常考"><a href="#65-二叉搜索树的第k个结点–-常考" class="headerlink" title="65 二叉搜索树的第k个结点–==常考=="></a><a href="https://www.nowcoder.com/practice/ef068f602dde4d28aab2b210e859150a?tpId=13&tqId=11215&rp=3&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking" target="_blank" rel="noopener">65 二叉搜索树的第k个结点–==常考==</a></h2><p>给定一棵二叉搜索树，请找出其中的第k小的结点。例如， （5，3，7，2，4，6，8）    中，按结点数值大小顺序第三小结点的值为4。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">public class Solution &#123;</span><br><span class="line">    int index = 0;</span><br><span class="line">    TreeNode KthNode(TreeNode pRoot, int k)</span><br><span class="line">    &#123;</span><br><span class="line">        if(pRoot == null || k&lt;=0)&#123;</span><br><span class="line">            return null;</span><br><span class="line">        &#125;</span><br><span class="line">        TreeNode node = KthNode(pRoot.left,k);</span><br><span class="line">        if(node!=null)&#123;</span><br><span class="line">            return node;</span><br><span class="line">        &#125;</span><br><span class="line">        index++;</span><br><span class="line">        if(index==k)&#123;</span><br><span class="line">            return pRoot;</span><br><span class="line">        &#125;</span><br><span class="line">        node = KthNode(pRoot.right,k);</span><br><span class="line">        if(node!=null)&#123;</span><br><span class="line">            return node;</span><br><span class="line">        &#125;</span><br><span class="line">        return null;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="66-数据流中的中位数"><a href="#66-数据流中的中位数" class="headerlink" title="66 数据流中的中位数"></a><a href="https://www.nowcoder.com/practice/9be0172896bd43948f8a32fb954e1be1?tpId=13&tqId=11216&rp=3&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking&tPage=4" target="_blank" rel="noopener">66 数据流中的中位数</a></h2><p>如何得到一个数据流中的中位数？如果从数据流中读出奇数个数值，那么中位数就是所有数值排序之后位于中间的数值。如果从数据流中读出偶数个数值，那么中位数就是所有数值排序之后中间两个数的平均值。我们使用Insert()方法读取数据流，使用GetMedian()方法获取当前读取数据的中位数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">import java.util.ArrayList;</span><br><span class="line">public class Solution &#123;</span><br><span class="line"></span><br><span class="line">    ArrayList&lt;Integer&gt; list = new ArrayList&lt;&gt;();</span><br><span class="line">    public void Insert(Integer num) &#123;</span><br><span class="line">        if(list.size() == 0)&#123;</span><br><span class="line">            list.add(num);</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            boolean flag = false;</span><br><span class="line">            for(int e:list)&#123;</span><br><span class="line">                if(num &lt; e)&#123;</span><br><span class="line">                    int index = list.indexOf(e);</span><br><span class="line">                    list.add(index,num);</span><br><span class="line">                    flag = true;</span><br><span class="line">                    break;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            if(!flag)&#123;</span><br><span class="line">                list.add(num);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public Double GetMedian() &#123;</span><br><span class="line">        if(list.size() == 0)&#123;</span><br><span class="line">            return 0.0;</span><br><span class="line">        &#125;</span><br><span class="line">        int len = list.size();</span><br><span class="line">        if(len%2 == 1)&#123;</span><br><span class="line">            return (double)list.get((len-1)/2);</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            return ((double)list.get((len-1)/2)+(double)list.get((len-1)/2 +1))/2;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="67-滑动窗口的最大值"><a href="#67-滑动窗口的最大值" class="headerlink" title="67 滑动窗口的最大值"></a><a href="https://www.nowcoder.com/practice/1624bc35a45c42c0bc17d17fa0cba788?tpId=13&tqId=11217&rp=3&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking&tPage=4" target="_blank" rel="noopener">67 滑动窗口的最大值</a></h2><p>给定一个数组和滑动窗口的大小，找出所有滑动窗口里数值的最大值。例如，如果输入数组{2,3,4,2,6,2,5,1}及滑动窗口的大小3，那么一共存在6个滑动窗口，他们的最大值分别为{4,4,6,6,6,5}； 针对数组{2,3,4,2,6,2,5,1}的滑动窗口有以下6个： {[2,3,4],2,6,2,5,1}， {2,[3,4,2],6,2,5,1}， {2,3,[4,2,6],2,5,1}， {2,3,4,[2,6,2],5,1}， {2,3,4,2,[6,2,5],1}， {2,3,4,2,6,[2,5,1]}。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">import java.util.ArrayList;</span><br><span class="line">public class Solution &#123;</span><br><span class="line">    public ArrayList&lt;Integer&gt; maxInWindows(int [] num, int size)</span><br><span class="line">    &#123;</span><br><span class="line">        ArrayList&lt;Integer&gt; res = new ArrayList&lt;&gt;();</span><br><span class="line">        if(num == null || size &lt;=0)&#123;</span><br><span class="line">            return res;</span><br><span class="line">        &#125;</span><br><span class="line">        int len = num.length;</span><br><span class="line">        if(size &gt; len)&#123;</span><br><span class="line">            return res;</span><br><span class="line">        &#125;</span><br><span class="line">        int left = 0;</span><br><span class="line">        while(left+size&lt;= len)&#123;</span><br><span class="line">            int max = findMax(num,left,size);</span><br><span class="line">            res.add(max);</span><br><span class="line">            left++;</span><br><span class="line">        &#125;</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public int findMax(int[] num,int left,int size)&#123;</span><br><span class="line">        int max = num[left];</span><br><span class="line">        for(int i=left+1;i&lt;left+size;i++)&#123;</span><br><span class="line">            if(num[i]&gt;max)&#123;</span><br><span class="line">                max = num[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return max;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>方法二：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int[] maxSlidingWindow(int[] nums, int k) &#123;</span><br><span class="line">        if (nums == null || nums.length == 0) &#123;</span><br><span class="line">            return new int[0];</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        // 因为窗口为k 则会有 len - k + 1个最大值</span><br><span class="line">        int[] res = new int[nums.length - k + 1];</span><br><span class="line">        Deque&lt;Integer&gt; deque = new LinkedList&lt;&gt;();</span><br><span class="line">        </span><br><span class="line">        for (int i = 0; i &lt; nums.length; i++) &#123;</span><br><span class="line">            //step 1: 尾部加元素，保证左边元素都比尾部大</span><br><span class="line">            while (!deque.isEmpty() &amp;&amp; nums[deque.getLast()] &lt; nums[i]) &#123;</span><br><span class="line">                deque.removeLast();</span><br><span class="line">            &#125;</span><br><span class="line">            deque.addLast(i); // 添加下标</span><br><span class="line">            //step 2: 头部剪元素</span><br><span class="line">            if (deque.getFirst() == i - k) &#123;</span><br><span class="line">                deque.removeFirst();</span><br><span class="line">            &#125;</span><br><span class="line">            //输出结果 保证队列里面存的下标最前列是对应当前窗口的最大值</span><br><span class="line">            if (i &gt;= k - 1) &#123;</span><br><span class="line">                res[i - k + 1] = nums[deque.getFirst()];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="68-矩阵中的路径"><a href="#68-矩阵中的路径" class="headerlink" title="68 矩阵中的路径"></a><a href="https://www.nowcoder.com/practice/c61c6999eecb4b8f88a98f66b273a3cc?tpId=13&tqId=11218&rp=3&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking&tPage=4" target="_blank" rel="noopener">68 矩阵中的路径</a></h2><p>请设计一个函数，用来判断在一个矩阵中是否存在一条包含某字符串所有字符的路径。路径可以从矩阵中的任意一个格子开始，每一步可以在矩阵中向左，向右，向上，向下移动一个格子。如果一条路径经过了矩阵中的某一个格子，则该路径不能再进入该格子。 例如 a b c e s f c s a d e e 矩阵中包含一条字符串”bcced”的路径，但是矩阵中不包含”abcb”路径，因为字符串的第一个字符b占据了矩阵中的第一行第二个格子之后，路径不能再次进入该格子。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">public class Solution &#123;</span><br><span class="line">    public boolean hasPath(char[] matrix, int rows, int cols, char[] str)</span><br><span class="line">    &#123;</span><br><span class="line">        if(matrix == null || rows&lt;=0 || cols&lt;=0 || str == null)&#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">        int length = 0;</span><br><span class="line">        boolean[] isVisited = new boolean[rows*cols];</span><br><span class="line">        for(int i=0;i&lt;rows;i++)&#123;</span><br><span class="line">            for(int j=0;j&lt;cols;j++)&#123;</span><br><span class="line">                if(hasPathCore(matrix,i,rows,j,cols,str,isVisited,length))&#123;</span><br><span class="line">                    return true;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    private boolean hasPathCore(char[] matrix, int row,int rows,</span><br><span class="line">                                int col,int cols, char[] str,boolean[] isVisited,int length)&#123;</span><br><span class="line">        if(length == str.length)&#123;</span><br><span class="line">            return true;</span><br><span class="line">        &#125;</span><br><span class="line">        boolean hasPath=false;</span><br><span class="line">        if(row&gt;=0&amp;&amp;row&lt;rows&amp;&amp;</span><br><span class="line">           col&gt;=0&amp;&amp;col&lt;cols&amp;&amp;</span><br><span class="line">           isVisited[row*cols+col]==false&amp;&amp;</span><br><span class="line">           str[length] == matrix[row*cols+col]</span><br><span class="line">          )&#123;</span><br><span class="line">            length ++;</span><br><span class="line">            isVisited[row*cols+col] = true;</span><br><span class="line">            hasPath = hasPathCore(matrix,row+1,rows,col,cols,str,isVisited,length)||</span><br><span class="line">                hasPathCore(matrix,row,rows,col+1,cols,str,isVisited,length)||</span><br><span class="line">                hasPathCore(matrix,row-1,rows,col,cols,str,isVisited,length)||</span><br><span class="line">                hasPathCore(matrix,row,rows,col-1,cols,str,isVisited,length);</span><br><span class="line">            if(!hasPath)&#123;</span><br><span class="line">                -- length;</span><br><span class="line">                isVisited[row*cols+col] = false;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return hasPath;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="69-机器人的运动范围"><a href="#69-机器人的运动范围" class="headerlink" title="69 机器人的运动范围"></a><a href="https://www.nowcoder.com/practice/6e5207314b5241fb83f2329e89fdecc8?tpId=13&tqId=11219&rp=3&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking&tPage=4" target="_blank" rel="noopener">69 机器人的运动范围</a></h2><p>地上有一个m行和n列的方格。一个机器人从坐标0,0的格子开始移动，每一次只能向左，右，上，下四个方向移动一格，但是不能进入行坐标和列坐标的数位之和大于k的格子。 例如，当k为18时，机器人能够进入方格（35,37），因为3+5+3+7 = 18。但是，它不能进入方格（35,38），因为3+5+3+8 = 19。请问该机器人能够达到多少个格子？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">public class Solution &#123;</span><br><span class="line">    public int movingCount(int threshold, int rows, int cols)</span><br><span class="line">    &#123;</span><br><span class="line">        if(threshold &lt;=0 || rows&lt;=0 || cols &lt;=0)&#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line">        boolean[] isVisited = new boolean[rows*cols];</span><br><span class="line">        </span><br><span class="line">        int count = movingCountCore(threshold,0,rows,0,cols,isVisited);</span><br><span class="line">        return count;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    private int movingCountCore(int threshold, int row,int rows,</span><br><span class="line">                                int col, int cols,boolean[] isVisited)&#123;</span><br><span class="line">        int count = 0;</span><br><span class="line">        if(check(threshold,row,rows,col,cols,isVisited))&#123;</span><br><span class="line">            isVisited[row*cols+col] = true;</span><br><span class="line">            count = 1+movingCountCore(threshold,row+1,rows,col,cols,isVisited)+</span><br><span class="line">                movingCountCore(threshold,row,rows,col+1,cols,isVisited)+</span><br><span class="line">                movingCountCore(threshold,row-1,rows,col,cols,isVisited)+</span><br><span class="line">                movingCountCore(threshold,row,rows,col-1,cols,isVisited);</span><br><span class="line">        &#125;</span><br><span class="line">        return count;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    private boolean check(int threshold, int row,int rows,</span><br><span class="line">                          int col, int cols,boolean[] isVisited)&#123;</span><br><span class="line">        if(row&gt;=0&amp;&amp;row&lt;rows&amp;&amp;</span><br><span class="line">           col&gt;=0&amp;&amp;col&lt;cols&amp;&amp;</span><br><span class="line">           isVisited[row*cols+col] == false&amp;&amp;</span><br><span class="line">           getSum(row) + getSum(col) &lt;= threshold</span><br><span class="line">           )&#123;</span><br><span class="line">            return true;</span><br><span class="line">        &#125;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">    private int getSum(int num)&#123;</span><br><span class="line">        int sum = 0;</span><br><span class="line">        while(num&gt;0)&#123;</span><br><span class="line">            sum += num%10;</span><br><span class="line">            num /=10;</span><br><span class="line">        &#125;</span><br><span class="line">        return sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="70-剪绳子–-常考"><a href="#70-剪绳子–-常考" class="headerlink" title="70 剪绳子–==常考=="></a><a href="https://www.nowcoder.com/practice/57d85990ba5b440ab888fc72b0751bf8?tpId=13&tqId=33257&rp=3&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking&tPage=4" target="_blank" rel="noopener">70 剪绳子–==常考==</a></h2><p>给你一根长度为n的绳子，请把绳子剪成m段（m、n都是整数，n&gt;1并且m&gt;1），每段绳子的长度记为k[0],k[1],…,k[m]。请问k[0]xk[1]x…xk[m]可能的最大乘积是多少？例如，当绳子的长度是8时，我们把它剪成长度分别为2、3、3的三段，此时得到的最大乘积是18。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">public class Solution &#123;</span><br><span class="line">    public int cutRope(int n) &#123;</span><br><span class="line">       // n&lt;=3的情况，m&gt;1必须要分段，例如：3必须分成1、2；1、1、1 ，n=3最大分段乘积是2,</span><br><span class="line">        if(n==2)</span><br><span class="line">            return 1;</span><br><span class="line">        if(n==3)</span><br><span class="line">            return 2;</span><br><span class="line">        int[] dp = new int[n+1];</span><br><span class="line">        /*</span><br><span class="line">        下面3行是n&gt;=4的情况，跟n&lt;=3不同，4可以分很多段，比如分成1、3，</span><br><span class="line">        这里的3可以不需要再分了，因为3分段最大才2，不分就是3。记录最大的。</span><br><span class="line">         */</span><br><span class="line">        dp[1]=1;</span><br><span class="line">        dp[2]=2;</span><br><span class="line">        dp[3]=3;</span><br><span class="line">        int res=0;//记录最大的</span><br><span class="line">        for (int i = 4; i &lt;= n; i++) &#123;</span><br><span class="line">            for (int j = 1; j &lt;=i/2 ; j++) &#123;</span><br><span class="line">                res=Math.max(res,dp[j]*dp[i-j]);</span><br><span class="line">            &#125;</span><br><span class="line">            dp[i]=res;</span><br><span class="line">        &#125;</span><br><span class="line">        return dp[n];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:</strong>
+    Wangfulin
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link:</strong>
+    <a href="http://yoursite.com/blog/2019/09/27/剑指Offer二/" title="剑指Offer二">http://yoursite.com/blog/2019/09/27/剑指Offer二/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice: </strong>
+    All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> unless stating additionally.
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Coding/" rel="tag"># Coding</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2019/09/27/JAVA锁原理基础/" rel="next" title="JAVA锁原理基础">
+                <i class="fa fa-chevron-left"></i> JAVA锁原理基础
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Wangfulin">
+            
+              <p class="site-author-name" itemprop="name">Wangfulin</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/wangfulin7" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:1037377970@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.weibo.com/u/6368309151" target="_blank" title="微博">
+                      
+                        <i class="fa fa-fw fa-weibo"></i>微博</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.instagram.com/wangfulin07" target="_blank" title="Instagram">
+                      
+                        <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#32-最小的K个数–-常考"><span class="nav-number">1.</span> <span class="nav-text">32 最小的K个数–==常考==</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#33-连续子数组的最大和–-常考"><span class="nav-number">2.</span> <span class="nav-text">33 连续子数组的最大和–==常考==</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#34-整数中1出现的次数（从1到n整数中1出现的次数）"><span class="nav-number">3.</span> <span class="nav-text">34 整数中1出现的次数（从1到n整数中1出现的次数）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#35-把数组排成最小的数"><span class="nav-number">4.</span> <span class="nav-text">35 把数组排成最小的数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#36-丑数"><span class="nav-number">5.</span> <span class="nav-text">36 丑数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#37-第一个只出现一次的字符–-常考"><span class="nav-number">6.</span> <span class="nav-text">37 第一个只出现一次的字符–==常考==</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#38-数组中的逆序对"><span class="nav-number">7.</span> <span class="nav-text">38 数组中的逆序对</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#39-两个链表的第一个公共结点"><span class="nav-number">8.</span> <span class="nav-text">39 两个链表的第一个公共结点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#40-数字在排序数组中出现的次数"><span class="nav-number">9.</span> <span class="nav-text">40 数字在排序数组中出现的次数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#41-1-二叉树的深度–-常考"><span class="nav-number">10.</span> <span class="nav-text">41-1 二叉树的深度–==常考==</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#41-2-二叉树的宽度–-常考"><span class="nav-number">11.</span> <span class="nav-text">41-2 二叉树的宽度–==常考==</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#42-平衡二叉树"><span class="nav-number">12.</span> <span class="nav-text">42 平衡二叉树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#43-数组中只出现一次的数字–-常考"><span class="nav-number">13.</span> <span class="nav-text">43 数组中只出现一次的数字–==常考==</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#44-和为S的连续正数序列"><span class="nav-number">14.</span> <span class="nav-text">44 和为S的连续正数序列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#45-和为S的两个数字"><span class="nav-number">15.</span> <span class="nav-text">45 和为S的两个数字</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#46-左旋转字符串"><span class="nav-number">16.</span> <span class="nav-text">46 左旋转字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#47-翻转单词顺序列"><span class="nav-number">17.</span> <span class="nav-text">47 翻转单词顺序列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#48-扑克牌顺子"><span class="nav-number">18.</span> <span class="nav-text">48 扑克牌顺子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#49-孩子们的游戏-圆圈中最后剩下的数"><span class="nav-number">19.</span> <span class="nav-text">49 孩子们的游戏(圆圈中最后剩下的数)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#50-求1-2-3-…-n–-常考"><span class="nav-number">20.</span> <span class="nav-text">50 求1+2+3+…+n–==常考==</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#51-1-不用加减乘除做加法–-常考"><span class="nav-number">21.</span> <span class="nav-text">51-1 不用加减乘除做加法–==常考==</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#51-2-不用运算符号交换两个数"><span class="nav-number">22.</span> <span class="nav-text">51-2 不用运算符号交换两个数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#52-把字符串转换成整数"><span class="nav-number">23.</span> <span class="nav-text">52 把字符串转换成整数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#53-数组中重复的数字"><span class="nav-number">24.</span> <span class="nav-text">53 数组中重复的数字</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#54-构建乘积数组"><span class="nav-number">25.</span> <span class="nav-text">54 构建乘积数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#55-正则表达式匹配"><span class="nav-number">26.</span> <span class="nav-text">55 正则表达式匹配</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#56-表示数值的字符串"><span class="nav-number">27.</span> <span class="nav-text">56 表示数值的字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#57-字符流中第一个不重复的字符–-常考"><span class="nav-number">28.</span> <span class="nav-text">57 字符流中第一个不重复的字符–==常考==</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#58-链表中环的入口结点–-常考"><span class="nav-number">29.</span> <span class="nav-text">58 链表中环的入口结点–==常考==</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#59-删除链表中重复的结点–-常考"><span class="nav-number">30.</span> <span class="nav-text">59 删除链表中重复的结点–==常考==</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#60-二叉树的下一个结点–-常考"><span class="nav-number">31.</span> <span class="nav-text">60 二叉树的下一个结点–==常考==</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#61-对称的二叉树–-常考"><span class="nav-number">32.</span> <span class="nav-text">61 对称的二叉树–==常考==</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#63-把二叉树打印成多行–-常考"><span class="nav-number">33.</span> <span class="nav-text">63 把二叉树打印成多行–==常考==</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#64-序列化二叉树"><span class="nav-number">34.</span> <span class="nav-text">64 序列化二叉树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#65-二叉搜索树的第k个结点–-常考"><span class="nav-number">35.</span> <span class="nav-text">65 二叉搜索树的第k个结点–==常考==</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#66-数据流中的中位数"><span class="nav-number">36.</span> <span class="nav-text">66 数据流中的中位数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#67-滑动窗口的最大值"><span class="nav-number">37.</span> <span class="nav-text">67 滑动窗口的最大值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#68-矩阵中的路径"><span class="nav-number">38.</span> <span class="nav-text">68 矩阵中的路径</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#69-机器人的运动范围"><span class="nav-number">39.</span> <span class="nav-text">69 机器人的运动范围</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#70-剪绳子–-常考"><span class="nav-number">40.</span> <span class="nav-text">70 剪绳子–==常考==</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Wangfulin</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">138.3k</span>
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+  <!-- 页面点击小心心 -->
+  <script type="text/javascript" src="/js/src/love.js"></script>
+  <!-- 背景动画 -->
+  <script type="text/javascript" src="/js/src/particle.js"></script>
+  <script type="text/javascript">var OriginTitile=document.title,st;document.addEventListener("visibilitychange",function(){document.hidden?(document.title="风里雨里,这里等你",clearTimeout(st)):(document.title="Got ya~~"+OriginTitile,st=setTimeout(function(){document.title=OriginTitile},3e3))})
+  </script>
+</body>
+</html>
