@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="JAVA,JAVA内存模型,">
 
 
 
@@ -81,27 +81,21 @@
 
 
 
-<meta name="description" content="教育经历小学：湖坪小学+三育小学初中：培才中学高中：永定一中本科：😀XTUer😀硕士：😀XMUer😀   喜欢几句话:1 怕,你就活该输一辈子;2 今日事今日毕;3 当你觉得为时已晚的时候,恰恰是最早的时候. 然而这些,却是我一直欠缺的.  一个在秃头路上不断前行的小王同学，哈哈哈哈  2008  2010  2011    2018  最后的模样 hhhhhhh">
-<meta property="og:type" content="website">
-<meta property="og:title" content="About me">
-<meta property="og:url" content="http://yoursite.com/about/index.html">
+<meta name="description" content="JAVA内存模型的基础并发编程关键问题  线程之间如何通信在命令式编程中，线程之间的通信机制有：共享内存和消息传递  共享内存    通过写读内存中的公共状态进行隐式通信。  消息传递线程之间没有公共状态，线程之间必须通过发送消息来显示进行通信。   线程之间如何同步  在共享内存的并发模型中，同步是显示进行的。必须显示指定某个方法或者代码段需要在线程之间互斥执行。 在消息传递的并发模型中，由于消">
+<meta name="keywords" content="JAVA,JAVA内存模型">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JAVA内存模型">
+<meta property="og:url" content="http://yoursite.com/blog/2019/09/30/JAVA内存模型/index.html">
 <meta property="og:site_name" content="Wangfulin7&#39;s Home">
-<meta property="og:description" content="教育经历小学：湖坪小学+三育小学初中：培才中学高中：永定一中本科：😀XTUer😀硕士：😀XMUer😀   喜欢几句话:1 怕,你就活该输一辈子;2 今日事今日毕;3 当你觉得为时已晚的时候,恰恰是最早的时候. 然而这些,却是我一直欠缺的.  一个在秃头路上不断前行的小王同学，哈哈哈哈  2008  2010  2011    2018  最后的模样 hhhhhhh">
+<meta property="og:description" content="JAVA内存模型的基础并发编程关键问题  线程之间如何通信在命令式编程中，线程之间的通信机制有：共享内存和消息传递  共享内存    通过写读内存中的公共状态进行隐式通信。  消息传递线程之间没有公共状态，线程之间必须通过发送消息来显示进行通信。   线程之间如何同步  在共享内存的并发模型中，同步是显示进行的。必须显示指定某个方法或者代码段需要在线程之间互斥执行。 在消息传递的并发模型中，由于消">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://yoursite.com/about/index/2008.jpeg">
-<meta property="og:image" content="http://yoursite.com/about/index/2010.jpeg">
-<meta property="og:image" content="http://yoursite.com/about/index/2011-1.jpeg">
-<meta property="og:image" content="http://yoursite.com/about/index/2011-2.jpeg">
-<meta property="og:image" content="http://yoursite.com/about/index/2011-3.jpeg">
-<meta property="og:image" content="http://yoursite.com/about/index/2012.jpeg">
-<meta property="og:image" content="http://yoursite.com/about/index/2018-1.jpg">
-<meta property="og:image" content="http://yoursite.com/about/index/2018-2.jpg">
-<meta property="og:image" content="http://yoursite.com/about/index/tutou.jpg">
-<meta property="og:updated_time" content="2019-09-03T15:05:07.350Z">
+<meta property="og:image" content="http://yoursite.com/blog/2019/09/30/JAVA内存模型/1%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B%E6%8A%BD%E8%B1%A1%E7%A4%BA%E6%84%8F%E5%9B%BE.png">
+<meta property="og:image" content="http://yoursite.com/blog/2019/09/30/JAVA内存模型/2%E6%8C%87%E4%BB%A4%E5%BA%8F%E5%88%97%E7%9A%84%E7%A4%BA%E6%84%8F%E5%9B%BE.png">
+<meta property="og:updated_time" content="2019-09-30T07:42:40.447Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="About me">
-<meta name="twitter:description" content="教育经历小学：湖坪小学+三育小学初中：培才中学高中：永定一中本科：😀XTUer😀硕士：😀XMUer😀   喜欢几句话:1 怕,你就活该输一辈子;2 今日事今日毕;3 当你觉得为时已晚的时候,恰恰是最早的时候. 然而这些,却是我一直欠缺的.  一个在秃头路上不断前行的小王同学，哈哈哈哈  2008  2010  2011    2018  最后的模样 hhhhhhh">
-<meta name="twitter:image" content="http://yoursite.com/about/index/2008.jpeg">
+<meta name="twitter:title" content="JAVA内存模型">
+<meta name="twitter:description" content="JAVA内存模型的基础并发编程关键问题  线程之间如何通信在命令式编程中，线程之间的通信机制有：共享内存和消息传递  共享内存    通过写读内存中的公共状态进行隐式通信。  消息传递线程之间没有公共状态，线程之间必须通过发送消息来显示进行通信。   线程之间如何同步  在共享内存的并发模型中，同步是显示进行的。必须显示指定某个方法或者代码段需要在线程之间互斥执行。 在消息传递的并发模型中，由于消">
+<meta name="twitter:image" content="http://yoursite.com/blog/2019/09/30/JAVA内存模型/1%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B%E6%8A%BD%E8%B1%A1%E7%A4%BA%E6%84%8F%E5%9B%BE.png">
 
 
 
@@ -134,13 +128,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/about/">
+  <link rel="canonical" href="http://yoursite.com/blog/2019/09/30/JAVA内存模型/">
 
 
 
 
 
-  <title>About me | Wangfulin7's Home</title>
+  <title>JAVA内存模型 | Wangfulin7's Home</title>
   
 
 
@@ -297,53 +291,237 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2019/09/30/JAVA内存模型/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Wangfulin">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wangfulin7's Home">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">About me</h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <ul>
-<li>教育经历<br>小学：湖坪小学+三育小学<br>初中：培才中学<br>高中：永定一中<br>本科：😀XTUer😀<br>硕士：😀XMUer😀</li>
+          <h1 class="post-title" itemprop="name headline">JAVA内存模型</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-09-30T14:59:20+08:00">
+                2019-09-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JAVA基础/" itemprop="url" rel="index">
+                    <span itemprop="name">JAVA基础</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  724
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="JAVA内存模型的基础"><a href="#JAVA内存模型的基础" class="headerlink" title="JAVA内存模型的基础"></a>JAVA内存模型的基础</h2><p>并发编程关键问题</p>
+<ul>
+<li><p>线程之间如何通信<br>在命令式编程中，线程之间的通信机制有：共享内存和消息传递</p>
+<ul>
+<li>共享内存</li>
 </ul>
-<hr>
-<p>喜欢几句话:<br><strong>1 怕,你就活该输一辈子;<br>2 今日事今日毕;<br>3 当你觉得为时已晚的时候,恰恰是最早的时候.</strong></p>
-<p>然而这些,却是我一直欠缺的.</p>
-<hr>
-<p>一个在秃头路上不断前行的小王同学，哈哈哈哈</p>
-<hr>
-<p>2008<br><img src="/about/index/2008.jpeg" alt="Alt text"></p>
-<hr>
-<p>2010<br><img src="/about/index/2010.jpeg" alt="Alt text"></p>
-<hr>
-<p>2011<br><img src="/about/index/2011-1.jpeg" alt="Alt text"><br><img src="/about/index/2011-2.jpeg" alt="Alt text"><br><img src="/about/index/2011-3.jpeg" alt="Alt text"></p>
-<hr>
-<p><img src="/about/index/2012.jpeg" alt="Alt text"></p>
-<hr>
-<p>2018<br><img src="/about/index/2018-1.jpg" alt="Alt text"><br><img src="/about/index/2018-2.jpg" alt="Alt text"></p>
-<hr>
-<p>最后的模样 hhhhhhh<br><img src="/about/index/tutou.jpg" alt="Alt text"></p>
+<p>  <strong>通过写读内存中的公共状态进行隐式通信</strong>。</p>
+<ul>
+<li>消息传递<br>线程之间没有公共状态，线程之间必须<strong>通过发送消息来显示进行通信</strong>。</li>
+</ul>
+</li>
+<li><p>线程之间如何同步</p>
+<ul>
+<li>在共享内存的并发模型中，同步是显示进行的。<strong>必须显示指定某个方法或者代码段需要在线程之间互斥执行。</strong></li>
+<li>在消息传递的并发模型中，<strong>由于消息的发送必须在消息的接收之前，因此是隐式进行的。</strong></li>
+</ul>
+</li>
+</ul>
+<p>JAVA的并发采用的是共享内存模型，<strong>JAVA线程的通信总是隐式进行</strong>的。</p>
+<h2 id="JAVA内存模型的抽象结构"><a href="#JAVA内存模型的抽象结构" class="headerlink" title="JAVA内存模型的抽象结构"></a>JAVA内存模型的抽象结构</h2><p>从抽象的角度来看，JMM定义了线程和主内存之间的抽象关系：线程之间的共享变量存储在主内存中，每个线程都有一个私有的本地内存（Local Memory），本地内存中存储了该线程以读/写共享变量的副本。本地内存是JMM的一个抽象概念，并不是真实存在。<br><img src="/blog/2019/09/30/JAVA内存模型/1%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B%E6%8A%BD%E8%B1%A1%E7%A4%BA%E6%84%8F%E5%9B%BE.png" alt></p>
+<p>线程A B之间通信</p>
+<ol>
+<li>线程A把本地内存A中更新过的共享变量刷到主内存中。</li>
+<li>线程B到主内存中去读取线程A之前更新的共享变量。</li>
+</ol>
+<p>从整体上看，这两个步骤是在线程A在向线程B发送消息，而这个通信过程，必须要经过主内存。JMM通过控制主内存与每个线程的本地内存之间的交互，来提供可见性保证。</p>
+<h2 id="指令序列的重排序"><a href="#指令序列的重排序" class="headerlink" title="指令序列的重排序"></a>指令序列的重排序</h2><p>重排序分为三类</p>
+<ul>
+<li>编译器优化重排序。<br>编译器在不改变单线程程序语义的前提下，可以重新安排语句的执行顺序。</li>
+<li>指令级并行的重排序<br>如果不存在数据依赖性，处理器可以改变语句对应机器指令级的执行顺序。</li>
+<li>内存系统的重排序<br>由于处理器使用缓存和读/写缓冲区，这使得加载和存储操作看上去是乱序的操作。</li>
+</ul>
+<p><img src="/blog/2019/09/30/JAVA内存模型/2%E6%8C%87%E4%BB%A4%E5%BA%8F%E5%88%97%E7%9A%84%E7%A4%BA%E6%84%8F%E5%9B%BE.png" alt><br>1属于编译器重排序，2和3属于处理器重排序。<br>重排序可能导致多线程程序出现内存可见性问题。<br>对于编译器JMM的编译器重排序规则<strong>会禁止特定类型的编译器重排序。</strong><br>对于处理器重排序，JMM的处理器重排序规则会要求JAVA编译器在生成指令序列时，插入特定类型的内存屏障指令，<strong>通过内存屏障指令来禁止特定类型的处理器重排序。</strong></p>
 
-        
-      </div>
-      
-      
       
     </div>
     
     
     
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:</strong>
+    Wangfulin
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link:</strong>
+    <a href="http://yoursite.com/blog/2019/09/30/JAVA内存模型/" title="JAVA内存模型">http://yoursite.com/blog/2019/09/30/JAVA内存模型/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice: </strong>
+    All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> unless stating additionally.
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JAVA/" rel="tag"># JAVA</a>
+          
+            <a href="/tags/JAVA内存模型/" rel="tag"># JAVA内存模型</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2019/09/27/剑指Offer二/" rel="next" title="剑指Offer二">
+                <i class="fa fa-chevron-left"></i> 剑指Offer二
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -376,8 +554,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -474,6 +661,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#JAVA内存模型的基础"><span class="nav-number">1.</span> <span class="nav-text">JAVA内存模型的基础</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JAVA内存模型的抽象结构"><span class="nav-number">2.</span> <span class="nav-text">JAVA内存模型的抽象结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#指令序列的重排序"><span class="nav-number">3.</span> <span class="nav-text">指令序列的重排序</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
